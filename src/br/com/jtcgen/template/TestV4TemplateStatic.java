@@ -1,12 +1,9 @@
 package br.com.jtcgen.template;
 
-import static org.junit.Assert.*;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
-public class TestTemplate {
+public class TestV4TemplateStatic {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -16,9 +13,6 @@ public class TestTemplate {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+	/* Methods Here */
 
 }
