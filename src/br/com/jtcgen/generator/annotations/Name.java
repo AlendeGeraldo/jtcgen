@@ -8,5 +8,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.PARAMETER })
 public @interface Name {
+	boolean specialCharsAcceptance() default false;
 
+	int minLength() default 1;
+
+	int maxLength() default 100;
 }
