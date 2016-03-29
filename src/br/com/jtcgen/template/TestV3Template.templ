@@ -1,15 +1,23 @@
-package br.com.jtcgen.template;
+package {{PACKAGE}};
 
 import junit.framework.TestCase;
 
-public class TestV3Template extends TestCase {
+public class Test{{CLASSNAME}} extends TestCase {
+
+	{{MEMBERVARS}}
 
 	protected void setUp() throws Exception {
 		super.setUp();
+		
+		{{SETUP}}
 	}
+	
+	{{TESTMETHODS}}
 
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		
+		{{TEARDOWN}}
 	}
 
 }

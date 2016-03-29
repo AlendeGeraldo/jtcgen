@@ -1,18 +1,29 @@
-package br.com.jtcgen.template;
+package {{PACKAGE}};
+
+import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
-public class TestV4TemplateStatic {
+public class Test{{CLASSNAME}} {
+
+	{{MEMBERVARS}}
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		
+		{{SETUP}}
+		
 	}
+	
+	{{TESTMETHODS}}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		
+		{{TEARDOWN}}
+	
 	}
-
-	/* Methods Here */
 
 }

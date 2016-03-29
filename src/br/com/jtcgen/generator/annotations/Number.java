@@ -11,4 +11,6 @@ public @interface Number {
 	int minLength() default 1;
 
 	int maxLength() default 100;
+
+	int precision() default 0;
 }

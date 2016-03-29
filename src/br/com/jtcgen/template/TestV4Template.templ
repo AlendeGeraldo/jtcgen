@@ -1,4 +1,4 @@
-package br.com.jtcgen.template;
+package {{PACKAGE}};
 
 import static org.junit.Assert.*;
 
@@ -6,19 +6,24 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestV4Template {
+public class Test{{CLASSNAME}} {
+
+	{{MEMBERVARS}}
 
 	@Before
 	public void setUp() throws Exception {
+		
+		{{SETUP}}
+		
 	}
+	
+	{{TESTMETHODS}}
 
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+		
+		{{TEARDOWN}}
+	
 	}
 
 }
