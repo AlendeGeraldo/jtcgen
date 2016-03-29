@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import example.classes.ContaPoupanca;
 
-public class TestPrototipe {
+public class PrototipeTest {
 
 	private ContaPoupanca contaPoupanca;
 
