@@ -7,14 +7,13 @@ import br.com.jtcgen.generator.annotations.Number;
 @JTCGen
 public class ContaPoupanca extends Conta implements Tributavel {
 
-	public ContaPoupanca(@Number(minLength = 5, maxLength = 5) int numero,
-			@Number(minLength = 5, maxLength = 5) int agencia,
-			@Number(minLength = 5, maxLength = 5, precision = 2) double saldo) {
+	public ContaPoupanca(@Number({ 5, 5 }) int numero, @Number({ 5, 5 }) int agencia,
+			@Number({ 3, 12, 2 }) double saldo) {
 		super(numero, agencia, saldo);
 	}
 
 	@CompareTarget(target = ContaPoupanca.class, method = "getSaldo")
-	public void deposita(@Number(minLength = 3, maxLength = 20, precision = 2) double quantia) {
+	public void deposita(@Number({ 3, 12, 2 }) double quantia) {
 		this.saldo += this.taxaMovimentacao(quantia);
 	}
 
