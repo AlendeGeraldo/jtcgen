@@ -13,13 +13,13 @@ import br.com.jtcgen.generator.annotations.JTCGen;
 import br.com.jtcgen.generator.annotations.Number;
 import sun.reflect.annotation.AnnotationType;
 
-class AnnotationReader {
+class ClassAnnotationReader {
 
-	protected Class<?> clazz;
+	private Class<?> clazz;
 	private Map<Constructor<?>, Map<Parameter, Annotation>> constructors;
 	private Map<Method, Map<Parameter, Annotation>> methods;
 
-	public AnnotationReader(Class<?> clazz) {
+	public ClassAnnotationReader(Class<?> clazz) {
 		this.clazz = clazz;
 	}
 

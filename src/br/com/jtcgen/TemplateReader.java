@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class TemplateReader {
+class TemplateReader {
 
 	private String ver;
 	private boolean testStatic = false;
