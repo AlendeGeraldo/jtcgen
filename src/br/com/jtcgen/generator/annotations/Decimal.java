@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
-public @interface Number {
-	int value();
+@Target(ElementType.TYPE_PARAMETER)
+public @interface Decimal {
+	double value();
 }

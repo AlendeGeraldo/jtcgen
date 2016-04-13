@@ -6,16 +6,18 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Map;
 
+import br.com.jtcgen.generator.annotations.JTCGen;
 import example.classes.ContaCorrente;
 
-class JTCGen {
+class Principal {
 
 	public static void main(String[] args) throws Exception {
-		ContaCorrente contaCorrente = new ContaCorrente(1000, 2000, 5000.0);
+		Class<?> classe = ContaCorrente.class;
 
-		AnnotationReader cl = new AnnotationReader(contaCorrente.getClass());
+		if (classe.isAnnotationPresent(JTCGen.class)) {
 
-		cl.readClass();
+		}
+
 	}
 
 }
