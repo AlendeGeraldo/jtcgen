@@ -9,8 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.ANNOTATION_TYPE)
 public @interface Param {
 
-	Class<?> type();
-
-	String data();
+	String value();
 
 }

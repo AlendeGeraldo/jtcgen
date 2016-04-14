@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface GenerateTest {
-	Class<? extends Annotation>[] params();
+public @interface GenerateTestEquals {
 
-	Class<?> compare() default void.class;
+	Param param();
 
-	String compareMethod() default "";
+	Return compare();
+
 }

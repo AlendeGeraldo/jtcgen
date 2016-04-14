@@ -1,34 +1,37 @@
 package example.classes;
 
-import br.com.jtcgen.generator.annotations.CompareTarget;
-import br.com.jtcgen.generator.annotations.Decimal;
-import br.com.jtcgen.generator.annotations.GenerateTest;
+import br.com.jtcgen.generator.annotations.GenerateTestEquals;
+import br.com.jtcgen.generator.annotations.GenerateTestVoidEquals;
 import br.com.jtcgen.generator.annotations.JTCGen;
-import br.com.jtcgen.generator.annotations.Money;
-import br.com.jtcgen.generator.annotations.Number;
+import br.com.jtcgen.generator.annotations.MethodCompare;
+import br.com.jtcgen.generator.annotations.Param;
+import br.com.jtcgen.generator.annotations.Return;
 import br.com.jtcgen.generator.annotations.SetUp;
 
 @JTCGen
 public class ContaAplicacao extends Conta implements Tributavel {
 
-	@SetUp({ Number.class, Number.class, Decimal.class })
+	@SetUp(@Param("1000; 2200; 500.0"))
 	public ContaAplicacao(int numero, int agencia, double saldo) {
 		super(numero, agencia, saldo);
 	}
 
-	@GenerateTest(params = { Decimal.class }, compareMethod = "getSaldo")
+	@GenerateTestVoidEquals(param = @Param("1000.0") , compare = @MethodCompare("getSaldo() == 1500.0") )
 	public void deposita(double quantia) {
 		this.saldo += this.taxaMovimentacao(quantia);
 	}
 
-	private double taxaMovimentacao(double quantia) {
+	@GenerateTestEquals(param = @Param("5000.0") , compare = @Return("4999.5") )
+	public double taxaMovimentacao(double quantia) {
 		return quantia - 0.50;
 	}
 
+	@GenerateTestEquals(param = @Param("0.2") , compare = @Return("100.0") )
 	@Override
 	public double calculaImpostos(double taxa) {
 
-		return 0;
+		return this.getSaldo() * taxa;
+
 	}
 
 }
