@@ -1,4 +1,4 @@
-package br.com.jtcgen;
+package br.com.jtcgen.builder;
 
 public class InvalidParamDeclarationExeption extends RuntimeException {
 

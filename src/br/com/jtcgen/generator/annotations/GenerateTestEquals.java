@@ -12,6 +12,6 @@ public @interface GenerateTestEquals {
 
 	Param param();
 
-	Return compare();
+	Expected expected();
 
 }

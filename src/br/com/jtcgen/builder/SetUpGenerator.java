@@ -1,7 +1,8 @@
-package br.com.jtcgen;
+package br.com.jtcgen.builder;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -9,19 +10,25 @@ import org.junit.Before;
 import br.com.jtcgen.generator.annotations.Param;
 import br.com.jtcgen.generator.annotations.SetUp;
 
-public class SetUpGen {
+public class SetUpGenerator extends TestGenerator {
 
 	private StringBuffer buffer;
 	protected List<Constructor<?>> cons;
 
-	public SetUpGen(Constructor<?>... cons) {
-		for (Constructor<?> c : cons)
+	public SetUpGenerator(Class<?> clazz) {
+		super(clazz);
+		cons = new ArrayList<Constructor<?>>();
+		for (Constructor<?> c : this.clazz.getConstructors())
 			this.cons.add(c);
 	}
 
-	private String generate() {
+	public String generate() {
+		StringBuffer sb = new StringBuffer("\t" + "@Before");
+		sb.append("\n");
+		sb.append("\t" + "public void setUp() throws Exception {");
+		sb.append("\n");
 		StringBuffer assinaturaDoConstrutor = new StringBuffer();
-		for (Constructor co : cons) {
+		for (Constructor<?> co : cons) {
 			if (co.isAnnotationPresent(SetUp.class)) {
 				SetUp st = (SetUp) co.getAnnotation(SetUp.class);
 
@@ -35,7 +42,7 @@ public class SetUpGen {
 					throw new InvalidParamDeclarationExeption("Valor total de parametros incorretos");
 
 				int count = 0;
-				assinaturaDoConstrutor.append("this.instance = new " + co.getName() + "(");
+				assinaturaDoConstrutor.append("this.instance = new " + clazz.getSimpleName() + "(");
 				for (Parameter p : pts) {
 					Class<?> type = p.getType().getClass();
 
@@ -54,18 +61,11 @@ public class SetUpGen {
 				}
 
 				assinaturaDoConstrutor.append(");");
+				break;
 			}
 		}
 
-		return assinaturaDoConstrutor.toString();
-	}
-
-	public String toString() {
-		StringBuffer sb = new StringBuffer("\t" + "@Before");
-		sb.append("\n");
-		sb.append("\t" + "public void setUp() throws Exception {");
-		sb.append("\n");
-		sb.append("\t\t" + this.generate());
+		sb.append("\t\t" + assinaturaDoConstrutor.toString());
 		sb.append("\n");
 		sb.append("\t" + "}");
 
