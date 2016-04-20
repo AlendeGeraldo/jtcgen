@@ -7,13 +7,13 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Map;
 
+import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.builder.EndTestGenerator;
 import br.com.jtcgen.builder.SetUpGenerator;
 import br.com.jtcgen.builder.TearDownGenerator;
 import br.com.jtcgen.builder.TestClassGenerator;
 import br.com.jtcgen.builder.TestGenerator;
 import br.com.jtcgen.builder.TestMethodsGenerator;
-import br.com.jtcgen.generator.annotations.JTCGen;
 import example.classes.ContaAplicacao;
 import example.classes.ContaCorrente;
 import javafx.stage.DirectoryChooser;

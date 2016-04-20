@@ -1,4 +1,4 @@
-package br.com.jtcgen.generator.annotations;
+package br.com.jtcgen.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.ANNOTATION_TYPE)
-public @interface Money {
+public @interface Param {
 
-	double value();
+	String value();
+
 }

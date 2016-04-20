@@ -1,13 +1,12 @@
 package example.classes;
 
-import br.com.jtcgen.generator.annotations.Expected;
-import br.com.jtcgen.generator.annotations.GenerateTestEquals;
-import br.com.jtcgen.generator.annotations.GenerateTestVoidEquals;
-import br.com.jtcgen.generator.annotations.JTCGen;
-import br.com.jtcgen.generator.annotations.MethodCompare;
-import br.com.jtcgen.generator.annotations.Param;
-import br.com.jtcgen.generator.annotations.Return;
-import br.com.jtcgen.generator.annotations.SetUp;
+import br.com.jtcgen.annotations.Expected;
+import br.com.jtcgen.annotations.GenerateTestEquals;
+import br.com.jtcgen.annotations.GenerateTestVoidEquals;
+import br.com.jtcgen.annotations.JTCGen;
+import br.com.jtcgen.annotations.MethodCompare;
+import br.com.jtcgen.annotations.Param;
+import br.com.jtcgen.annotations.SetUp;
 
 @JTCGen
 public class ContaAplicacao extends Conta implements Tributavel {

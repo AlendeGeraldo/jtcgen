@@ -5,11 +5,11 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.jtcgen.generator.annotations.Expected;
-import br.com.jtcgen.generator.annotations.GenerateTestEquals;
-import br.com.jtcgen.generator.annotations.GenerateTestVoidEquals;
-import br.com.jtcgen.generator.annotations.MethodCompare;
-import br.com.jtcgen.generator.annotations.Param;
+import br.com.jtcgen.annotations.Expected;
+import br.com.jtcgen.annotations.GenerateTestEquals;
+import br.com.jtcgen.annotations.GenerateTestVoidEquals;
+import br.com.jtcgen.annotations.MethodCompare;
+import br.com.jtcgen.annotations.Param;
 
 public class TestMethodsGenerator extends TestGenerator {
 

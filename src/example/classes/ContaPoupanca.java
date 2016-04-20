@@ -1,6 +1,6 @@
 package example.classes;
 
-import br.com.jtcgen.generator.annotations.JTCGen;
+import br.com.jtcgen.annotations.JTCGen;
 
 @JTCGen
 public class ContaPoupanca extends Conta implements Tributavel {

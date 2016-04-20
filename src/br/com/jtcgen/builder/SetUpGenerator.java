@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.Before;
 
-import br.com.jtcgen.generator.annotations.Param;
-import br.com.jtcgen.generator.annotations.SetUp;
+import br.com.jtcgen.annotations.Param;
+import br.com.jtcgen.annotations.SetUp;
 
 public class SetUpGenerator extends TestGenerator {
 
