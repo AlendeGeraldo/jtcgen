@@ -1,6 +1,6 @@
 package br.com.jtcgen.builder;
 
-public class EndTestGenerator extends TestGenerator {
+class EndTestGenerator extends TestGenerator {
 
 	public EndTestGenerator(Class<?> clazz) {
 		super(clazz);

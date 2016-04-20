@@ -11,7 +11,7 @@ import br.com.jtcgen.annotations.GenerateTestVoidEquals;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
 
-public class TestMethodsGenerator extends TestGenerator {
+class TestMethodsGenerator extends TestGenerator {
 
 	private StringBuffer buffer;
 

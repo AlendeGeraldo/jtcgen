@@ -9,12 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.jtcgen.annotations.JTCGen;
-import br.com.jtcgen.builder.EndTestGenerator;
-import br.com.jtcgen.builder.SetUpGenerator;
-import br.com.jtcgen.builder.TearDownGenerator;
-import br.com.jtcgen.builder.TestClassGenerator;
+import br.com.jtcgen.builder.TestDirectoryGenerator;
 import br.com.jtcgen.builder.TestGenerator;
-import br.com.jtcgen.builder.TestMethodsGenerator;
+import br.com.jtcgen.builder.TestGeneratorFactory;
 import example.classes.ContaAplicacao;
 import example.classes.ContaCorrente;
 import javafx.stage.DirectoryChooser;
@@ -44,13 +41,8 @@ public class JTCGenenerator {
 					buffer.append(gen.generate());
 				}
 
-				TestDirectoryGenerator gen = new TestDirectoryGenerator(classe.getPackage());
-				String testName = classe.getSimpleName() + "Test.java";
-				try {
-					gen.createFileTestCase(gen.createDiretories(), testName, buffer.toString());
-				} catch (FileNotFoundException e) {
-					System.out.println("Não foi possível criar o caso de teste " + testName);
-				}
+				TestDirectoryGenerator dir = TestGeneratorFactory.createDirectoryGenerator(classe);
+				dir.createTest(buffer.toString());
 			}
 		}
 	}

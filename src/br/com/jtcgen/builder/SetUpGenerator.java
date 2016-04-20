@@ -10,7 +10,7 @@ import org.junit.Before;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.annotations.SetUp;
 
-public class SetUpGenerator extends TestGenerator {
+class SetUpGenerator extends TestGenerator {
 
 	private StringBuffer buffer;
 	protected List<Constructor<?>> cons;

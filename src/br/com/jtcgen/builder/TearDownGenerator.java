@@ -1,6 +1,6 @@
 package br.com.jtcgen.builder;
 
-public class TearDownGenerator extends TestGenerator {
+class TearDownGenerator extends TestGenerator {
 
 	public TearDownGenerator(Class<?> clazz) {
 		super(clazz);

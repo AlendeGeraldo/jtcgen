@@ -1,6 +1,6 @@
 package br.com.jtcgen.builder;
 
-public class TestClassGenerator extends TestGenerator {
+class TestClassGenerator extends TestGenerator {
 
 	private StringBuffer buffer;
 

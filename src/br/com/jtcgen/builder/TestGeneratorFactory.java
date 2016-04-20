@@ -1,14 +1,7 @@
-package br.com.jtcgen;
+package br.com.jtcgen.builder;
 
 import java.util.List;
 import java.util.ArrayList;
-
-import br.com.jtcgen.builder.EndTestGenerator;
-import br.com.jtcgen.builder.SetUpGenerator;
-import br.com.jtcgen.builder.TearDownGenerator;
-import br.com.jtcgen.builder.TestClassGenerator;
-import br.com.jtcgen.builder.TestGenerator;
-import br.com.jtcgen.builder.TestMethodsGenerator;
 
 public class TestGeneratorFactory {
 
@@ -29,6 +22,6 @@ public class TestGeneratorFactory {
 	}
 
 	public static TestDirectoryGenerator createDirectoryGenerator(Class<?> clazz) {
-		return null;
+		return new TestDirectoryGenerator(clazz);
 	}
 }
