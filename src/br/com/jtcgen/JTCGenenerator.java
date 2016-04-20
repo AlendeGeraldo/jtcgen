@@ -5,6 +5,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.List;
 import java.util.Map;
 
 import br.com.jtcgen.annotations.JTCGen;
@@ -38,20 +39,10 @@ public class JTCGenenerator {
 			if (classe.isAnnotationPresent(JTCGen.class)) {
 				StringBuffer buffer = new StringBuffer();
 
-				TestGenerator testClass = new TestClassGenerator(classe);
-				buffer.append(testClass.generate());
-
-				TestGenerator setUp = new SetUpGenerator(classe);
-				buffer.append(setUp.generate());
-
-				TestGenerator tearDown = new TearDownGenerator(classe);
-				buffer.append(tearDown.generate());
-
-				TestGenerator annotatedMethods = new TestMethodsGenerator(classe);
-				buffer.append(annotatedMethods.generate());
-
-				TestGenerator endTest = new EndTestGenerator(classe);
-				buffer.append(endTest.generate());
+				List<TestGenerator> gens = TestGeneratorFactory.createGenerators(classe);
+				for (TestGenerator gen : gens) {
+					buffer.append(gen.generate());
+				}
 
 				TestDirectoryGenerator gen = new TestDirectoryGenerator(classe.getPackage());
 				String testName = classe.getSimpleName() + "Test.java";

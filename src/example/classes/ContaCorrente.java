@@ -1,6 +1,8 @@
 package example.classes;
 
 import br.com.jtcgen.annotations.JTCGen;
+import br.com.jtcgen.annotations.Param;
+import br.com.jtcgen.annotations.SetUp;
 
 @JTCGen
 public class ContaCorrente extends Conta implements Tributavel {
