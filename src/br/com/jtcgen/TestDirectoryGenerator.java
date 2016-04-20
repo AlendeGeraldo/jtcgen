@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import sun.print.PrinterJobWrapper;
 
-public class TestDirectoryGenerator {
+class TestDirectoryGenerator {
 
 	private Package pacote;
 	private String basePath;
