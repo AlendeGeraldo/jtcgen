@@ -69,10 +69,24 @@ public class TestMethodsGenerator extends TestGenerator {
 						assinaturaMetodo.append(param + ",");
 					count++;
 				}
+
+				boolean deltaParam;
+				try {
+					Method met = clazz.getMethod(compare.value());
+
+					deltaParam = met.getReturnType() == double.class;
+				} catch (NoSuchMethodException e) {
+					deltaParam = false;
+				}
 				assinaturaMetodo.append(");");
 				assinaturaMetodo.append("\n\t\t");
-				String comparado = "this.instance." + compare.value() + "()";
-				assinaturaMetodo.append("assertEquals(" + comparado + ", " + expected.value() + ");");
+				String delta;
+				if (deltaParam)
+					delta = ", 0.00000000000001";
+				else
+					delta = "";
+				String comparado = "this.instance." + compare.value() + "()" + delta;
+				assinaturaMetodo.append("assertEquals(" + expected.value() + ", " + comparado + ");");
 				assinaturaMetodo.append("\n\t" + "}");
 				assinaturaMetodo.append("\n");
 
@@ -116,9 +130,18 @@ public class TestMethodsGenerator extends TestGenerator {
 						assinaturaMetodo.append(param + ",");
 					count++;
 				}
+
+				boolean deltaParam = method.getReturnType() == double.class;
+
+				String delta;
+				if (deltaParam)
+					delta = ", 0.00000000000001";
+				else
+					delta = "";
+
 				assinaturaMetodo.append(");");
 				assinaturaMetodo.append("\n\t\t");
-				assinaturaMetodo.append("assertEquals(resultado, " + expected.value() + ");");
+				assinaturaMetodo.append("assertEquals(" + expected.value() + ", resultado" + delta + ");");
 				assinaturaMetodo.append("\n\t" + "}");
 				assinaturaMetodo.append("\n");
 

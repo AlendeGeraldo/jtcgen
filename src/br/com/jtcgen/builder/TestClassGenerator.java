@@ -17,6 +17,14 @@ public class TestClassGenerator extends TestGenerator {
 
 		buffer.append("package test." + pacote + ";");
 		buffer.append("\n\n");
+		buffer.append("import static org.junit.Assert.*;");
+		buffer.append("\n\n");
+		buffer.append("import org.junit.After;");
+		buffer.append("\n");
+		buffer.append("import org.junit.Before;");
+		buffer.append("\n");
+		buffer.append("import org.junit.Test;");
+		buffer.append("\n\n");
 		buffer.append("import " + importar + ";");
 		buffer.append("\n\n");
 		buffer.append("public class " + classe + "Test {");
