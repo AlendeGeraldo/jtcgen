@@ -10,25 +10,25 @@ import java.util.Arrays;
 
 import sun.print.PrinterJobWrapper;
 
-public class TestDirectoryGenerator {
+public class DirectoryGenerator {
 
-	private String basePath;
+	private final String basePath = "src/test";
+	private final String fileSufix = "Test.java";
 	private Class<?> classe;
 
-	public TestDirectoryGenerator(Class<?> classe) {
+	public DirectoryGenerator(Class<?> classe) {
 
 		this.classe = classe;
-		this.basePath = "src/test";
 	}
 
 	public void createTest(String content) {
 		String path = createDirectories();
-		String file = path + classe.getSimpleName() + "Test.java";
+		String file = path + classe.getSimpleName() + fileSufix;
 
 		try {
 			createFileTestCase(file, content);
 		} catch (FileNotFoundException e) {
-			System.out.println("Não foi possivel gerar a classe fisica: " + classe.getName());
+			System.out.println("Não foi possivel criar o arquivo da classe diretório: " + classe.getName());
 		}
 	}
 

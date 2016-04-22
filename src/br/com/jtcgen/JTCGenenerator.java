@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.jtcgen.annotations.JTCGen;
-import br.com.jtcgen.builder.TestDirectoryGenerator;
+import br.com.jtcgen.builder.DirectoryGenerator;
 import br.com.jtcgen.builder.TestGenerator;
 import br.com.jtcgen.builder.TestGeneratorFactory;
 import example.classes.ContaAplicacao;
@@ -41,7 +41,7 @@ public class JTCGenenerator {
 					buffer.append(gen.generate());
 				}
 
-				TestDirectoryGenerator dir = TestGeneratorFactory.createDirectoryGenerator(classe);
+				DirectoryGenerator dir = TestGeneratorFactory.createDirectoryGenerator(classe);
 				dir.createTest(buffer.toString());
 			}
 		}

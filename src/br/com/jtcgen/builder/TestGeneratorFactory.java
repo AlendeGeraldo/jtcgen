@@ -21,7 +21,7 @@ public class TestGeneratorFactory {
 		return gens;
 	}
 
-	public static TestDirectoryGenerator createDirectoryGenerator(Class<?> clazz) {
-		return new TestDirectoryGenerator(clazz);
+	public static DirectoryGenerator createDirectoryGenerator(Class<?> clazz) {
+		return new DirectoryGenerator(clazz);
 	}
 }
