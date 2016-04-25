@@ -32,6 +32,7 @@ class TestClassGenerator extends TestGenerator {
 		buffer.append("\t");
 		buffer.append("private " + classe + " instance;");
 		buffer.append("\n");
+		buffer.append("\n");
 
 		return buffer.toString();
 	}

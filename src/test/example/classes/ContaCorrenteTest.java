@@ -11,11 +11,15 @@ import example.classes.ContaCorrente;
 public class ContaCorrenteTest {
 
 	private ContaCorrente instance;
+
 	@Before
 	public void setUp() throws Exception {
 		
 	}
+
 	@After
 	public void tearDown() throws Exception {
 		this.instance = null;
-	}}
+	}
+
+}

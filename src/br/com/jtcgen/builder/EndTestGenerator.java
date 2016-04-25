@@ -8,7 +8,7 @@ class EndTestGenerator extends TestGenerator {
 
 	@Override
 	public String generate() {
-		StringBuffer buffer = new StringBuffer("}");
+		StringBuffer buffer = new StringBuffer("\n" + "}");
 		return buffer.toString();
 	}
 

@@ -9,6 +9,7 @@ import org.junit.Before;
 
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.annotations.SetUp;
+import br.com.jtcgen.exceptions.InvalidParamDeclarationExeption;
 
 class SetUpGenerator extends TestGenerator {
 
@@ -68,6 +69,7 @@ class SetUpGenerator extends TestGenerator {
 		sb.append("\t\t" + assinaturaDoConstrutor.toString());
 		sb.append("\n");
 		sb.append("\t" + "}");
+		sb.append("\n");
 
 		return sb.toString();
 	}

@@ -11,5 +11,6 @@ public class Manifest {
 		Class<?>[] c = { ContaAplicacao.class, ContaCorrente.class };
 
 		jtcGenenerator.generateTests(c);
+
 	}
 }

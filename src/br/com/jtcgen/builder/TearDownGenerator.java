@@ -16,6 +16,7 @@ class TearDownGenerator extends TestGenerator {
 		buffer.append("this.instance = null;");
 		buffer.append("\n\t");
 		buffer.append("}");
+		buffer.append("\n");
 
 		return buffer.toString();
 	}
