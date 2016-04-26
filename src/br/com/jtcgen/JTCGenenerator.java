@@ -8,8 +8,20 @@ import br.com.jtcgen.builder.TestGenerator;
 import br.com.jtcgen.builder.TestGeneratorFactory;
 import br.com.jtcgen.helpers.ImportManager;
 
+/**
+ * Façade para criação dos casos de testes
+ * 
+ * @author Rafael Henrique Ap. Gonçalves <rafael.goncalves19@fatec.sp.gov.br>
+ * @author Estevam Herculano
+ */
 public class JTCGenenerator {
 
+	/**
+	 * função sobrecarregada para aceitar var-args de objetos
+	 * 
+	 * @param Objects...
+	 *            objects
+	 */
 	public void generateTests(Object... objects) {
 		int i = 0;
 		Class<?>[] classes = new Class<?>[objects.length];
@@ -19,6 +31,12 @@ public class JTCGenenerator {
 		generate(classes);
 	}
 
+	/**
+	 * direciona a reflexão de todas as classes que serão gerados os casos de
+	 * testes
+	 * 
+	 * @param classe
+	 */
 	public void generateTests(Class<?>... classes) {
 		generate(classes);
 	}
