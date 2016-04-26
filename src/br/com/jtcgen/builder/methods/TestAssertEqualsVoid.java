@@ -7,11 +7,12 @@ import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.GenerateTestVoidEquals;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
-import br.com.jtcgen.exceptions.InvalidParamDeclarationExeption;
+import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
+import br.com.jtcgen.helpers.TextEditor;
 
-public class TestVoid extends TestMethodTemplate {
+public class TestAssertEqualsVoid extends TestMethodTemplate {
 
-	public TestVoid(Method method, Class<?> clazz) {
+	public TestAssertEqualsVoid(Method method, Class<?> clazz) {
 		super(method, clazz);
 	}
 
@@ -22,11 +23,12 @@ public class TestVoid extends TestMethodTemplate {
 		MethodCompare compare = test.compare();
 		Expected expected = test.expected();
 
-		String[] params = parametro.value().split(";");
+		String[] params = getParams(parametro);
+
 		Parameter[] pts = method.getParameters();
 
-		if (params.length != method.getParameterCount())
-			throw new InvalidParamDeclarationExeption("Valor total de parametros incorretos");
+		if (!isValidParams(params))
+			throw new InvalidParamDeclarationException("Valor total de parametros incorretos");
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 
@@ -44,7 +46,8 @@ public class TestVoid extends TestMethodTemplate {
 		}
 
 		String comparado = "this.instance." + compare.value() + "()";
-		String content = newLine("assertEquals(" + expected.value() + ", " + comparado + paramAdicionais + ");", 2);
+		String content = TextEditor
+				.newLine("assertEquals(" + expected.value() + ", " + comparado + paramAdicionais + ");", 2);
 		assinaturaMetodo.append(content);
 
 		return assinaturaMetodo.toString();

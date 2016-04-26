@@ -5,15 +5,12 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.annotations.SetUp;
-import br.com.jtcgen.exceptions.InvalidParamDeclarationExeption;
+import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 
 class SetUpGenerator extends TestGenerator {
 
-	private StringBuffer buffer;
 	protected List<Constructor<?>> cons;
 
 	public SetUpGenerator(Class<?> clazz) {
@@ -40,7 +37,7 @@ class SetUpGenerator extends TestGenerator {
 				Parameter[] pts = co.getParameters();
 
 				if (params.length != co.getParameterCount())
-					throw new InvalidParamDeclarationExeption("Valor total de parametros incorretos");
+					throw new InvalidParamDeclarationException("Valor total de parametros incorretos");
 
 				int count = 0;
 				assinaturaDoConstrutor.append("this.instance = new " + clazz.getSimpleName() + "(");

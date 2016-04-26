@@ -2,8 +2,6 @@ package br.com.jtcgen.builder;
 
 class TestClassGenerator extends TestGenerator {
 
-	private StringBuffer buffer;
-
 	public TestClassGenerator(Class<?> clazz) {
 		super(clazz);
 	}
@@ -26,6 +24,8 @@ class TestClassGenerator extends TestGenerator {
 		buffer.append("import org.junit.Test;");
 		buffer.append("\n\n");
 		buffer.append("import " + importar + ";");
+		buffer.append("\n");
+		buffer.append("{{OTHER_IMPORTS}}");
 		buffer.append("\n\n");
 		buffer.append("public class " + classe + "Test {");
 		buffer.append("\n\n");

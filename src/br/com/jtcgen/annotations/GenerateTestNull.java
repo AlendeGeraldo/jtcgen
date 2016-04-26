@@ -7,12 +7,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface GenerateTestVoidEquals {
+public @interface GenerateTestNull {
 
-	Param param();
-
-	MethodCompare compare();
-
-	Expected expected();
+	Param value();
 
 }

@@ -3,20 +3,20 @@ package br.com.jtcgen.builder.methods;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
-import br.com.jtcgen.annotations.GenerateTestNotNull;
+import br.com.jtcgen.annotations.GenerateTestNull;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
 
-public class TestAssertNotNull extends TestMethodTemplate {
+public class TestAssertNull extends TestMethodTemplate {
 
-	public TestAssertNotNull(Method method, Class<?> clazz) {
+	public TestAssertNull(Method method, Class<?> clazz) {
 		super(method, clazz);
 	}
 
 	@Override
 	public String getContent() {
-		GenerateTestNotNull test = (GenerateTestNotNull) method.getAnnotation(GenerateTestNotNull.class);
+		GenerateTestNull test = (GenerateTestNull) method.getAnnotation(GenerateTestNull.class);
 		Param parameter = test.value();
 
 		String[] params = getParams(parameter);
@@ -30,7 +30,7 @@ public class TestAssertNotNull extends TestMethodTemplate {
 
 		methodSignature.append(createMethodCall(pts, params));
 
-		String content = TextEditor.newLine("assertNotNull(resultado);", 2);
+		String content = TextEditor.newLine("assertNull(resultado);", 2);
 		methodSignature.append(content);
 
 		return methodSignature.toString();

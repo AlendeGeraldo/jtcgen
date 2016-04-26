@@ -4,22 +4,22 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import br.com.jtcgen.annotations.Expected;
-import br.com.jtcgen.annotations.GenerateTestNotSame;
+import br.com.jtcgen.annotations.GenerateTestSame;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidDeclaredAnnotationException;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
 
-public class TestAssertNotSame extends TestMethodTemplate {
+public class TestAssertSame extends TestMethodTemplate {
 
-	public TestAssertNotSame(Method method, Class<?> clazz) {
+	public TestAssertSame(Method method, Class<?> clazz) {
 		super(method, clazz);
 	}
 
 	@Override
 	public String getContent() {
-		GenerateTestNotSame test = (GenerateTestNotSame) method.getAnnotation(GenerateTestNotSame.class);
+		GenerateTestSame test = (GenerateTestSame) method.getAnnotation(GenerateTestSame.class);
 		Param parameter = test.param();
 		Expected expected = test.expected();
 		MethodCompare metCompare = test.method();
@@ -55,7 +55,7 @@ public class TestAssertNotSame extends TestMethodTemplate {
 			result = expected.value();
 		}
 
-		String content = TextEditor.newLine("assertNotSame(resultado);", 2);
+		String content = TextEditor.newLine("assertSame(resultado);", 2);
 		methodSignature.append(content);
 
 		return methodSignature.toString();

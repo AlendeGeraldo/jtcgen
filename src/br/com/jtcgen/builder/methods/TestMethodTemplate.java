@@ -3,14 +3,17 @@ package br.com.jtcgen.builder.methods;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
+import br.com.jtcgen.annotations.Expected;
+import br.com.jtcgen.annotations.MethodCompare;
+import br.com.jtcgen.annotations.Param;
+import br.com.jtcgen.helpers.ImportManager;
+import br.com.jtcgen.helpers.TextEditor;
+
 public abstract class TestMethodTemplate {
 
 	protected StringBuffer methodBuffer = new StringBuffer();
 	protected Class<?> clazz;
 	protected Method method;
-
-	public static final String TAB = "\t";
-	public static final String LINE_BREAK = "\n";
 
 	public TestMethodTemplate(Method method, Class<?> clazz) {
 		this.method = method;
@@ -19,8 +22,12 @@ public abstract class TestMethodTemplate {
 	}
 
 	public String createMethod() {
+		return createMethod("");
+	}
 
-		methodBuffer.append(getSignatureMethod());
+	public String createMethod(String sufixName) {
+
+		methodBuffer.append(getSignatureMethod(sufixName));
 
 		methodBuffer.append(getContent());
 
@@ -29,32 +36,34 @@ public abstract class TestMethodTemplate {
 		return methodBuffer.toString();
 	}
 
-	protected final String getSignatureMethod() {
-		return newLine("@Test", 1) + newLine("public void " + method.getName() + "() {", 1);
+	public String extractSufix() {
+		return this.getClass().getSimpleName().replaceFirst("^(TestAssert)", "");
+	}
+
+	protected final String getSignatureMethod(String sufixName) {
+		String sufix = (!sufixName.equals("")) ? sufixName.substring(0, 1).toUpperCase() + sufixName.substring(1) : "";
+		return TextEditor.newLine("@Test", 1)
+				+ TextEditor.newLine("public void " + method.getName() + sufix + "() {", 1);
 	}
 
 	protected abstract String getContent();
 
-	protected String newLine(String content, int numberOfTabs) {
-		StringBuffer line = new StringBuffer(LINE_BREAK);
-		for (int i = 0; i < numberOfTabs; i++)
-			line.append(TAB);
-
-		line.append(content);
-
-		return line.toString();
-	}
-
 	protected final String getEndMethod() {
-		return newLine("}" + newLine("", 1), 1);
+		return TextEditor.newLine("}" + TextEditor.newLine("", 1), 1);
 	}
 
 	protected String createMethodCall(Parameter[] pts, String[] params) {
 		int count = 0;
 		StringBuilder buffer = new StringBuilder();
 
-		if (!(method.getReturnType() == void.class))
-			buffer.append(method.getReturnType() + " resultado = ");
+		if (!(method.getReturnType() == void.class)) {
+			if (method.getReturnType().isPrimitive())
+				buffer.append(method.getReturnType() + " resultado = ");
+			else {
+				buffer.append(method.getReturnType().getSimpleName() + " resultado = ");
+				ImportManager.addImport(method.getReturnType());
+			}
+		}
 
 		buffer.append("this.instance." + method.getName() + "(");
 		for (Parameter p : pts) {
@@ -73,7 +82,7 @@ public abstract class TestMethodTemplate {
 
 		buffer.append(");");
 
-		return newLine(buffer.toString(), 2);
+		return TextEditor.newLine(buffer.toString(), 2);
 	}
 
 	protected String getParamAdicional() {
@@ -82,6 +91,25 @@ public abstract class TestMethodTemplate {
 			retorno.append(", 0.000000000001");
 
 		return retorno.toString();
+	}
+
+	protected String[] getParams(Param parametro) {
+		String[] params = {};
+		if (!parametro.value().equals(""))
+			params = parametro.value().split(";");
+
+		return params;
+	}
+
+	protected boolean isValidParams(String[] params) {
+		if (params.length != method.getParameterCount())
+			return false;
+
+		return true;
+	}
+
+	protected boolean hasMethodCompareOrExpected(MethodCompare metCompare, Expected expected) {
+		return (metCompare.value().equals("{{NULL}}") && expected.value().equals("{{NULL}}"));
 	}
 
 }

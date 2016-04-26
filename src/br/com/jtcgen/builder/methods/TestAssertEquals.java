@@ -6,7 +6,8 @@ import java.lang.reflect.Parameter;
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.GenerateTestEquals;
 import br.com.jtcgen.annotations.Param;
-import br.com.jtcgen.exceptions.InvalidParamDeclarationExeption;
+import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
+import br.com.jtcgen.helpers.TextEditor;
 
 public class TestAssertEquals extends TestMethodTemplate {
 
@@ -21,19 +22,20 @@ public class TestAssertEquals extends TestMethodTemplate {
 		Param parametro = test.param();
 		Expected expected = test.expected();
 
-		String[] params = parametro.value().split(";");
+		String[] params = getParams(parametro);
 
 		Parameter[] pts = method.getParameters();
 
-		if (params.length != method.getParameterCount())
-			throw new InvalidParamDeclarationExeption("Valor total de parametros incorretos");
+		if (!isValidParams(params))
+			throw new InvalidParamDeclarationException("Valor total de parametros incorretos");
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 
 		assinaturaMetodo.append(createMethodCall(pts, params));
 
 		String paramAdicionais = getParamAdicional();
-		String content = newLine("assertEquals(" + expected.value() + ", resultado" + paramAdicionais + ");", 2);
+		String content = TextEditor.newLine("assertEquals(" + expected.value() + ", resultado" + paramAdicionais + ");",
+				2);
 		assinaturaMetodo.append(content);
 
 		return assinaturaMetodo.toString();

@@ -2,6 +2,10 @@ package example.classes;
 
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.GenerateTestEquals;
+import br.com.jtcgen.annotations.GenerateTestFalse;
+import br.com.jtcgen.annotations.GenerateTestNotNull;
+import br.com.jtcgen.annotations.GenerateTestNull;
+import br.com.jtcgen.annotations.GenerateTestTrue;
 import br.com.jtcgen.annotations.GenerateTestVoidEquals;
 import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.annotations.MethodCompare;
@@ -32,6 +36,36 @@ public class ContaAplicacao extends Conta implements Tributavel {
 
 		return this.getSaldo() * taxa;
 
+	}
+
+	@GenerateTestTrue(@Param)
+	public boolean saldoPositivo() {
+		if (this.saldo >= 0)
+			return true;
+
+		return false;
+	}
+
+	@GenerateTestFalse(@Param)
+	public boolean saldoNegativo() {
+		if (this.saldo >= 0)
+			return false;
+
+		return true;
+	}
+
+	@GenerateTestNotNull(@Param)
+	public ContaCorrente obtemContaCorrente() {
+		return new ContaCorrente(this.numero, this.getAgencia(), this.saldo);
+	}
+
+	@GenerateTestNull(@Param)
+	@GenerateTestEquals(param = @Param(""), expected = @Expected("null"))
+	public ContaPoupanca obtemContaPoupanca() {
+		if (String.valueOf(this.numero).length() > 10)
+			return new ContaPoupanca(Integer.parseInt(new String(this.numero + "500")), this.getAgencia(), this.saldo);
+
+		return null;
 	}
 
 }

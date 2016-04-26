@@ -7,6 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.ContaAplicacao;
+import example.classes.ContaPoupanca;
+import example.classes.ContaCorrente;
+
 
 public class ContaAplicacaoTest {
 
@@ -23,6 +26,24 @@ public class ContaAplicacaoTest {
 	}
 
 	@Test
+	public void obtemContaCorrente() {
+		ContaCorrente resultado = this.instance.obtemContaCorrente();
+		assertNotNull(resultado);
+	}
+	
+	@Test
+	public void obtemContaPoupanca() {
+		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
+		assertNull(resultado);
+	}
+	
+	@Test
+	public void obtemContaPoupancaEquals() {
+		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
+		assertEquals(null, resultado);
+	}
+	
+	@Test
 	public void deposita() {
 		this.instance.deposita(1000.0);
 		assertEquals(1499.5, this.instance.getSaldo(), 0.00000000001);
@@ -38,6 +59,18 @@ public class ContaAplicacaoTest {
 	public void calculaImpostos() {
 		double resultado = this.instance.calculaImpostos(0.2);
 		assertEquals(100.0, resultado, 0.000000000001);
+	}
+	
+	@Test
+	public void saldoPositivo() {
+		boolean resultado = this.instance.saldoPositivo();
+		assertTrue(resultado);
+	}
+	
+	@Test
+	public void saldoNegativo() {
+		boolean resultado = this.instance.saldoNegativo();
+		assertFalse(resultado);
 	}
 	
 }

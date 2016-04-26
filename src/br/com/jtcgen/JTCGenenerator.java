@@ -1,20 +1,12 @@
 package br.com.jtcgen;
 
-import java.io.FileNotFoundException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.List;
-import java.util.Map;
 
 import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.builder.DirectoryGenerator;
 import br.com.jtcgen.builder.TestGenerator;
 import br.com.jtcgen.builder.TestGeneratorFactory;
-import example.classes.ContaAplicacao;
-import example.classes.ContaCorrente;
-import javafx.stage.DirectoryChooser;
+import br.com.jtcgen.helpers.ImportManager;
 
 public class JTCGenenerator {
 
@@ -42,7 +34,7 @@ public class JTCGenenerator {
 				}
 
 				DirectoryGenerator dir = TestGeneratorFactory.createDirectoryGenerator(classe);
-				dir.createTest(buffer.toString());
+				dir.createTest(buffer.toString().replaceFirst("\\{\\{OTHER_IMPORTS\\}\\}", ImportManager.getImports()));
 			}
 		}
 	}

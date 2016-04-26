@@ -6,7 +6,8 @@ import java.lang.reflect.Parameter;
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.GenerateTestEquals;
 import br.com.jtcgen.annotations.Param;
-import br.com.jtcgen.exceptions.InvalidParamDeclarationExeption;
+import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
+import br.com.jtcgen.helpers.TextEditor;
 
 public class TestArrayEquals extends TestMethodTemplate {
 
@@ -26,7 +27,7 @@ public class TestArrayEquals extends TestMethodTemplate {
 		Parameter[] pts = method.getParameters();
 
 		if (params.length != method.getParameterCount())
-			throw new InvalidParamDeclarationExeption("Valor total de parametros incorretos");
+			throw new InvalidParamDeclarationException("Valor total de parametros incorretos");
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 
@@ -34,9 +35,9 @@ public class TestArrayEquals extends TestMethodTemplate {
 
 		String paramAdicionais = getParamAdicional();
 		String[] array = expected.value().split("\\s?");
-		String strExpected = newLine(array[0] + "[] expected = " + array[1] + ";", 2);
+		String strExpected = TextEditor.newLine(array[0] + "[] expected = " + array[1] + ";", 2);
 		assinaturaMetodo.append(strExpected);
-		String content = newLine("assertArrayEquals(expected , resultado" + paramAdicionais + ");", 2);
+		String content = TextEditor.newLine("assertArrayEquals(expected , resultado" + paramAdicionais + ");", 2);
 		assinaturaMetodo.append(content);
 
 		return assinaturaMetodo.toString();
