@@ -14,7 +14,7 @@ import br.com.jtcgen.helpers.ImportManager;
  * @author Rafael Henrique Ap. Gonçalves <rafael.goncalves19@fatec.sp.gov.br>
  * @author Estevam Herculano
  */
-public class JTCGenenerator {
+public class JTCGenenerator implements TestCaseGenerable {
 
 	/**
 	 * função sobrecarregada para aceitar var-args de objetos
