@@ -111,5 +111,15 @@ public abstract class TestMethodTemplate {
 	protected boolean hasMethodCompareOrExpected(MethodCompare metCompare, Expected expected) {
 		return (metCompare.value().equals("{{NULL}}") && expected.value().equals("{{NULL}}"));
 	}
+	
+	protected String parseExpectedValue(String value, Method method){
+		String str;
+		if(method.getReturnType() == String.class){
+			str = "\""+value+"\"";
+		}else {
+			str = value;
+		}
+		return str;
+	}
 
 }

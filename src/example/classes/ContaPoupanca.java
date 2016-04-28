@@ -16,10 +16,14 @@ public class ContaPoupanca extends Conta implements Tributavel {
 	private double taxaMovimentacao(double quantia) {
 		return quantia - 0.10;
 	}
+	
+	public String mostraSaldoComMensagemPersonalizada(String mensagem){
+		return "Bom dia! "+mensagem+" Saldo: "+ saldo;
+	}
 
 	@Override
 	public double calculaImpostos(double taxa) {
 		return this.saldo -= this.saldo * taxa;
 	}
-
+	
 }

@@ -7,8 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.ContaAplicacao;
-import example.classes.ContaPoupanca;
 import example.classes.ContaCorrente;
+import example.classes.ContaPoupanca;
+import java.lang.String;
 
 
 public class ContaAplicacaoTest {
@@ -29,24 +30,6 @@ public class ContaAplicacaoTest {
 	public void obtemContaCorrente() {
 		ContaCorrente resultado = this.instance.obtemContaCorrente();
 		assertNotNull(resultado);
-	}
-	
-	@Test
-	public void obtemContaPoupanca() {
-		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
-		assertNull(resultado);
-	}
-	
-	@Test
-	public void obtemContaPoupancaEquals() {
-		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
-		assertEquals(null, resultado);
-	}
-	
-	@Test
-	public void deposita() {
-		this.instance.deposita(1000.0);
-		assertEquals(1499.5, this.instance.getSaldo(), 0.00000000001);
 	}
 	
 	@Test
@@ -71,6 +54,30 @@ public class ContaAplicacaoTest {
 	public void saldoNegativo() {
 		boolean resultado = this.instance.saldoNegativo();
 		assertFalse(resultado);
+	}
+	
+	@Test
+	public void deposita() {
+		this.instance.deposita(1000.0);
+		assertEquals(1499.5, this.instance.getSaldo(), 0.00000000001);
+	}
+	
+	@Test
+	public void obtemContaPoupanca() {
+		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
+		assertNull(resultado);
+	}
+	
+	@Test
+	public void obtemContaPoupancaEquals() {
+		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
+		assertEquals(null, resultado);
+	}
+	
+	@Test
+	public void retornaCpfComMascara() {
+		String resultado = this.instance.retornaCpfComMascara();
+		assertEquals("123.456.789-10", resultado);
 	}
 	
 }

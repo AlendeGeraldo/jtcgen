@@ -44,10 +44,12 @@ public class TestAssertEqualsVoid extends TestMethodTemplate {
 			// Metodo não existe, criar log;
 			paramAdicionais = "";
 		}
+		
+		String resultExpected = parseExpectedValue(expected.value(), method);
 
 		String comparado = "this.instance." + compare.value() + "()";
 		String content = TextEditor
-				.newLine("assertEquals(" + expected.value() + ", " + comparado + paramAdicionais + ");", 2);
+				.newLine("assertEquals(" + resultExpected + ", " + comparado + paramAdicionais + ");", 2);
 		assinaturaMetodo.append(content);
 
 		return assinaturaMetodo.toString();

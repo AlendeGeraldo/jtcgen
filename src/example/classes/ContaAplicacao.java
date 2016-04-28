@@ -67,5 +67,11 @@ public class ContaAplicacao extends Conta implements Tributavel {
 
 		return null;
 	}
-
+	
+	@GenerateTestEquals(param=@Param(), expected = @Expected("123.456.789-10"))
+	public String retornaCpfComMascara(){
+		String cpf = "123.456.789-10";
+		return cpf;
+	}
+	
 }
