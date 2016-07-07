@@ -67,10 +67,10 @@ public abstract class TestMethodTemplate {
 
 		buffer.append("this.instance." + method.getName() + "(");
 		for (Parameter p : pts) {
-			Class<?> type = p.getType().getClass();
+			Class<?> type = p.getType();
 
 			String param;
-			if (type == String.class) {
+			if (type.equals(String.class)) {
 				param = '"' + params[count] + '"';
 			} else {
 				param = params[count];
@@ -111,12 +111,12 @@ public abstract class TestMethodTemplate {
 	protected boolean hasMethodCompareOrExpected(MethodCompare metCompare, Expected expected) {
 		return (metCompare.value().equals("{{NULL}}") && expected.value().equals("{{NULL}}"));
 	}
-	
-	protected String parseExpectedValue(String value, Method method){
+
+	protected String parseExpectedValue(String value, Method method) {
 		String str;
-		if(method.getReturnType() == String.class){
-			str = "\""+value+"\"";
-		}else {
+		if (method.getReturnType() == String.class) {
+			str = "\"" + value + "\"";
+		} else {
 			str = value;
 		}
 		return str;

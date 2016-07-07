@@ -29,6 +29,8 @@ public class JTCGenenerator implements TestCaseGenerable {
 			classes[i++] = obj.getClass();
 
 		generate(classes);
+
+		System.out.println("Casos de testes criados.");
 	}
 
 	/**
