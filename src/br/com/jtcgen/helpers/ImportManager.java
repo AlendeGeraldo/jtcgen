@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import br.com.jtcgen.annotations.JTCGen;
+
 public class ImportManager {
 
 	private static Set<Class<?>> imports = new HashSet<Class<?>>();
