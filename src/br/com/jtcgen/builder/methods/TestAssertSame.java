@@ -20,9 +20,9 @@ public class TestAssertSame extends TestMethodTemplate {
 	@Override
 	public String getContent() {
 		GenerateTestSame test = (GenerateTestSame) method.getAnnotation(GenerateTestSame.class);
-		Param parameter = test.param();
-		Expected expected = test.expected();
-		MethodCompare metCompare = test.method();
+		String parameter = test.param();
+		String expected = test.expected();
+		String metCompare = test.method();
 
 		String[] params = getParams(parameter);
 
@@ -41,18 +41,18 @@ public class TestAssertSame extends TestMethodTemplate {
 
 		// RESOLVER PROBLEMAS DE INVOCAÇÃO DO MÉTODO;
 		String result = null;
-		if (!metCompare.value().equals("{{NULL}}")) {
+		if (!metCompare.equals("{{NULL}}")) {
 			String str = null;
 			try {
-				Method m = clazz.getDeclaredMethod(metCompare.value());
+				Method m = clazz.getDeclaredMethod(metCompare);
 			} catch (NoSuchMethodException | SecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			result = metCompare.value();
+			result = metCompare;
 		} else {
 			// RESOLVER PROBLEMAS DE DECLARAÇÃO DA VARIAVEL DE COMPARAÇÃO;
-			result = expected.value();
+			result = expected;
 		}
 
 		String content = TextEditor.newLine("assertSame(resultado);", 2);

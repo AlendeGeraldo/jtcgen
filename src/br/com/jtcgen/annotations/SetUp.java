@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.CONSTRUCTOR)
 public @interface SetUp {
 
-	Param value();
+	String value();
 }

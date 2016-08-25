@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface GenerateTestEquals {
 
-	Param param();
+	String param();
 
-	Expected expected();
+	String expected();
 
 }

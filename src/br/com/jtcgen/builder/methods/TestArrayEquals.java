@@ -19,10 +19,10 @@ public class TestArrayEquals extends TestMethodTemplate {
 	public String getContent() {
 
 		GenerateTestEquals test = (GenerateTestEquals) method.getAnnotation(GenerateTestEquals.class);
-		Param parametro = test.param();
-		Expected expected = test.expected();
+		String parametro = test.param();
+		String expected = test.expected();
 
-		String[] params = parametro.value().split(";");
+		String[] params = getParams(parametro);
 
 		Parameter[] pts = method.getParameters();
 
@@ -34,7 +34,7 @@ public class TestArrayEquals extends TestMethodTemplate {
 		assinaturaMetodo.append(createMethodCall(pts, params));
 
 		String paramAdicionais = getParamAdicional();
-		String[] array = expected.value().split("\\s?");
+		String[] array = expected.split("\\s?");
 		String strExpected = TextEditor.newLine(array[0] + "[] expected = " + array[1] + ";", 2);
 		assinaturaMetodo.append(strExpected);
 		String content = TextEditor.newLine("assertArrayEquals(expected , resultado" + paramAdicionais + ");", 2);

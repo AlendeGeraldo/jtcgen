@@ -19,9 +19,9 @@ public class TestAssertEqualsVoid extends TestMethodTemplate {
 	@Override
 	public String getContent() {
 		GenerateTestVoidEquals test = (GenerateTestVoidEquals) method.getAnnotation(GenerateTestVoidEquals.class);
-		Param parametro = test.param();
-		MethodCompare compare = test.compare();
-		Expected expected = test.expected();
+		String parametro = test.param();
+		String compare = test.compare();
+		String expected = test.expected();
 
 		String[] params = getParams(parametro);
 
@@ -37,17 +37,17 @@ public class TestAssertEqualsVoid extends TestMethodTemplate {
 		Method methodCompare;
 		String paramAdicionais;
 		try {
-			methodCompare = clazz.getMethod(compare.value());
+			methodCompare = clazz.getMethod(compare);
 
 			paramAdicionais = (methodCompare.getReturnType() == double.class) ? ", 0.00000000001" : "";
 		} catch (NoSuchMethodException | SecurityException e) {
 			// Metodo não existe, criar log;
 			paramAdicionais = "";
 		}
-		
-		String resultExpected = parseExpectedValue(expected.value(), method);
 
-		String comparado = "this.instance." + compare.value() + "()";
+		String resultExpected = parseExpectedValue(expected, method);
+
+		String comparado = "this.instance." + compare + "()";
 		String content = TextEditor
 				.newLine("assertEquals(" + resultExpected + ", " + comparado + paramAdicionais + ");", 2);
 		assinaturaMetodo.append(content);

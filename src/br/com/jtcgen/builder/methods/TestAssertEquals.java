@@ -19,8 +19,8 @@ public class TestAssertEquals extends TestMethodTemplate {
 	public String getContent() {
 
 		GenerateTestEquals test = (GenerateTestEquals) method.getAnnotation(GenerateTestEquals.class);
-		Param parametro = test.param();
-		Expected expected = test.expected();
+		String parametro = test.param();
+		String expected = test.expected();
 
 		String[] params = getParams(parametro);
 
@@ -34,9 +34,9 @@ public class TestAssertEquals extends TestMethodTemplate {
 		assinaturaMetodo.append(createMethodCall(pts, params));
 
 		String paramAdicionais = getParamAdicional();
-		
-		String resultExpected = parseExpectedValue(expected.value(), method);
-		
+
+		String resultExpected = parseExpectedValue(expected, method);
+
 		String content = TextEditor.newLine("assertEquals(" + resultExpected + ", resultado" + paramAdicionais + ");",
 				2);
 		assinaturaMetodo.append(content);

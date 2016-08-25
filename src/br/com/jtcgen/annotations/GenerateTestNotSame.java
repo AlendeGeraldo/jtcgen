@@ -9,10 +9,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface GenerateTestNotSame {
 
-	Param param() default @Param;
+	String param() default "";
 
-	Expected expected() default @Expected("{{NULL}}");
+	String expected() default "{{NULL}}";
 
-	MethodCompare method() default @MethodCompare("{{NULL}}");
+	String method() default "{{NULL}}";
 
 }

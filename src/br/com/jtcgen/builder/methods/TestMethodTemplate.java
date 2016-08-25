@@ -93,10 +93,10 @@ public abstract class TestMethodTemplate {
 		return retorno.toString();
 	}
 
-	protected String[] getParams(Param parametro) {
+	protected String[] getParams(String parametro) {
 		String[] params = {};
-		if (!parametro.value().equals(""))
-			params = parametro.value().split(";");
+		if (!parametro.equals(""))
+			params = parametro.split(";");
 
 		return params;
 	}
@@ -108,8 +108,8 @@ public abstract class TestMethodTemplate {
 		return true;
 	}
 
-	protected boolean hasMethodCompareOrExpected(MethodCompare metCompare, Expected expected) {
-		return (metCompare.value().equals("{{NULL}}") && expected.value().equals("{{NULL}}"));
+	protected boolean hasMethodCompareOrExpected(String metCompare, String expected) {
+		return (metCompare.equals("{{NULL}}") && expected.equals("{{NULL}}"));
 	}
 
 	protected String parseExpectedValue(String value, Method method) {

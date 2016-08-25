@@ -30,9 +30,9 @@ class SetUpGenerator extends TestGenerator {
 			if (co.isAnnotationPresent(SetUp.class)) {
 				SetUp st = (SetUp) co.getAnnotation(SetUp.class);
 
-				Param parametros = st.value();
+				String parametros = st.value();
 
-				String[] params = parametros.value().split(";");
+				String[] params = parametros.split(";");
 
 				Parameter[] pts = co.getParameters();
 

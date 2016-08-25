@@ -17,7 +17,7 @@ public class TestAssertTrue extends TestMethodTemplate {
 	@Override
 	public String getContent() {
 		GenerateTestTrue test = (GenerateTestTrue) method.getAnnotation(GenerateTestTrue.class);
-		Param parametro = test.value();
+		String parametro = test.value();
 
 		String[] params = getParams(parametro);
 

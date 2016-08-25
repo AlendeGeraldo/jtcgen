@@ -17,7 +17,7 @@ public class TestAssertNull extends TestMethodTemplate {
 	@Override
 	public String getContent() {
 		GenerateTestNull test = (GenerateTestNull) method.getAnnotation(GenerateTestNull.class);
-		Param parameter = test.value();
+		String parameter = test.value();
 
 		String[] params = getParams(parameter);
 

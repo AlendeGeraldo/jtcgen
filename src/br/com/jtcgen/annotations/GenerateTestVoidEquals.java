@@ -9,10 +9,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface GenerateTestVoidEquals {
 
-	Param param();
+	String param() default "";
 
-	MethodCompare compare();
+	String compare() default "{{NULL}}";
 
-	Expected expected();
+	String expected() default "{{NULL}}";
 
 }
