@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Fabrica da estrategia de objetos geradores
+ * Factory of strategy patterns Test generators objects
  * 
  * @author Rafael Henrique Ap. Gonçalves <rafael.goncalves19@fatec.sp.gov.br>
  */
 public class TestGeneratorFactory {
 	/**
-	 * Cria todas as instancias dos geradores
+	 * make all generators instance
 	 * 
 	 * @param clazz
 	 * @return List<TestGenerator>

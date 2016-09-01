@@ -13,6 +13,8 @@ import br.com.jtcgen.annotations.GenerateTestNotNull;
 import br.com.jtcgen.annotations.GenerateTestNull;
 import br.com.jtcgen.annotations.GenerateTestTrue;
 import br.com.jtcgen.annotations.GenerateTestVoidEquals;
+import br.com.jtcgen.annotations.Mock;
+import br.com.jtcgen.builder.methods.MockParam;
 import br.com.jtcgen.builder.methods.TestAssertEquals;
 import br.com.jtcgen.builder.methods.TestAssertFalse;
 import br.com.jtcgen.builder.methods.TestAssertNotNull;
@@ -69,6 +71,9 @@ class TestMethodsGenerator extends TestGenerator {
 			tmp = new TestAssertNotNull(method, clazz);
 		else if (ann == GenerateTestNull.class)
 			tmp = new TestAssertNull(method, clazz);
+		else if (ann == Mock.class)
+			tmp = new MockParam(method, clazz);
+			
 
 		return tmp;
 
