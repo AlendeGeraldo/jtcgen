@@ -14,7 +14,7 @@ import br.com.jtcgen.annotations.GenerateTestNull;
 import br.com.jtcgen.annotations.GenerateTestTrue;
 import br.com.jtcgen.annotations.GenerateTestVoidEquals;
 import br.com.jtcgen.annotations.Mock;
-import br.com.jtcgen.builder.methods.MockParam;
+import br.com.jtcgen.builder.methods.MockInterpreter;
 import br.com.jtcgen.builder.methods.TestAssertEquals;
 import br.com.jtcgen.builder.methods.TestAssertFalse;
 import br.com.jtcgen.builder.methods.TestAssertNotNull;
@@ -22,6 +22,8 @@ import br.com.jtcgen.builder.methods.TestAssertNull;
 import br.com.jtcgen.builder.methods.TestAssertTrue;
 import br.com.jtcgen.builder.methods.TestMethodTemplate;
 import br.com.jtcgen.builder.methods.TestAssertEqualsVoid;
+
+import static br.com.jtcgen.builder.methods.TestInternalBehaviors.*;
 
 class TestMethodsGenerator extends TestGenerator {
 
@@ -43,6 +45,8 @@ class TestMethodsGenerator extends TestGenerator {
 			Annotation[] annotations = method.getAnnotations();
 			if (annotations.length > 0) {
 				Set<String> methodMemory = new HashSet<String>();
+				
+				setInternalBehaviors(annotations);
 				for (Annotation ann : annotations) {
 					TestMethodTemplate tmp = getAnnotatedGeneratorMethod(ann.annotationType(), method);
 					if (tmp != null) {
@@ -71,12 +75,19 @@ class TestMethodsGenerator extends TestGenerator {
 			tmp = new TestAssertNotNull(method, clazz);
 		else if (ann == GenerateTestNull.class)
 			tmp = new TestAssertNull(method, clazz);
-		else if (ann == Mock.class)
-			tmp = new MockParam(method, clazz);
 			
 
 		return tmp;
 
+	}
+	
+	private void setInternalBehaviors(Annotation[] anns) {
+		for (Annotation ann : anns) {
+			if(isDataBuilder(ann))
+				addDataBuilder(ann);
+			else if(isMock(ann))
+				addMock(ann);
+		}
 	}
 
 }

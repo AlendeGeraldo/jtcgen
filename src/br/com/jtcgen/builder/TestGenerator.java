@@ -18,5 +18,13 @@ public abstract class TestGenerator {
 	public void setBuffer(StringBuffer buffer) {
 		this.buffer = buffer;
 	}
+	
+	protected String makeInternalBehaviors(){
+		StringBuilder sb = new StringBuilder();
+		
+		
+			
+		return null;
+	}
 
 }

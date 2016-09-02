@@ -55,6 +55,11 @@ public abstract class TestMethodTemplate {
 	protected String createMethodCall(Parameter[] pts, String[] params) {
 		int count = 0;
 		StringBuilder buffer = new StringBuilder();
+		
+		IInternalBehaviors[] iibs = TestInternalBehaviors.make();
+		for(IInternalBehaviors iib : iibs) {
+			buffer.append(TextEditor.newLine(iib.behave(method), 2));
+		}
 
 		if (!(method.getReturnType() == void.class)) {
 			if (method.getReturnType().isPrimitive())
