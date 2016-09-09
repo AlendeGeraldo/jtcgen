@@ -93,7 +93,7 @@ public abstract class TestMethodTemplate {
 	protected String getParamAdicional() {
 		StringBuffer retorno = new StringBuffer();
 		if (method.getReturnType() == double.class)
-			retorno.append(", 0.000000000001");
+			retorno.append(", 0.00001");
 
 		return retorno.toString();
 	}
