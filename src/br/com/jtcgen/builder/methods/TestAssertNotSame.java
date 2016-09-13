@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import br.com.jtcgen.annotations.Expected;
-import br.com.jtcgen.annotations.GenerateTestNotSame;
+import br.com.jtcgen.annotations.TestNotSame;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidDeclaredAnnotationException;
@@ -19,10 +19,10 @@ public class TestAssertNotSame extends TestMethodTemplate {
 
 	@Override
 	public String getContent() {
-		GenerateTestNotSame test = (GenerateTestNotSame) method.getAnnotation(GenerateTestNotSame.class);
-		String parameter = test.param();
-		String expected = test.expected();
-		String metCompare = test.method();
+		TestNotSame test = (TestNotSame) method.getAnnotation(TestNotSame.class);
+		String parameter = test.value()[0];
+		String expected = test.value()[1];
+		String metCompare = test.value()[2];
 
 		String[] params = getParams(parameter);
 

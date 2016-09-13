@@ -5,12 +5,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import br.com.jtcgen.annotations.GenerateTestEquals;
 import br.com.jtcgen.annotations.TestEquals;
+import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.annotations.TestScene;
 import example.classes.Lance;
 import example.classes.Leilao;
 
+@JTCGen
 public class Avaliador {
 
 	private double maiorDeTodos = Double.NEGATIVE_INFINITY;
@@ -43,7 +44,7 @@ public class Avaliador {
         return this.maiores;
     }
 	
-    @TestScene("!mock(Leilao@getLances()->!!ArrayList(!mock(Lance@getValor()->300.0])*3)->+100.0)")
+    @TestScene("!mock($Leilao@getLances()->!!ArrayList(!mock(Lance@getValor()->300.0])*3)->+100.0)")
     @TestEquals("1200.0")
 	public double obtemValorMedioDosLances(Leilao leilao) {
 		double total = (double) leilao.getLances().size();

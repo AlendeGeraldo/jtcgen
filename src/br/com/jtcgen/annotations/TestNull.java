@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface GenerateTestNotNull {
+public @interface TestNull {
+
 	String value() default "";
+
 }

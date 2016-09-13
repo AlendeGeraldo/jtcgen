@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import br.com.jtcgen.annotations.Expected;
-import br.com.jtcgen.annotations.GenerateTestEquals;
+import br.com.jtcgen.annotations.TestEquals;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
@@ -18,9 +18,9 @@ public class TestArrayEquals extends TestMethodTemplate {
 	@Override
 	public String getContent() {
 
-		GenerateTestEquals test = (GenerateTestEquals) method.getAnnotation(GenerateTestEquals.class);
-		String parametro = test.param();
-		String expected = test.expected();
+		TestEquals test = (TestEquals) method.getAnnotation(TestEquals.class);
+		String parametro = test.value()[0];
+		String expected = test.value()[1];
 
 		String[] params = getParams(parametro);
 

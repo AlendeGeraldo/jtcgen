@@ -3,7 +3,7 @@ package br.com.jtcgen.builder.methods;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
-import br.com.jtcgen.annotations.GenerateTestTrue;
+import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
@@ -16,7 +16,7 @@ public class TestAssertTrue extends TestMethodTemplate {
 
 	@Override
 	public String getContent() {
-		GenerateTestTrue test = (GenerateTestTrue) method.getAnnotation(GenerateTestTrue.class);
+		TestTrue test = (TestTrue) method.getAnnotation(TestTrue.class);
 		String parametro = test.value();
 
 		String[] params = getParams(parametro);

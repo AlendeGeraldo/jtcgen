@@ -7,6 +7,15 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
+
 public @interface TestEquals {
-	String value();
+	/**
+	 * 
+	 * @author Rafael
+	 * @param {param, expected}
+	 * @param {expected}
+	 *
+	 */
+	String[] value();
+
 }

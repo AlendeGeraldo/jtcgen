@@ -6,7 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD })
-public @interface GenerateTestTrue {
-	String value() default "";
+@Target(ElementType.METHOD)
+public @interface TestSame {
+
+	String[] value() default ""; // param // expected // method
+
 }

@@ -7,12 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface GenerateTestVoidEquals {
-
-	String param() default "";
-
-	String compare() default "{{NULL}}";
-
-	String expected() default "{{NULL}}";
-
+public @interface TestNotNull {
+	String value() default "";
 }

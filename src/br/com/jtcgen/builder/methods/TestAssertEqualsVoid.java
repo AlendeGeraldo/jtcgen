@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import br.com.jtcgen.annotations.Expected;
-import br.com.jtcgen.annotations.GenerateTestVoidEquals;
+import br.com.jtcgen.annotations.TestVoidEquals;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
@@ -18,10 +18,10 @@ public class TestAssertEqualsVoid extends TestMethodTemplate {
 
 	@Override
 	public String getContent() {
-		GenerateTestVoidEquals test = (GenerateTestVoidEquals) method.getAnnotation(GenerateTestVoidEquals.class);
-		String parametro = test.param();
-		String compare = test.compare();
-		String expected = test.expected();
+		TestVoidEquals test = (TestVoidEquals) method.getAnnotation(TestVoidEquals.class);
+		String parametro = test.value()[0];
+		String compare = test.value()[1];
+		String expected = test.value()[2];
 
 		String[] params = getParams(parametro);
 

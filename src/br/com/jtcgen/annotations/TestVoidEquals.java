@@ -7,12 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface GenerateTestNotSame {
+public @interface TestVoidEquals {
 
-	String param() default "";
-
-	String expected() default "{{NULL}}";
-
-	String method() default "{{NULL}}";
-
+	String[] value() default "";// parametro comparacao esperado
 }
