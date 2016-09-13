@@ -1,0 +1,20 @@
+{
+	//It's a command template map, there is the defaults settings of lib
+	"operators" : {
+		//Basic operators
+		"multiplication" : "*",
+		"division" : "/",
+		"addition" : "+",
+		"subtraction" : "-",
+		//Class scope operators
+		"class-marker" : "$",
+		"method-marker" : "@",
+		"return-marker" : "->"
+	},
+	"commands" : {
+		//!mock(MyClass@MethodInvoked -> return)
+		"!mock($[a-zA-Z0-9]+@[a-zA-Z0-9]+\\-\\>[a-zA-Z0-9$@\\-\\>])" : "mock"
+	}
+
+	
+}
