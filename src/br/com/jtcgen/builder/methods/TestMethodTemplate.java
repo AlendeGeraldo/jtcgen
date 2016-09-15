@@ -3,10 +3,14 @@ package br.com.jtcgen.builder.methods;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
+import br.com.jtcgen.annotations.TestEquals;
 import br.com.jtcgen.annotations.TestScene;
 import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.helpers.TextEditor;
@@ -130,17 +134,31 @@ public abstract class TestMethodTemplate {
 		return str;
 	}
 
-	protected void setScene(Annotation antecessora) {
+	public void setScene(Annotation antecessora) {
 		this.testScene = antecessora; 
 		
 	}
 	
-	protected String buildScene() {
-		return testScene == null ? null : buildStrScene();
+	protected Map<String,String> buildScene() {
+		return testScene == null ? null : buildStrScene(testScene);
 	}
 	
-	protected String buildStrScene() {
-		return "";
+	protected Map<String,String> buildStrScene(Annotation testScene) {
+		
+		TestScene ann = this.method.getAnnotation(TestScene.class);
+		
+		for(String value : ann.value()){
+			Pattern r = Pattern.compile("\\!mock([.]+)");
+			Matcher matcher = r.matcher(value);
+			while(matcher.find()){
+				String mock = matcher.group();	
+				
+				//to be continuous....
+			}
+		}
+		
+		
+		return null;
 	}
 
 }

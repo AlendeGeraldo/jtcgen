@@ -2,6 +2,7 @@ package br.com.jtcgen.builder.methods;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.Map;
 
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.TestEquals;
@@ -38,7 +39,7 @@ public class TestAssertEquals extends TestMethodTemplate {
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 		
-		String scene = buildScene();// its a substitute of params;
+		Map<String, String> scene = buildScene();// its a substitute of params;
 
 		String paramAdicionais = getParamAdicional();
 
