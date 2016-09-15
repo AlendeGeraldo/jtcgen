@@ -11,6 +11,7 @@ import br.com.jtcgen.annotations.TestEquals;
 import br.com.jtcgen.annotations.TestFalse;
 import br.com.jtcgen.annotations.TestNotNull;
 import br.com.jtcgen.annotations.TestNull;
+import br.com.jtcgen.annotations.TestScene;
 import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
 import br.com.jtcgen.annotations.Mock;
@@ -30,6 +31,8 @@ class TestMethodsGenerator extends TestGenerator {
 	private List<Method> metodos;
 
 	private StringBuffer metodosDeTeste;
+	
+	private Annotation antecessora;
 
 	public TestMethodsGenerator(Class<?> clazz) {
 		super(clazz);
@@ -47,13 +50,17 @@ class TestMethodsGenerator extends TestGenerator {
 				Set<String> methodMemory = new HashSet<String>();
 				
 				setInternalBehaviors(annotations);
+				antecessora = null;
 				for (Annotation ann : annotations) {
 					TestMethodTemplate tmp = getAnnotatedGeneratorMethod(ann.annotationType(), method);
 					if (tmp != null) {
+						if(antecessora.annotationType() == TestScene.class)
+							tmp.setScene(antecessora);
 						String sufix = (methodMemory.contains(method.getName())) ? tmp.extractSufix() : "";
 						metodosDeTeste.append(tmp.createMethod(sufix));
 						methodMemory.add(method.getName() + sufix);
 					}
+					antecessora = ann;
 				}
 			}
 		}

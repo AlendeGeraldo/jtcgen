@@ -1,11 +1,13 @@
 package br.com.jtcgen.builder.methods;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
+import br.com.jtcgen.annotations.TestScene;
 import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.helpers.TextEditor;
 
@@ -14,11 +16,12 @@ public abstract class TestMethodTemplate {
 	protected StringBuffer methodBuffer = new StringBuffer();
 	protected Class<?> clazz;
 	protected Method method;
+	protected Annotation testScene;
 
 	public TestMethodTemplate(Method method, Class<?> clazz) {
 		this.method = method;
 		this.clazz = clazz;
-
+		this.testScene = null;
 	}
 
 	public String createMethod() {
@@ -107,7 +110,7 @@ public abstract class TestMethodTemplate {
 	}
 
 	protected boolean isValidParams(String[] params) {
-		if (params.length != method.getParameterCount())
+		if (params.length != method.getParameterCount() && testScene == null)
 			return false;
 
 		return true;
@@ -125,6 +128,19 @@ public abstract class TestMethodTemplate {
 			str = value;
 		}
 		return str;
+	}
+
+	public void setScene(Annotation antecessora) {
+		this.testScene = antecessora; 
+		
+	}
+	
+	public String buildScene() {
+		return testScene == null ? null : buildStrScene();
+	}
+	
+	public String buildStrScene() {
+		return "";
 	}
 
 }

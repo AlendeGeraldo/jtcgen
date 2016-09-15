@@ -6,7 +6,7 @@ import br.com.jtcgen.annotations.Expected;
 
 public class Caixa {
 
-	@TestEquals(param="ContaCorrente[mock=true]", expected="Banco JTCGEN.\n\nBem vindo Rafael!")
+	@TestEquals({"ContaCorrente[mock=true]", "Banco JTCGEN.\n\nBem vindo Rafael!"})
 	public String telaBoasVindas(Conta conta) {
 		return "Banco JTCGEN.\n\nBem vindo " + conta.getNomeCliente() + "!";
 	}

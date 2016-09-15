@@ -19,15 +19,24 @@ public class TestAssertEquals extends TestMethodTemplate {
 	public String getContent() {
 
 		TestEquals test = (TestEquals) method.getAnnotation(TestEquals.class);
-		String parametro = test.value()[0];
-		String expected = test.value()[1];
+		
+		String scene = buildScene();
+		
+		String parametro = "", expected = "";
+		if(test.value().length == 2){
+			parametro = test.value()[0];
+			expected = test.value()[1];
+		} else 
+			expected = test.value()[0];
+		
 
 		String[] params = getParams(parametro);
 
 		Parameter[] pts = method.getParameters();
 
 		if (!isValidParams(params))
-			throw new InvalidParamDeclarationException("Valor total de parametros incorretos");
+			throw new InvalidParamDeclarationException("Valor total de parametros incorretos: " 
+					+ method.getName());
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 
