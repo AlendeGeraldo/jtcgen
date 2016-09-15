@@ -11,7 +11,7 @@ import static br.com.jtcgen.builder.methods.TestInternalBehaviors.*;
 public class MockInterpreter implements IInternalBehaviors{
 
 	@Override
-	public String behave(Method m) {
+	public String behave(Method m, Annotation scene) {
 		StringBuffer sb = new StringBuffer();
 		List<Annotation> mocks = mocks();
 		
@@ -21,6 +21,8 @@ public class MockInterpreter implements IInternalBehaviors{
 			
 			//do something
 		}
+		
+		//manipulling a scene;
 		
 		return sb.toString();
 	}

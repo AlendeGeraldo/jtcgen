@@ -61,7 +61,7 @@ public abstract class TestMethodTemplate {
 		
 		IInternalBehaviors[] iibs = TestInternalBehaviors.make();
 		for(IInternalBehaviors iib : iibs) {
-			buffer.append(TextEditor.newLine(iib.behave(method), 2));
+			buffer.append(TextEditor.newLine(iib.behave(method, testScene), 2));
 		}
 
 		if (!(method.getReturnType() == void.class)) {
@@ -130,16 +130,16 @@ public abstract class TestMethodTemplate {
 		return str;
 	}
 
-	public void setScene(Annotation antecessora) {
+	protected void setScene(Annotation antecessora) {
 		this.testScene = antecessora; 
 		
 	}
 	
-	public String buildScene() {
+	protected String buildScene() {
 		return testScene == null ? null : buildStrScene();
 	}
 	
-	public String buildStrScene() {
+	protected String buildStrScene() {
 		return "";
 	}
 

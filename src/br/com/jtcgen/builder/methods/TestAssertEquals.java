@@ -20,8 +20,6 @@ public class TestAssertEquals extends TestMethodTemplate {
 
 		TestEquals test = (TestEquals) method.getAnnotation(TestEquals.class);
 		
-		String scene = buildScene();
-		
 		String parametro = "", expected = "";
 		if(test.value().length == 2){
 			parametro = test.value()[0];
@@ -39,8 +37,8 @@ public class TestAssertEquals extends TestMethodTemplate {
 					+ method.getName());
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
-
-		assinaturaMetodo.append(createMethodCall(pts, params));
+		
+		String scene = buildScene();// its a substitute of params;
 
 		String paramAdicionais = getParamAdicional();
 

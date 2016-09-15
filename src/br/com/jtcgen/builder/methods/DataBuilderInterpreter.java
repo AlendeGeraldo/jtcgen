@@ -12,7 +12,7 @@ import static br.com.jtcgen.builder.methods.TestInternalBehaviors.*;
 public class DataBuilderInterpreter implements IInternalBehaviors{
 
 	@Override
-	public String behave(Method m) {
+	public String behave(Method m, Annotation scene) {
 		StringBuffer sb = new StringBuffer();
 		List<Annotation> dataBuilders = dataBuilders();
 		
