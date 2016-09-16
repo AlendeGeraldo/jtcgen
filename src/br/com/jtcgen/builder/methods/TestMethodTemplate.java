@@ -144,7 +144,7 @@ public abstract class TestMethodTemplate {
 	}
 	
 	protected Map<String,String> buildStrScene(Annotation testScene) {
-		
+		StringBuffer sb = new StringBuffer();
 		TestScene ann = this.method.getAnnotation(TestScene.class);
 		
 		for(String value : ann.value()){
@@ -153,12 +153,12 @@ public abstract class TestMethodTemplate {
 			while(matcher.find()){
 				String mock = matcher.group();	
 				
-				//to be continuous....
+				StringB  = buildStrSceneRecursive(mock);
 			}
 		}
 		
 		
 		return null;
 	}
-
+	
 }
