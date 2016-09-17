@@ -7,6 +7,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
@@ -148,12 +152,12 @@ public abstract class TestMethodTemplate {
 		TestScene ann = this.method.getAnnotation(TestScene.class);
 		
 		for(String value : ann.value()){
-			Pattern r = Pattern.compile("\\!mock([.]+)");
-			Matcher matcher = r.matcher(value);
-			while(matcher.find()){
-				String mock = matcher.group();	
-				
-				StringB  = buildStrSceneRecursive(mock);
+			ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+			try {
+				engine.eval("print('Hello World!');");
+			} catch (ScriptException e) {
+				System.out.println("Erro na evaluação javascript");
+				e.printStackTrace();
 			}
 		}
 		
