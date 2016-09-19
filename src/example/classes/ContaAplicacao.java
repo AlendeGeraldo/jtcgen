@@ -12,7 +12,7 @@ import br.com.jtcgen.annotations.SetUp;
 @JTCGen
 public class ContaAplicacao extends Conta implements Tributavel {
 
-	@SetUp("1000; 2200; 500.0")
+	@SetUp({"1000", "2200", "500.0"})
 	public ContaAplicacao(int numero, int agencia, double saldo) {
 		super(numero, agencia, saldo);
 	}

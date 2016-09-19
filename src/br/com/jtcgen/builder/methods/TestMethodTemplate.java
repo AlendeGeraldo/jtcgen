@@ -148,15 +148,22 @@ public abstract class TestMethodTemplate {
 	}
 	
 	protected Map<String,String> buildStrScene(Annotation testScene) {
+		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+		try {
+			engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
+		} catch (ScriptException e) {
+			System.out.println("Erro na evaluação javascript");
+			e.printStackTrace();
+		}
+		
 		StringBuffer sb = new StringBuffer();
 		TestScene ann = this.method.getAnnotation(TestScene.class);
 		
 		for(String value : ann.value()){
-			ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 			try {
-				engine.eval("print('Hello World!');");
+				engine.eval(value);
 			} catch (ScriptException e) {
-				System.out.println("Erro na evaluação javascript");
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
