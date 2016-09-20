@@ -44,7 +44,7 @@ public class Avaliador {
         return this.maiores;
     }
 	
-    @TestScene("!mock('examples.classes.Leilao@getLances() = mkList(\\'mock(\\'examples.classes.Lance@getValor() = 300.0\\')\\')')")
+    @TestScene("mock('examples.classes.Leilao@getLances() = mkList(\\'mock(\\'examples.classes.Lance@getValor() = 300.0\\')\\')')")
     @TestEquals("1200.0")
 	public double obtemValorMedioDosLances(Leilao leilao) {
 		double total = (double) leilao.getLances().size();
