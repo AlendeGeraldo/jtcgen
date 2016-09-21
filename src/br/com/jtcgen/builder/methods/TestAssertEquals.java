@@ -51,7 +51,7 @@ public class TestAssertEquals extends TestMethodTemplate {
 			assinaturaMetodo.append(scene.get("str"));
 		}
 		
-		assinaturaMetodo.append(createMethodCall(pts, params));
+		//assinaturaMetodo.append(createMethodCall(pts, params));
 
 		String content = TextEditor.newLine("assertEquals(" + resultExpected + ", resultado" + paramAdicionais + ");",
 				2);

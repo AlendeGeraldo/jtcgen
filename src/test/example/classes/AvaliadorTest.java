@@ -1,18 +1,12 @@
 package test.example.classes;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.Avaliador;
-import example.classes.Lance;
-import example.classes.Leilao;
 
 
 public class AvaliadorTest {
@@ -31,13 +25,13 @@ public class AvaliadorTest {
 
 	@Test
 	public void obtemValorMedioDosLances() {			Lance lance = mock( Lance.class );
-			when(lance.getValor()).thenReturn((double) 200);
+			when(lance.getValor()).thenReturns(200);
 
 			Lance lance1 = mock( Lance.class );
-			when(lance1.getValor()).thenReturn((double) 300);
+			when(lance1.getValor()).thenReturns(300);
 
 			Lance lance2 = mock( Lance.class );
-			when(lance2.getValor()).thenReturn((double) 400);
+			when(lance2.getValor()).thenReturns(400);
 
 
 			List<Lance> list = new ArrayList<Lance>();
@@ -47,7 +41,7 @@ public class AvaliadorTest {
 			list.add(lance2);
 
 			Leilao leilao = mock( Leilao.class );
-			when(leilao.getLances()).thenReturn(list);
+			when(leilao.getLances()).thenReturns(list);
 
 
 		assertEquals(leilao, resultado, 0.00001);

@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.ContaAplicacao;
-import example.classes.ContaCorrente;
 import example.classes.ContaPoupanca;
+import example.classes.ContaCorrente;
 
 
 public class ContaAplicacaoTest {
@@ -52,14 +52,6 @@ public class ContaAplicacaoTest {
 	}
 	
 	@Test
-	public void deposita() {
-		
-		
-		this.instance.deposita(1000.0);
-		assertEquals(1499.5, this.instance.getSaldo(), 0.00000000001);
-	}
-	
-	@Test
 	public void taxaMovimentacao() {
 		assertEquals(4999.5, resultado, 0.00001);
 	}
@@ -88,6 +80,14 @@ public class ContaAplicacaoTest {
 	@Test
 	public void boasVindas() {
 		assertEquals("Bem Vindo! Rafael, seu saldo e de R$ 500.0", resultado);
+	}
+	
+	@Test
+	public void deposita() {
+		
+		
+		this.instance.deposita(1000.0);
+		assertEquals(1499.5, this.instance.getSaldo(), 0.00000000001);
 	}
 	
 }
