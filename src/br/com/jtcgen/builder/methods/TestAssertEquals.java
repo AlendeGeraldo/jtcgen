@@ -44,6 +44,14 @@ public class TestAssertEquals extends TestMethodTemplate {
 		String paramAdicionais = getParamAdicional();
 
 		String resultExpected = parseExpectedValue(expected, method);
+		
+		if(scene != null) {
+			resultExpected = scene.get("var");
+			
+			assinaturaMetodo.append(scene.get("str"));
+		}
+		
+		assinaturaMetodo.append(createMethodCall(pts, params));
 
 		String content = TextEditor.newLine("assertEquals(" + resultExpected + ", resultado" + paramAdicionais + ");",
 				2);

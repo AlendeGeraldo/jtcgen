@@ -3,6 +3,7 @@ package br.com.jtcgen.builder.methods;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -156,20 +157,22 @@ public abstract class TestMethodTemplate {
 			e.printStackTrace();
 		}
 		
-		StringBuffer sb = new StringBuffer();
 		TestScene ann = this.method.getAnnotation(TestScene.class);
 		
+		Map<String, String> m = new HashMap<String, String>();
 		for(String value : ann.value()){
 			try {
 				engine.eval(value);
+				
+				m.put("str", (String) engine.eval("mocks.finalize();"));
+				m.put("var", (String) engine.eval("mocks.getVariavel();"));
 			} catch (ScriptException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		
-		return null;
+		return m;
 	}
 	
 }

@@ -59,7 +59,8 @@ public class JTCGenenerator implements TestCaseGenerable {
 									.replaceAll("\\\\", ".").replaceAll("\\.java$", "").toString().trim();
 							classes.add(Class.forName(className));
 						} catch (Exception e) {
-							e.printStackTrace();
+							//e.printStackTrace();
+							System.out.println("não foi possivel encontrar a classe");
 						}
 					}
 				}

@@ -1,23 +1,32 @@
 'use strict';
 
-mock('examples.classes.Leilao@getLances() = mkList(\\'mock(\\'examples.classes.Lance@getValor() = 300.0\\')\\')')
-mock('Leilao@getLances()').
+//mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
 var mocks = {
-	sequence: [],
+	sequence: {clazz: null, method: null, returns: null},
+	finalized : {},
 	mock : function (str) {
-		var parts = str.split("=");
-		var call = parts[0];
-		var valueMock = parts[1];
-		print(call);
-		print(valueMock);
-
-		return this;
+			mocks.sequence.clazz = str.split('@')[0];
+			mocks.sequence.method = str.split('@')[1];
+			mocks.sequence.returns = null;
+		
+		return mocks;
 	},
-	addInSequence: function(obj) {
-		sequence.add(obj);
+	returns: function (str) {
+		mocks.sequence.returns = str;
+		return mocks;
 	},
-	getInSequence: function(position) {
-		return (sequence[position] != undefined) ? return sequence[position] : null;
+	finalize: function () {
+		var buffer = "";
+		buffer += "\t\t\t" + mocks.sequence.clazz + " " + mocks.sequence.clazz.toLowerCase() +
+		  " = mock( " + mocks.sequence.clazz + ".class );\n";
+		buffer += "\t\t\t" + "when("+mocks.sequence.clazz.toLowerCase()+"."+mocks.sequence.method+").thenReturns("+mocks.sequence.returns.localVar+");\n\n";
+		
+		mocks.finalized = {variavel: mocks.sequence.clazz.toLowerCase(), str : mocks.sequence.returns.str + buffer};
+		
+		return mocks.finalized.str; 
+	},
+	getVariavel: function (){
+		return mocks.finalized.variavel;
 	}
 };
 
