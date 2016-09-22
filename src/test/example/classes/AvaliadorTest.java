@@ -7,6 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.Avaliador;
+import example.classes.Leilao;
+import java.util.List;
+import java.util.ArrayList;
+import example.classes.Lance;
+import static org.mockito.Mockito.*;
 
 
 public class AvaliadorTest {
@@ -16,6 +21,7 @@ public class AvaliadorTest {
 	@Before
 	public void setUp() throws Exception {
 		
+			this.instance = new Avaliador();
 	}
 
 	@After
@@ -24,27 +30,31 @@ public class AvaliadorTest {
 	}
 
 	@Test
-	public void obtemValorMedioDosLances() {			Lance lance = mock( Lance.class );
-			when(lance.getValor()).thenReturns(200);
+	public void obtemValorMedioDosLances() {
+		Lance lance = mock( Lance.class );
+		when(lance.getValor()).thenReturn(200.0);
 
-			Lance lance1 = mock( Lance.class );
-			when(lance1.getValor()).thenReturns(300);
+		Lance lance1 = mock( Lance.class );
+		when(lance1.getValor()).thenReturn(300.0);
 
-			Lance lance2 = mock( Lance.class );
-			when(lance2.getValor()).thenReturns(400);
-
-
-			List<Lance> list = new ArrayList<Lance>();
-
-			list.add(lance);
-			list.add(lance1);
-			list.add(lance2);
-
-			Leilao leilao = mock( Leilao.class );
-			when(leilao.getLances()).thenReturns(list);
+		Lance lance2 = mock( Lance.class );
+		when(lance2.getValor()).thenReturn(400.0);
 
 
-		assertEquals(leilao, resultado, 0.00001);
+		List<Lance> list = new ArrayList<Lance>();
+
+		list.add(lance);
+		list.add(lance1);
+		list.add(lance2);
+
+		Leilao leilao = mock( Leilao.class );
+		when(leilao.getLances()).thenReturn(list);
+
+
+		
+		
+		double resultado = this.instance.obtemValorMedioDosLances(leilao);
+		assertEquals(300.0, resultado, 0.00001);
 	}
 	
 }

@@ -12,6 +12,8 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import org.mockito.Mockito;
+
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
@@ -149,6 +151,9 @@ public abstract class TestMethodTemplate {
 	}
 	
 	protected Map<String,String> buildStrScene(Annotation testScene) {
+		
+		ImportManager.addImportStatic(Mockito.class);
+		
 		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 		try {
 			engine.eval("load('src/br/com/jtcgen/scripts/import.js')");

@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.ContaPoupanca;
+import static org.mockito.Mockito.*;
 
 
 public class ContaPoupancaTest {

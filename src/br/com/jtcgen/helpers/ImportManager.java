@@ -10,6 +10,7 @@ import br.com.jtcgen.annotations.JTCGen;
 public class ImportManager {
 
 	private static Set<Class<?>> imports = new HashSet<Class<?>>();
+	private static Set<Class<?>> importStatics = new HashSet<Class<?>>();
 
 	/**
 	 * adiciona imports encontrados pelo caminho
@@ -17,6 +18,10 @@ public class ImportManager {
 	 */
 	public static void addImport(Class<?> clazz) {
 		imports.add(clazz);
+	}
+	
+	public static void addImportStatic(Class<?> clazz) {
+		importStatics.add(clazz);
 	}
 
 	/**
@@ -29,6 +34,9 @@ public class ImportManager {
 			strImport.append("import " + im.getName() + ";" + "\n");
 
 		imports.clear();
+		
+		for (Class<?> ims : importStatics) 
+			strImport.append("import static " + ims.getName() + ".*;" + "\n");
 
 		return strImport.toString();
 	}

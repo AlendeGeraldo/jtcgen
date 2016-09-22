@@ -2,7 +2,10 @@ package br.com.jtcgen.builder.methods;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+import java.util.Arrays;
 import java.util.Map;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.TestEquals;
@@ -40,18 +43,25 @@ public class TestAssertEquals extends TestMethodTemplate {
 		StringBuilder assinaturaMetodo = new StringBuilder();
 		
 		Map<String, String> scene = buildScene();// its a substitute of params;
-
+		
 		String paramAdicionais = getParamAdicional();
 
 		String resultExpected = parseExpectedValue(expected, method);
 		
 		if(scene != null) {
-			resultExpected = scene.get("var");
+			String paramExpected = scene.get("var");
 			
 			assinaturaMetodo.append(scene.get("str"));
+			
+			String[] newParams = new String[params.length+1];
+			for(int i = 0; i < params.length; i++) {
+				newParams[i] = params[i]; 
+			}
+			newParams[params.length] = paramExpected;
+			params = newParams;
 		}
 		
-		//assinaturaMetodo.append(createMethodCall(pts, params));
+		assinaturaMetodo.append(createMethodCall(pts, params));
 
 		String content = TextEditor.newLine("assertEquals(" + resultExpected + ", resultado" + paramAdicionais + ");",
 				2);

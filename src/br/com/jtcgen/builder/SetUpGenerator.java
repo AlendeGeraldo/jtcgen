@@ -8,6 +8,7 @@ import java.util.List;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.annotations.SetUp;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
+import br.com.jtcgen.helpers.TextEditor;
 
 class SetUpGenerator extends TestGenerator {
 
@@ -26,6 +27,14 @@ class SetUpGenerator extends TestGenerator {
 		sb.append("\t" + "public void setUp() throws Exception {");
 		sb.append("\n");
 		StringBuffer assinaturaDoConstrutor = new StringBuffer();
+		if (cons.size() == 1) {
+			if (!cons.get(0).isAnnotationPresent(SetUp.class))
+				if(cons.get(0).getParameterCount() == 0)
+			assinaturaDoConstrutor.append(
+				TextEditor.newLine("this.instance = new " + clazz.getSimpleName() + "();", 3)
+			);
+			
+		}
 		for (Constructor<?> co : cons) {
 			if (co.isAnnotationPresent(SetUp.class)) {
 				SetUp st = (SetUp) co.getAnnotation(SetUp.class);
