@@ -1,0 +1,28 @@
+
+
+#menu {
+	position: fixed;
+	width: 100%;
+}
+
+#home {
+	position: relative;
+	color: #fff;
+	height: 638px;
+	background-image: url("/assets/img/bg1.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-align: center;	
+}
+
+#home .container .presentation {
+	position: absolute;
+	display: table-cell;
+	vertical-align: middle;
+	top: 25%;
+	width: inherit;
+}
+
+#home .container .presentation .project-name{
+	font-size: 52px;
+}
