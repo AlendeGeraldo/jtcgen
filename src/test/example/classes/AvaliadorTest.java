@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.Avaliador;
-import example.classes.Leilao;
-import java.util.List;
 import java.util.ArrayList;
 import example.classes.Lance;
+import java.util.List;
+import example.classes.Leilao;
 import static org.mockito.Mockito.*;
 
 

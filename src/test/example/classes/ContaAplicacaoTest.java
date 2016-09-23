@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.ContaAplicacao;
-import java.lang.String;
 import example.classes.ContaCorrente;
+import java.lang.String;
 import example.classes.ContaPoupanca;
 import static org.mockito.Mockito.*;
 
@@ -27,46 +27,6 @@ public class ContaAplicacaoTest {
 		this.instance = null;
 	}
 
-	@Test
-	public void obtemContaCorrente() {
-		
-		
-		ContaCorrente resultado = this.instance.obtemContaCorrente();
-		assertNotNull(resultado);
-	}
-	
-	@Test
-	public void obtemContaPoupanca() {
-		
-		
-		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
-		assertNull(resultado);
-	}
-	
-	@Test
-	public void obtemContaPoupancaEquals() {
-		
-		
-		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
-		assertEquals(null, resultado);
-	}
-	
-	@Test
-	public void retornaCpfComMascara() {
-		
-		
-		String resultado = this.instance.retornaCpfComMascara();
-		assertEquals("123.456.789-10", resultado);
-	}
-	
-	@Test
-	public void deposita() {
-		
-		
-		this.instance.deposita(1000.0);
-		assertEquals(1499.5, this.instance.getSaldo(), 0.00000000001);
-	}
-	
 	@Test
 	public void taxaMovimentacao() {
 		
@@ -105,6 +65,46 @@ public class ContaAplicacaoTest {
 		
 		String resultado = this.instance.boasVindas("Rafael");
 		assertEquals("Bem Vindo! Rafael, seu saldo e de R$ 500.0", resultado);
+	}
+	
+	@Test
+	public void obtemContaCorrente() {
+		
+		
+		ContaCorrente resultado = this.instance.obtemContaCorrente();
+		assertNotNull(resultado);
+	}
+	
+	@Test
+	public void obtemContaPoupanca() {
+		
+		
+		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
+		assertNull(resultado);
+	}
+	
+	@Test
+	public void obtemContaPoupancaEquals() {
+		
+		
+		ContaPoupanca resultado = this.instance.obtemContaPoupanca();
+		assertEquals(null, resultado);
+	}
+	
+	@Test
+	public void retornaCpfComMascara() {
+		
+		
+		String resultado = this.instance.retornaCpfComMascara();
+		assertEquals("123.456.789-10", resultado);
+	}
+	
+	@Test
+	public void deposita() {
+		
+		
+		this.instance.deposita(1000.0);
+		assertEquals(1499.5, this.instance.getSaldo(), 0.00001);
 	}
 	
 }

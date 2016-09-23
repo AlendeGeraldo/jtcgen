@@ -42,12 +42,11 @@ public class TestAssertEquals extends TestMethodTemplate {
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 		
-		Map<String, String> scene = buildScene();// its a substitute of params;
-		
 		String paramAdicionais = getParamAdicional();
 
 		String resultExpected = parseExpectedValue(expected, method);
-		
+
+		Map<String, String> scene = buildScene();// its a substitute of params;
 		if(scene != null) {
 			String paramExpected = scene.get("var");
 			
