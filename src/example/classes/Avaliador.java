@@ -7,7 +7,7 @@ import java.util.List;
 
 import br.com.jtcgen.annotations.TestEquals;
 import br.com.jtcgen.annotations.JTCGen;
-import br.com.jtcgen.annotations.TestScene;
+import br.com.jtcgen.annotations.Test;
 import br.com.jtcgen.annotations.TestVoidEquals;
 import example.classes.Lance;
 import example.classes.Leilao;
@@ -19,7 +19,7 @@ public class Avaliador {
 	private double menorDeTodos = Double.POSITIVE_INFINITY;
 	private List<Lance> maiores;
 	
-	@TestScene("")
+	@Test("")
 	public void avalia(Leilao leilao) {
 		
 		for(Lance lance: leilao.getLances()) { 
@@ -30,7 +30,7 @@ public class Avaliador {
 		pegaOsMaioresNo(leilao);
 	}
 	
-	@TestScene("mock('example.classes.Leilao@getLances()').returns(mockList('example.classes.Lance@getValor()', [200.0, 300.0, 400.0, 500.0], 'double'))")
+	@Test("mock('example.classes.Leilao@getLances()').returns(mockList('example.classes.Lance@getValor()', [200.0, 300.0, 400.0, 500.0], 'double'))")
 	@TestVoidEquals({"getTresMaiores", "200.0"})
 	private void pegaOsMaioresNo(Leilao leilao) {
         maiores = new ArrayList<Lance>(leilao.getLances());
@@ -49,7 +49,7 @@ public class Avaliador {
         return this.maiores;
     }
 	
-    @TestScene("mock('example.classes.Leilao@getLances()').returns(mockList('example.classes.Lance@getValor()', [200.0, 300.0, 400.0], 'double'))")
+    @Test("mock('example.classes.Leilao@getLances()').returns(mockList('example.classes.Lance@getValor()', [200.0, 300.0, 400.0], 'double'))")
     @TestEquals("300.0")
 	public double obtemValorMedioDosLances(Leilao leilao) {
 		double total = (double) leilao.getLances().size();

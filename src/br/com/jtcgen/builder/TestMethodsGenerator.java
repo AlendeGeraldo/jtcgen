@@ -11,7 +11,7 @@ import br.com.jtcgen.annotations.TestEquals;
 import br.com.jtcgen.annotations.TestFalse;
 import br.com.jtcgen.annotations.TestNotNull;
 import br.com.jtcgen.annotations.TestNull;
-import br.com.jtcgen.annotations.TestScene;
+import br.com.jtcgen.annotations.Test;
 import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
 import br.com.jtcgen.annotations.Mock;
@@ -72,7 +72,7 @@ class TestMethodsGenerator extends TestGenerator {
 		if(antecessora == null)
 			return ;
 		
-		if(antecessora.annotationType() == TestScene.class)
+		if(antecessora.annotationType() == Test.class)
 			tmp.setScene(antecessora);
 	}
 

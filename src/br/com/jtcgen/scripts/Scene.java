@@ -14,15 +14,16 @@ public class Scene {
 	public String getVar() {
 		return var;
 	}
+	
 	public void setVar(String var) {
 		this.var = var;
 	}
+	
 	public String getContent() {
 		return content;
 	}
+	
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
 }

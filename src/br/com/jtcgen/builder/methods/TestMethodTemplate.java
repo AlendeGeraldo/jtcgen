@@ -18,7 +18,7 @@ import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.MethodCompare;
 import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.annotations.TestEquals;
-import br.com.jtcgen.annotations.TestScene;
+import br.com.jtcgen.annotations.Test;
 import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.helpers.TextEditor;
 
@@ -162,7 +162,7 @@ public abstract class TestMethodTemplate {
 			e.printStackTrace();
 		}
 		
-		TestScene ann = this.method.getAnnotation(TestScene.class);
+		Test ann = this.method.getAnnotation(Test.class);
 		
 		Map<String, String> m = new HashMap<String, String>();
 		for(String value : ann.value()){
