@@ -64,7 +64,7 @@ public class ClazzTestDataBuilder {
 
 			public void saca(double quantia) {
 				if (quantia > this.saldo)
-					throw new RuntimeException("Valor indisponível para saque.");
+					throw new RuntimeException("Valor indisponÃ­vel para saque.");
 				this.saldo -= quantia;
 			}
 
