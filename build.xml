@@ -1,5 +1,5 @@
-<project name="jtcgen" default="allTests">
-  <target name="allTests" description="runs JUNit tests">
+<project name="jtcgen" default="test">
+  <target name="test" description="runs JUNit tests">
     <junit printsummary="yes" fork="true" haltonfailure="yes">
       <classpath>
 	    <pathelement location="tests/"/>
