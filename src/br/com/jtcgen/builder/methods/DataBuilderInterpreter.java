@@ -1,7 +1,5 @@
 package br.com.jtcgen.builder.methods;
 
-import static br.com.jtcgen.builder.methods.TestInternalBehaviors.mocks;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.List;

@@ -2,11 +2,9 @@ package br.com.jtcgen.builder;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import br.com.jtcgen.testdatabuilder.ClazzTestDataBuilder;
-import example.classes.ContaAplicacao;
 
 public class SetUpGeneratorTest {
 	

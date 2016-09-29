@@ -2,14 +2,9 @@ package br.com.jtcgen.builder.methods;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.Arrays;
 import java.util.Map;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
-
-import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.TestEquals;
-import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
 

@@ -5,8 +5,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -14,10 +12,6 @@ import javax.script.ScriptException;
 
 import org.mockito.Mockito;
 
-import br.com.jtcgen.annotations.Expected;
-import br.com.jtcgen.annotations.MethodCompare;
-import br.com.jtcgen.annotations.Param;
-import br.com.jtcgen.annotations.TestEquals;
 import br.com.jtcgen.annotations.Test;
 import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.helpers.TextEditor;

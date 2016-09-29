@@ -4,10 +4,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Map;
 
-import br.com.jtcgen.annotations.Expected;
 import br.com.jtcgen.annotations.TestVoidEquals;
-import br.com.jtcgen.annotations.MethodCompare;
-import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
 

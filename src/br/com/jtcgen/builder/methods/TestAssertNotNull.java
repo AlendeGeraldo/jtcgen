@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 import br.com.jtcgen.annotations.TestNotNull;
-import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
 

@@ -5,7 +5,6 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.jtcgen.annotations.Param;
 import br.com.jtcgen.annotations.SetUp;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
