@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Factory of strategy patterns Test generators objects
  * 
- * @author Rafael Henrique Ap. Gonçalves <rafael.goncalves19@fatec.sp.gov.br>
+ * @author Rafael Henrique Ap. GonÃ§alves <rafael.goncalves19@fatec.sp.gov.br>
  */
 public class TestGeneratorFactory {
 	/**
