@@ -1,11 +1,15 @@
 <project name="jtcgen" default="test">
+  <path id="classPath">
+    <pathelement location="lib/junit.jar" />
+  	<pathelement location="lib/mockito-all-1.10.19.jar" />
+  </path>
   <target name="test" description="runs JUNit tests">
     <junit printsummary="yes" fork="true" haltonfailure="yes">
-      <classpath>
-	    <pathelement location="tests/"/>
-	    <pathelement path="/"/>
+      <classpath path="${lib.dir}">
+   		<pathelement location="tests/"/>
+	    <path refid="classPath" />
 	  </classpath>
-	  <test todir="tests/" name="allTests">
+	  <test todir="tests/" name="br.com.jtcgen.builder.TestSuiteBuilder">
 	  	<formatter type="xml" /> 
 	  </test>	
 	</junit>
