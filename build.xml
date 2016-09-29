@@ -2,13 +2,12 @@
   <path id="classPath">
     <pathelement location="lib/junit.jar" />
   	<pathelement location="lib/mockito-all-1.10.19.jar" />
+  	<pathelement location="src/"/>
+  	<pathelement location="tests/"/>
   </path>
   <target name="test" description="runs JUNit tests">
     <junit printsummary="yes" fork="true" haltonfailure="yes">
-      <classpath path="${lib.dir}">
-      	<pathelement location="scr/"/>
-   		<pathelement location="tests/"/>
-      	<pathelement location="tests/br/com/jtcgen/builder/"/>
+      <classpath>
 	    <path refid="classPath" />
 	  </classpath>
 	  <test name="br.com.jtcgen.builder.TestSuiteBuilder">
