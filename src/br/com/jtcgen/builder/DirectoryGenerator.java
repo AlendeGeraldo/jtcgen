@@ -22,7 +22,7 @@ public class DirectoryGenerator {
 		try {
 			createFileTestCase(file, content);
 		} catch (FileNotFoundException e) {
-			System.out.println("Não foi possivel criar o arquivo da classe diretório: " + classe.getName());
+			System.out.println("NÃ£o foi possivel criar o arquivo da classe diretÃ³rio: " + classe.getName());
 		}
 	}
 
