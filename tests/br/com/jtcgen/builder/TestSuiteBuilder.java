@@ -1,8 +1,6 @@
 package br.com.jtcgen.builder;
 import org.junit.runners.Suite;
 
-import br.com.jtcgen.builder.DirectoryGenerator;
-
 import org.junit.runner.RunWith;
 
 @RunWith(Suite.class)

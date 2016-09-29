@@ -6,7 +6,9 @@
   <target name="test" description="runs JUNit tests">
     <junit printsummary="yes" fork="true" haltonfailure="yes">
       <classpath path="${lib.dir}">
+      	<pathelement location="scr/"/>
    		<pathelement location="tests/"/>
+      	<pathelement location="tests/br/com/jtcgen/builder/"/>
 	    <path refid="classPath" />
 	  </classpath>
 	  <test name="br.com.jtcgen.builder.TestSuiteBuilder">
