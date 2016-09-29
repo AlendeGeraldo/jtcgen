@@ -6,7 +6,7 @@ import java.io.PrintStream;
 
 public class DirectoryGenerator {
 
-	private final String basePath = "src/test";
+	private final String basePath = "tests";
 	private final String fileSufix = "Test.java";
 	private Class<?> classe;
 
@@ -18,7 +18,7 @@ public class DirectoryGenerator {
 	public void createTest(String content) {
 		String path = createDirectories();
 		String file = path + classe.getSimpleName() + fileSufix;
-
+		
 		try {
 			createFileTestCase(file, content);
 		} catch (FileNotFoundException e) {
