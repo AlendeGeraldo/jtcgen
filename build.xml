@@ -9,7 +9,7 @@
    		<pathelement location="tests/"/>
 	    <path refid="classPath" />
 	  </classpath>
-	  <test todir="tests/" name="br.com.jtcgen.builder.TestSuiteBuilder">
+	  <test todir="tests/br/com/jtcgen/builder/" name="br.com.jtcgen.builder.TestSuiteBuilder">
 	  	<formatter type="plain" usefile="false" />
 	  </test>	
 	</junit>
