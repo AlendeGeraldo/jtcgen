@@ -10,6 +10,7 @@
 	    <path refid="classPath" />
 	  </classpath>
 	  <test todir="tests/" name="br.com.jtcgen.builder.TestSuiteBuilder">
+	  	<formatter type="plain" usefile="false" />
 	  </test>	
 	</junit>
   </target>
