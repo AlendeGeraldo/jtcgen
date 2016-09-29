@@ -16,7 +16,7 @@ import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
 import br.com.jtcgen.annotations.Mock;
 import br.com.jtcgen.builder.methods.MockInterpreter;
-import br.com.jtcgen.builder.methods.TestAssertEquals;
+import br.com.jtcgen.builder.methods.TestAssertEqualsTest;
 import br.com.jtcgen.builder.methods.TestAssertFalse;
 import br.com.jtcgen.builder.methods.TestAssertNotNull;
 import br.com.jtcgen.builder.methods.TestAssertNull;
@@ -81,7 +81,7 @@ class TestMethodsGenerator extends TestGenerator {
 		if (ann == TestVoidEquals.class)
 			tmp = new TestAssertEqualsVoid(method, clazz);
 		else if (ann == TestEquals.class)
-			tmp = new TestAssertEquals(method, clazz);
+			tmp = new TestAssertEqualsTest(method, clazz);
 		else if (ann == TestFalse.class)
 			tmp = new TestAssertFalse(method, clazz);
 		else if (ann == TestTrue.class)

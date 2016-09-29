@@ -20,7 +20,7 @@ public class DirectoryGeneratorTest {
 		
 		directoryGenerator.createTest("Created!");
 			
-		File teste = new File("tests/br/com/jtcgen/testdatabuilder/ContaTest.java");
+		File teste = new File("tests/br/com/jtcgen/testdatabuilder/ContaAplicacaoTest.java");
 		Scanner scan = new Scanner(teste);
 		
 		assertTrue(teste.exists());
@@ -31,6 +31,6 @@ public class DirectoryGeneratorTest {
 	
 	@After
 	public void tearDown() {
-		new File("tests/br/com/jtcgen/testdatabuilder/ContaTest.java").delete();
+		new File("tests/br/com/jtcgen/testdatabuilder/ContaAplicacaoTest.java").delete();
 	}
 }

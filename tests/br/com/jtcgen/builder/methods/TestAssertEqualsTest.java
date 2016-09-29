@@ -2,6 +2,6 @@ package br.com.jtcgen.builder.methods;
 
 import static org.junit.Assert.*;
 
-public class TestAssertEquals {
+public class TestAssertEqualsTest {
 
 }

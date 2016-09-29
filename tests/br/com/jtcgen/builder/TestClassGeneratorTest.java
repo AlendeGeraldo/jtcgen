@@ -35,8 +35,6 @@ public class TestClassGeneratorTest {
 			"\n" +
 			"\n" ;
 		
-			System.out.println(tcg.generate());
-		
 		assertEquals(expected, tcg.generate());
 	}
 }
