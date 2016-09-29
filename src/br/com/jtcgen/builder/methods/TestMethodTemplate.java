@@ -158,7 +158,7 @@ public abstract class TestMethodTemplate {
 		try {
 			engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
 		} catch (ScriptException e) {
-			System.out.println("Erro na evaluação javascript");
+			System.out.println("Erro na evaluaÃ§Ã£o javascript");
 			e.printStackTrace();
 		}
 		

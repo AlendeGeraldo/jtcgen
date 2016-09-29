@@ -13,15 +13,15 @@ import br.com.jtcgen.builder.TestGeneratorFactory;
 import br.com.jtcgen.helpers.ImportManager;
 
 /**
- * FaÁade para criaÁ„o dos casos de testes
+ * Fa√ßade para cri√ß√£o dos casos de testes
  * 
- * @author Rafael Henrique Ap. GonÁalves <rafael.goncalves19@fatec.sp.gov.br>
+ * @author Rafael Henrique Ap. Gon√ßalves <rafael.goncalves19@fatec.sp.gov.br>
  * @author Estevam Herculano
  */
 public class JTCGenenerator implements TestCaseGenerable {
 
 	/**
-	 * funÁ„o sobrecarregada para aceitar var-args de objetos
+	 * fun√ß√£o sobrecarregada para aceitar var-args de objetos
 	 * 
 	 * @param Objects...
 	 *            objects
@@ -38,7 +38,7 @@ public class JTCGenenerator implements TestCaseGenerable {
 	}
 
 	/**
-	 * direciona a reflex„o de todas as classes que ser„o gerados os casos de
+	 * direciona a reflexao de todas as classes que serao gerados os casos de
 	 * testes
 	 * 
 	 * @param classe
@@ -60,7 +60,7 @@ public class JTCGenenerator implements TestCaseGenerable {
 							classes.add(Class.forName(className));
 						} catch (Exception e) {
 							//e.printStackTrace();
-							System.out.println("n„o foi possivel encontrar a classe");
+							System.out.println("n√£o foi possivel encontrar a classe");
 						}
 					}
 				}

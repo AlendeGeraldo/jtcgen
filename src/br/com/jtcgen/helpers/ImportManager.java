@@ -25,7 +25,7 @@ public class ImportManager {
 	}
 
 	/**
-	 * Consumir o método para substituir o {{OTHER_IMPORTS}} na string final
+	 * Consumir o mÃ©todo para substituir o {{OTHER_IMPORTS}} na string final
 	 * 
 	 */
 	public static String getImports() {

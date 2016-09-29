@@ -33,13 +33,13 @@ public class TestAssertSame extends TestMethodTemplate {
 
 		if (hasMethodCompareOrExpected(metCompare, expected))
 			throw new InvalidDeclaredAnnotationException(
-					"A anotaÁ„o" + test.getClass().getSimpleName() + " foi anotada de maneira errada.");
+					"A anota√ß√£o" + test.getClass().getSimpleName() + " foi anotada de maneira errada.");
 
 		StringBuilder methodSignature = new StringBuilder();
 
 		methodSignature.append(createMethodCall(pts, params));
 
-		// RESOLVER PROBLEMAS DE INVOCA«√O DO M…TODO;
+		// RESOLVER PROBLEMAS DE INVOCA√á√ÉO DO M√âTODO;
 		String result = null;
 		if (!metCompare.equals("{{NULL}}")) {
 			String str = null;
@@ -51,7 +51,7 @@ public class TestAssertSame extends TestMethodTemplate {
 			}
 			result = metCompare;
 		} else {
-			// RESOLVER PROBLEMAS DE DECLARA«√O DA VARIAVEL DE COMPARA«√O;
+			// RESOLVER PROBLEMAS DE DECLARA√á√ÉO DA VARIAVEL DE COMPARA√á√ÉO;
 			result = expected;
 		}
 

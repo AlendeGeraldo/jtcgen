@@ -59,7 +59,7 @@ public class TestAssertEqualsVoid extends TestMethodTemplate {
 
 			paramAdicionais = (methodCompare.getReturnType() == double.class) ? ", 0.00001" : "";
 		} catch (NoSuchMethodException | SecurityException e) {
-			// Metodo n„o existe, criar log;
+			// Metodo n√£o existe, criar log;
 			paramAdicionais = "";
 		}
 
