@@ -1,7 +1,5 @@
 language: java
 default_text_charset: 'utf-8'  # Default is ''
-install:
-	- pip install coveralls
 jdk:
   	- oraclejdk8
 after_success: coveralls
