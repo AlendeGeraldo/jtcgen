@@ -7,6 +7,5 @@ public class Manifest {
 		JTCGenenerator jtcGenenerator = new JTCGenenerator();
 
 		jtcGenenerator.generateTests();
-
 	}
 }
