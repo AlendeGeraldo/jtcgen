@@ -37,5 +37,14 @@
 	  	<formatter type="plain" usefile="false" />
 	  </test>	
 	</junit>
+	<jacoco:coverage>
+    	<junit fork="true" forkmode="once">
+        <test name="br.com.jtcgen.builder.TestSuiteBuilder"/>
+        <classpath>
+            <path refid="classPath" />
+        </classpath>
+    </junit>
+</jacoco:coverage>
   </target>
+
 </project>
