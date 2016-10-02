@@ -46,14 +46,14 @@
 		  	</test>	
 		</junit>
 
-		<coverage>
+		<jacoco:coverage>
 	    	<junit fork="true" forkmode="once">
 		        <test name="br.com.jtcgen.builder.TestSuiteBuilder"/>
 		        <classpath>
 		            <path refid="classPath" />
 		        </classpath>
 			</junit>
-		</coverage>
-
+		</jacoco:coverage>
+		
  	</target>
 </project>
