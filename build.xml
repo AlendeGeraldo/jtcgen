@@ -1,51 +1,59 @@
 <project name="jtcgen" default="compilar">
-	<target name="compilar">		
-	     <delete dir="bin" />		
-	     <mkdir dir="bin" />		
-	     <javac srcdir="src/br" includeantruntime="false" destdir="bin" >		
-	        <classpath>		       
-	         <fileset dir="lib">	
-	           <include name="*.jar" />		 
-	         </fileset>	
-	       </classpath>	
-	     </javac>
-		<javac srcdir="tests/br" includeantruntime="false" destdir="bin" >		
-	        <classpath>		       
-	         <fileset dir="lib">	
-	           <include name="*.jar" />		 
-	         </fileset>	
-	       </classpath>	
-	     </javac>
-	</target>
-	
-	   <target name="empacotar" depends="compilar">		
-	     <mkdir dir="jar" />		
-	     <jar destfile="jar/jtcgen.jar" basedir="bin"/>		
-	    </target>
 	
 	<path id="classPath">
 	    <pathelement location="lib/junit.jar" />
 	  	<pathelement location="lib/mockito-all-1.10.19.jar" />
 	  	<pathelement location="lib/jacocoant.jar" />
 	  	<pathelement location="bin/"/>
-	  </path>
-  <target name="test" description="runs JUNit tests" depends="compilar">
-    <junit printsummary="yes" fork="true" haltonfailure="yes">
-      <classpath>
-	    <path refid="classPath" />
-	  </classpath>
-	  <test name="br.com.jtcgen.builder.TestSuiteBuilder">
-	  	<formatter type="plain" usefile="false" />
-	  </test>	
-	</junit>
-	<jacoco:coverage>
-    	<junit fork="true" forkmode="once">
-        <test name="br.com.jtcgen.builder.TestSuiteBuilder"/>
-        <classpath>
-            <path refid="classPath" />
-        </classpath>
-    </junit>
-</jacoco:coverage>
-  </target>
+  	</path>
 
+	<target name="compilar">
+	    <delete dir="bin" />		
+	    <mkdir dir="bin" />		
+	    <javac srcdir="src/br" includeantruntime="false" destdir="bin" >		
+	        <classpath>		       
+	         	<fileset dir="lib">	
+	           		<include name="*.jar" />		 
+	         	</fileset>	
+	   	 	</classpath>	
+	    </javac>
+		<javac srcdir="tests/br" includeantruntime="false" destdir="bin" >		
+	        <classpath>		       
+	        	<fileset dir="lib">	
+	           		<include name="*.jar" />		 
+	         	</fileset>	
+	       </classpath>	
+	    </javac>
+	</target>
+
+   	<target name="empacotar" depends="compilar">		
+  	   	<mkdir dir="jar" />		
+    	<jar destfile="jar/jtcgen.jar" basedir="bin"/>		
+    </target>
+
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="lib/jacocoant.jar"/>
+	</taskdef>
+
+  	<target name="test" description="runs JUNit tests" depends="compilar">
+
+	    <junit printsummary="yes" fork="true" haltonfailure="yes">
+	      	<classpath>
+		   		<path refid="classPath" />
+		  	</classpath>
+		  	<test name="br.com.jtcgen.builder.TestSuiteBuilder">
+		  		<formatter type="plain" usefile="false" />
+		  	</test>	
+		</junit>
+
+		<coverage>
+	    	<junit fork="true" forkmode="once">
+		        <test name="br.com.jtcgen.builder.TestSuiteBuilder"/>
+		        <classpath>
+		            <path refid="classPath" />
+		        </classpath>
+			</junit>
+		</coverage>
+
+ 	</target>
 </project>
