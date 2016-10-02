@@ -26,6 +26,7 @@
 	<path id="classPath">
 	    <pathelement location="lib/junit.jar" />
 	  	<pathelement location="lib/mockito-all-1.10.19.jar" />
+	  	<pathelement location="lib/jacocoant.jar" />
 	  	<pathelement location="bin/"/>
 	  </path>
   <target name="test" description="runs JUNit tests" depends="compilar">
