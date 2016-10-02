@@ -46,14 +46,36 @@
 		  	</test>	
 		</junit>
 
-		<jacoco:coverage>
+		<jacoco:coverage destfile="jacoco.exec" append="false">
 	    	<junit fork="true" forkmode="once">
 	    		<classpath>
 		            <path refid="classPath" />
 		        </classpath>
-		        <test name="br.com.jtcgen.builder.TestSuiteBuilder"/>
+		        <test name="br.com.jtcgen.builder.TestSuiteBuilder" />
 			</junit>
 		</jacoco:coverage>
-
  	</target>
+ 	<target name="report" depends="test">
+		<!--  Step 3: Create coverage report  -->
+		<jacoco:report>
+			<!--
+			 This task needs the collected execution data and ... 
+			-->
+			<executiondata>
+				<file file="${result.exec.file}"/>
+			</executiondata>
+			<!--  the class files and optional source files ...  -->
+			<structure name="JaCoCo Ant Example">
+				<classfiles>
+					<fileset dir="bin/"/>
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="src/"/>
+					<fileset dir="tests/"/>
+				</sourcefiles>
+			</structure>
+			<!--  to produce reports in different formats.  -->
+			<xml destfile="report.xml"/>
+		</jacoco:report>
+	</target>
 </project>
