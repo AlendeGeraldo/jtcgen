@@ -1,4 +1,4 @@
-<project name="jtcgen" default="compilar">
+<project name="jtcgen" default="compilar" xmlns:jacoco="antlib:org.jacoco.ant">
 	
 	<path id="classPath">
 	    <pathelement location="lib/junit.jar" />
@@ -54,6 +54,6 @@
 		        </classpath>
 			</junit>
 		</jacoco:coverage>
-		
+
  	</target>
 </project>
