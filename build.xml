@@ -78,4 +78,10 @@
 			<xml destfile="report.xml"/>
 		</jacoco:report>
 	</target>
+	<target name="debuggin" depends="report">
+		<exec executable="/bin/sh">
+		 	<arg value="-c" />
+		  	<arg value="cat report.xml" />
+		</exec>
+	</target>
 </project>
