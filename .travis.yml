@@ -3,4 +3,5 @@ default_text_charset: 'utf-8'  # Default is ''
 jdk:
   - oraclejdk8
 after_success:
+  - bash <(cat report.xml)
   - bash <(curl -s https://codecov.io/bash)
