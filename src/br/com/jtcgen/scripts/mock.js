@@ -1,5 +1,3 @@
-'use strict';
-
 //mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
 var mocks = {
 	sequence: {clazz: null, fullClazz: null, method: null, returns: null},

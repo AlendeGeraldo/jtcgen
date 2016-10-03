@@ -62,10 +62,10 @@
 			 This task needs the collected execution data and ... 
 			-->
 			<executiondata>
-				<file file="${result.exec.file}"/>
+				<file file="jacoco.exec"/>
 			</executiondata>
 			<!--  the class files and optional source files ...  -->
-			<structure name="JaCoCo Ant Example">
+			<structure name="JaCoCo Ant">
 				<classfiles>
 					<fileset dir="bin/"/>
 				</classfiles>
@@ -77,11 +77,5 @@
 			<!--  to produce reports in different formats.  -->
 			<xml destfile="report.xml"/>
 		</jacoco:report>
-	</target>
-	<target name="debuggin" depends="report">
-		<exec executable="/bin/sh">
-		 	<arg value="-c" />
-		  	<arg value="cat report.xml" />
-		</exec>
 	</target>
 </project>

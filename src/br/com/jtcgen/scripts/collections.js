@@ -1,7 +1,5 @@
-'use strict';
-
 var collections = {
-	mockList : function (str, values, double) {
+	list : function (mockMethods, values) {
 		collections.initImports();
 		var buffer = "\n";
 		var bufferList = "";
@@ -42,4 +40,4 @@ var collections = {
 	}
 };
 
-var mockList = collections.mockList;
+var mockList = collections.list;

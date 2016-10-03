@@ -1,25 +1,17 @@
-'use strict';
-
 //mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
 var mock = function (listaMocks) {
-	var mapaMetodos = [];
+	var methodMap = [];
 	listaMocks.forEach(function(item){
-		var classeMetodo = item.split('@');
-		var classe = item[0];
-		for(var i=1; i < item.lenght; i++) {
-			mapaMetodos[mapaMetodos.lenght] = {clazz: classe, method: item};
+		var clazzMethods = item.split('@');
+		var clazzName = clazzMethods[0];
+		for(var i=1; i < clazzMethods.lenght; i++) {
+			methodMap[methodMap.lenght] = {clazz: clazzName, method: clazzMethods[i]};
 		}
 	});
-	
-	mockery.itens = mapaMetodos;
-	
-	return {
-		returns: function(listaRetorno){
-			for(var i = 0; i < listaRetorno.lenght;i++){
-				mockery.itens[i].returns = listaRetorno[i];
-			}
-		}
-	};
+
+	mockery.itens = methodMap;
+
+	return mockery;
 }
 
 var mockery = {
@@ -46,5 +38,10 @@ var mockery = {
 		});
 
 		return finalMocks; 
+	},
+	returns: function(listaRetorno) {
+		for(var i = 0; i < listaRetorno.lenght;i++){
+			mockery.itens[i].returns = listaRetorno[i];
+		}
 	}
 }
