@@ -75,7 +75,7 @@
 				</sourcefiles>
 			</structure>
 			<!--  to produce reports in different formats.  -->
-			<xml destfile="report.xml"/>
+			<xml destfile="/home/travis/build/rgoncalves94/jtcgen/report.xml"/>
 		</jacoco:report>
 	</target>
 </project>
