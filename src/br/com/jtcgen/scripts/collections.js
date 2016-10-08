@@ -1,4 +1,4 @@
-var collections = {
+const collections = {
 	list : function (mockMethods, values) {
 		collections.initImports();
 		var buffer = "\n";
@@ -7,8 +7,6 @@ var collections = {
 		var clazz = str.split('@')[0].replace(/^([a-zA-Z0-9]+\.)+/g, "");
 		var method = str.split('@')[1];
 		var i = 0;
-		
-		
 		
 		eval('Java.type("br.com.jtcgen.helpers.ImportManager").addImport(Java.type("'+ fullClazz +'").class);');
 		
@@ -34,9 +32,9 @@ var collections = {
 		bufferList += "\n";
 		return {localVar: "list", str: ( buffer + bufferList )};
 	},
-	initImports : function (){
-		eval('Java.type("br.com.jtcgen.helpers.ImportManager").addImport(Java.type("java.util.List").class);');
-		eval('Java.type("br.com.jtcgen.helpers.ImportManager").addImport(Java.type("java.util.ArrayList").class);');
+	initImports : function() {
+		ImportManager.addImport(eval("return Java.type('java.util.List').class"));
+		ImportManager.addImport(eval("return Java.type('java.util.ArrayList').class"));
 	}
 };
 
