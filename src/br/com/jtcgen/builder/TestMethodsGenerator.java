@@ -19,6 +19,7 @@ import br.com.jtcgen.builder.methods.TestAssertFalse;
 import br.com.jtcgen.builder.methods.TestAssertNotNull;
 import br.com.jtcgen.builder.methods.TestAssertNull;
 import br.com.jtcgen.builder.methods.TestAssertTrue;
+import br.com.jtcgen.builder.methods.TestExpression;
 import br.com.jtcgen.builder.methods.TestMethodTemplate;
 import br.com.jtcgen.builder.methods.TestAssertEqualsVoid;
 
@@ -48,17 +49,17 @@ class TestMethodsGenerator extends TestGenerator {
 				Set<String> methodMemory = new HashSet<String>();
 				
 				setInternalBehaviors(annotations);
-				antecessora = null;
+				//antecessora = null;
 				for (Annotation ann : annotations) {
 					TestMethodTemplate tmp = getAnnotatedGeneratorMethod(ann.annotationType(), method);
 					if (tmp != null) {
-						verifyTestScene(tmp);
+						//verifyTestScene(tmp);
 						
 						String sufix = (methodMemory.contains(method.getName())) ? tmp.extractSufix() : "";
 						metodosDeTeste.append(tmp.createMethod(sufix));
 						methodMemory.add(method.getName() + sufix);
 					}
-					antecessora = ann;
+					//antecessora = ann;
 				}
 			}
 		}
@@ -66,13 +67,13 @@ class TestMethodsGenerator extends TestGenerator {
 		return metodosDeTeste.toString();
 	}
 	
-	private void verifyTestScene(TestMethodTemplate tmp) {
+	/*private void verifyTestScene(TestMethodTemplate tmp) {
 		if(antecessora == null)
 			return ;
 		
 		if(antecessora.annotationType() == Test.class)
 			tmp.setScene(antecessora);
-	}
+	}*/
 
 	private TestMethodTemplate getAnnotatedGeneratorMethod(Class<? extends Annotation> ann, Method method) {
 		TestMethodTemplate tmp = null;
@@ -88,6 +89,8 @@ class TestMethodsGenerator extends TestGenerator {
 			tmp = new TestAssertNotNull(method, clazz);
 		else if (ann == TestNull.class)
 			tmp = new TestAssertNull(method, clazz);
+		else if (ann == Test.class)
+			tmp = new TestExpression(method, clazz);
 			
 
 		return tmp;

@@ -1,7 +1,4 @@
 //mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
-const tmpMock = '{{shortClazz}} {{shortClazzLower}} = mock({{shortClazz}}.class);' +
-				'\n\t\twhen({{shortClazzLower}}.{{method}}).thenReturn({{returns}});';
-
 const mock = function (listaMocks) {
 	var methodMap = [];
 	listaMocks.forEach(function(item){
@@ -27,14 +24,11 @@ const mockery = {
 			var method = item.method;
 			var returns = item.returns;
 
-			buffer += TextEditor.newLine(
-				regex.replaces(tmpMock, {
-					shortClazz: shortClazz,
-					shortClazzLower: shortClazz.toLowerCase(),
-					method: method,
-					returns: returns
-				})
-			, 2);
+			buffer += TextEditor.newLine({
+				shortClazzLower: shortClazz.toLowerCase(),
+				method: method,
+				returns: returns
+			}, 2);
 
 			buffer += TextEditor.LINE_BREAK + TextEditor.LINE_BREAK;
 					

@@ -30,7 +30,7 @@ public class TestAssertEqualsVoid extends TestMethodTemplate {
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 		
-		Map<String, String> scene = buildScene();// its a substitute of params;
+		/*Map<String, String> scene = buildScene();// its a substitute of params;
 		System.out.println(scene);
 		if(scene != null) {
 			String paramExpected = scene.get("var");
@@ -45,7 +45,7 @@ public class TestAssertEqualsVoid extends TestMethodTemplate {
 			params = newParams;
 			
 			
-		}
+		}*/
 
 		assinaturaMetodo.append(createMethodCall(pts, params));
 

@@ -8,7 +8,7 @@ const collections = {
 		var method = str.split('@')[1];
 		var i = 0;
 		
-		eval('Java.type("br.com.jtcgen.helpers.ImportManager").addImport(Java.type("'+ fullClazz +'").class);');
+		helper.import(fullClazz);
 		
 		bufferList = "\t\t" + "List<"+clazz+"> list = new ArrayList<"+clazz+">();\n\n"; 
 		
@@ -33,8 +33,8 @@ const collections = {
 		return {localVar: "list", str: ( buffer + bufferList )};
 	},
 	initImports : function() {
-		ImportManager.addImport(eval("return Java.type('java.util.List').class"));
-		ImportManager.addImport(eval("return Java.type('java.util.ArrayList').class"));
+		helper.import("java.util.List");
+		helper.import("java.util.java.util.ArrayList");
 	}
 };
 

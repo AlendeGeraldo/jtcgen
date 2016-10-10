@@ -53,6 +53,12 @@ public abstract class TestMethodTemplate {
 		return TextEditor.newLine("@Test", 1)
 				+ TextEditor.newLine("public void " + method.getName() + sufix + "() {", 1);
 	}
+	
+	protected final String getSignatureMethod(String name, String sufixName) {
+		String sufix = (!sufixName.equals("")) ? sufixName.substring(0, 1).toUpperCase() + sufixName.substring(1) : "";
+		return TextEditor.newLine("@Test", 1)
+				+ TextEditor.newLine("public void " + name + sufix + "() {", 1);
+	}
 
 	protected abstract String getContent();
 
@@ -135,43 +141,17 @@ public abstract class TestMethodTemplate {
 		return str;
 	}
 
-	public void setScene(Annotation antecessora) {
+	/*public void setScene(Annotation antecessora) {
 		this.testScene = antecessora; 
 		
-	}
+	}*/
 	
-	protected Map<String,String> buildScene() {
+	/*protected Map<String,String> buildScene() {
 		return testScene == null ? null : buildStrScene(testScene);
-	}
+	}*/
 	
-	protected Map<String,String> buildStrScene(Annotation testScene) {
+	/*protected Map<String,String> buildStrScene(Annotation testScene) {
 		
-		ImportManager.addImportStatic(Mockito.class);
-		
-		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-		try {
-			engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
-		} catch (ScriptException e) {
-			System.out.println("Erro na evaluação javascript");
-			e.printStackTrace();
-		}
-		
-		Test ann = this.method.getAnnotation(Test.class);
-		
-		Map<String, String> m = new HashMap<String, String>();
-		for(String value : ann.value()){
-			try {
-				engine.eval(value);
-				
-				m.put("str", (String) engine.eval("mocks.finalize();"));
-				m.put("var", (String) engine.eval("mocks.getVariavel();"));
-			} catch (ScriptException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		return m;
-	}
+	}*/
 	
 }
