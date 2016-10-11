@@ -6,8 +6,10 @@ import br.com.jtcgen.annotations.TestNotNull;
 import br.com.jtcgen.annotations.TestNull;
 import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
+import example.classes.ContaPoupanca;
 import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.annotations.SetUp;
+import br.com.jtcgen.annotations.Test;
 
 public class ClazzTestDataBuilder {
 	
@@ -130,6 +132,12 @@ public class ClazzTestDataBuilder {
 					return new ContaAplicacao(Integer.parseInt(new String(this.numero + "500")), this.getAgencia(), this.saldo);
 
 				return null;
+			}
+			
+			//mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
+			@Test("self('saldo', 400.0).param('ContaPoupanca@getSaldo()').returns([200.0]).eq(600.0)")
+			public double somaValoresDasContas(ContaPoupanca cp) {
+				return this.saldo + cp.getSaldo();
 			}
 
 			@TestEquals("123.456.789-10")

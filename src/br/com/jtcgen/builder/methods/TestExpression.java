@@ -47,8 +47,8 @@ public class TestExpression extends TestMethodTemplate{
 			}
 		}
 		
-		//return m;
-		
+		return "";
+		/*
 		TestEquals test = (TestEquals) method.getAnnotation(TestEquals.class);
 			
 		String parametro = "", expected = "";
@@ -79,7 +79,7 @@ public class TestExpression extends TestMethodTemplate{
 				2);
 		assinaturaMetodo.append(content);
 
-		return assinaturaMetodo.toString();
+		return assinaturaMetodo.toString();*/
 	}
 
 }
