@@ -6,32 +6,51 @@ var setup = function (arrParams) {
 	if( typeof arrParams != "object" ){
 		errors.put({
 			location: "setup",
-			message: "Tipo de parametros inválido, é necessário ser um array. Ex. [200.0, 'test'] ";
+			message: "Tipo de parametros inválido, é necessário ser um array. Ex. [200.0, 'test'] "
 		});
 
 		return mockery;
 	}
-
-	arrParams.forEach(function(item){
+	
+	arrConstr = actualClazz.getConstructors();
+	
+	for(var i in arrConstr) {
+		if(arrConstr[i].getParameterCount() == arrParams.length){
+			arrTypes = arrConstr[i].getParameterTypes();
+			for(var j in arrTypes) {
+				if(arrTypes[j].getName().equals("double")){
+					if(/^[0-9]+$/.test(arrParams[j]))
+						arrParams[j] = arrParams[j].toFixed(1);
+				}
+			}
+		}
+	}
+	
+	
+	var parameters = "";
+	arrParams.forEach(function(item) {
 		if(typeof item == "object" && item.size == 2){
 			if(regex.isMockString(item[0])) {
-				mockery.mock()
+				mockery.mock();
 			}
+		} else {
+			parameters += item + ", ";
 		}
 	});
 
-	regex.replaces(templates.setup, 
+	var str = regex.replaces(templates.setup, 
 		{
 			shortClazz: actualClazz.getSimpleName(),
 			shortClazzLower: actualClazz.getSimpleName().toLowerCase(),
+			params: parameters.replace(/,\s$/g, '')
 		}
 	);
-
-
+	
 	return mockery;
-}
+};
 
-var mock = function (listaMocks) {
+var param;
+var mock = param = function (listaMocks) {
 	var methodMap = [];
 	listaMocks.forEach(function(item){
 		var clazzMethods = item.split('@');
@@ -81,8 +100,9 @@ var exec =  function () {
 };
 
 var mockery = {
-	mock : mock,
-	setup: setup,
-	returns: returns,
-	exec: exec
+	"mock" : mock,
+	"parameter" : mock,
+	"setup": setup,
+	"returns": returns,
+	"exec": exec
 };

@@ -1,5 +1,6 @@
 package br.com.jtcgen.builder.methods;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.HashMap;
@@ -28,26 +29,19 @@ public class TestExpression extends TestMethodTemplate{
 		ImportManager.addImportStatic(Mockito.class);
 		
 		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-		try {
-			engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
-		} catch (ScriptException e) {
-			System.out.println("Erro na importacao javascript.");
-			e.printStackTrace();
-		}
 		
 		Test ann = this.method.getAnnotation(Test.class);
-		
 		
 		StringBuffer methodTest = new StringBuffer();
 		for(String value : ann.value()){
 			try {
-				
 				Bindings bind = engine.createBindings();
-				
 				bind.put("actualClazz", this.clazz);
 				bind.put("actualMethod", this.method);
 				
 				engine.setBindings(bind, ScriptContext.ENGINE_SCOPE);
+				
+				engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
 				
 				methodTest.append((String) engine.eval(value));
 			} catch (ScriptException e) {

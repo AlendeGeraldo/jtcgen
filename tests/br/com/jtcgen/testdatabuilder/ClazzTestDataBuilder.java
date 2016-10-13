@@ -13,7 +13,14 @@ import br.com.jtcgen.annotations.Test;
 
 public class ClazzTestDataBuilder {
 	
+	static interface Tributavel {
+
+		public double calculaImpostos(double taxa);
+
+	}
+	
 	public static Class<?> criaClasseExemplo() {
+		
 		
 		abstract class Conta {
 
