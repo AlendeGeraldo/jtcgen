@@ -6,7 +6,6 @@ import br.com.jtcgen.annotations.TestNotNull;
 import br.com.jtcgen.annotations.TestNull;
 import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
-import example.classes.Tributavel;
 import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.annotations.SetUp;
 import br.com.jtcgen.annotations.Test;
