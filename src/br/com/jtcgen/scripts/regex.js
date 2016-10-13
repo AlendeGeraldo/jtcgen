@@ -1,4 +1,4 @@
-const regex = {
+var regex = {
 	removeFullClassName: function (str, replacement) {
 		if(replacement == undefined) 
 			replacement = "";
@@ -12,5 +12,8 @@ const regex = {
 		str = str.replaces(/\\{\\{returns\\}\\}/g, obj.returns);
 
 		return str;
+	},
+	isMockString: function (str)  {
+		return /^[a-zA-Z0-9]@[a-zA-Z0-9]\(\)$/g.test(str);
 	}
-}
+};

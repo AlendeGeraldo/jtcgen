@@ -5,6 +5,8 @@ import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.script.Bindings;
+import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -12,10 +14,7 @@ import javax.script.ScriptException;
 import org.mockito.Mockito;
 
 import br.com.jtcgen.annotations.Test;
-import br.com.jtcgen.annotations.TestEquals;
-import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.ImportManager;
-import br.com.jtcgen.helpers.TextEditor;
 
 public class TestExpression extends TestMethodTemplate{
 	
@@ -32,22 +31,34 @@ public class TestExpression extends TestMethodTemplate{
 		try {
 			engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
 		} catch (ScriptException e) {
-			System.out.println("Erro na evaluacao javascript");
+			System.out.println("Erro na importacao javascript.");
 			e.printStackTrace();
 		}
 		
 		Test ann = this.method.getAnnotation(Test.class);
 		
+		
+		StringBuffer methodTest = new StringBuffer();
 		for(String value : ann.value()){
 			try {
-				System.out.println(engine.eval(value));
+				
+				Bindings bind = engine.createBindings();
+				
+				bind.put("actualClazz", this.clazz);
+				bind.put("actualMethod", this.method);
+				
+				engine.setBindings(bind, ScriptContext.ENGINE_SCOPE);
+				
+				methodTest.append((String) engine.eval(value));
 			} catch (ScriptException e) {
-				// TODO Auto-generated catch block
+				methodTest.append("public void anErrosWasOccurred(){String string = \"error\";}");
+				System.out.println("Falha evaluacao do javascript.");
 				e.printStackTrace();
 			}
 		}
 		
-		return "";
+		
+		return methodTest.toString();
 		/*
 		TestEquals test = (TestEquals) method.getAnnotation(TestEquals.class);
 			

@@ -1,4 +1,4 @@
-const collections = {
+var collections = {
 	list : function (mockMethods, values) {
 		collections.initImports();
 		var buffer = "\n";
