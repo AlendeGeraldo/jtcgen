@@ -39,7 +39,7 @@ public class TestExpression extends TestMethodTemplate{
 				bind.put("actualClazz", this.clazz);
 				bind.put("actualMethod", this.method);
 				
-				engine.setBindings(bind, ScriptContext.ENGINE_SCOPE);
+				engine.setBindings(bind, ScriptContext.GLOBAL_SCOPE);
 				
 				engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
 				

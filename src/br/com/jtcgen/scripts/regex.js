@@ -8,9 +8,12 @@ var regex = {
 	replaces: function (str, obj) {
 		str = str.replace(/\{\{shortClazz\}\}/g, obj.shortClazz);
 		str = str.replace(/\{\{shortClazzLower\}\}/g, obj.shortClazzLower);
-		str = str.replace(/\{\{method\\}\}/g, obj.method);
+		str = str.replace(/\{\{method\}\}/g, obj.method);
 		str = str.replace(/\{\{returns\}\}/g, obj.returns);
 		str = str.replace(/\{\{params\}\}/g, obj.params);
+		str = str.replace(/\{\{returnType\}\}/g, obj.returnType);
+		str = str.replace(/\{\{assert\}\}/g, obj.assert);
+		str = str.replace(/\{\{expected\}\}/g, obj.expected);
 
 		return str;
 	},

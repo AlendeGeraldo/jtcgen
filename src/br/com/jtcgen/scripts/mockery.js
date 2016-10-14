@@ -37,14 +37,17 @@ var setup = function (arrParams) {
 			parameters += item + ", ";
 		}
 	});
-
-	var str = regex.replaces(templates.setup, 
+	
+	var str = TextEditor.newLine(regex.replaces(templates.setup, 
 		{
 			shortClazz: actualClazz.getSimpleName(),
 			shortClazzLower: actualClazz.getSimpleName().toLowerCase(),
+			method: actualMethod.getName(),
 			params: parameters.replace(/,\s$/g, '')
 		}
-	);
+	), 2);
+	
+	buffer += str + TextEditor.LINE_BREAK;
 	
 	return mockery;
 };
@@ -52,16 +55,20 @@ var setup = function (arrParams) {
 var param;
 var mock = param = function (listaMocks) {
 	var methodMap = [];
-	listaMocks.forEach(function(item){
-		var clazzMethods = item.split('@');
+	listaMocks.forEach(function(item) {
+		var clazzMethods = item.c.split('@');
 		var clazzName = clazzMethods[0];
-		for(var i=1; i < clazzMethods.lenght; i++) {
-			methodMap[methodMap.lenght] = {clazz: clazzName, method: clazzMethods[i]};
+		for(var i=1; i < clazzMethods.length; i++) {
+			methodMap.push({
+				clazz: clazzName, 
+				method: clazzMethods[i], 
+				returns: item.v
+			});
 		}
 	});
 
 	mockery.itens = methodMap;
-
+	
 	return mockery;
 };
 
@@ -74,8 +81,8 @@ var returns = function(listaRetorno) {
 };
 
 var exec =  function () {
-	var finalMocks = {};
-	this.itens.forEach(function(item) {
+	var finalMocks = {params: "", value: ""};
+	mockery.itens.forEach(function(item) {
 		var buffer = "";
 		var clazz = item.clazz;
 		var shortClazz = regex.removeFullClassName(item.clazz, "");
@@ -84,25 +91,56 @@ var exec =  function () {
 
 		buffer += TextEditor.newLine(
 			regex.replaces(templates.mockDef, {
-				shortClazzLower: shortClazz.toLowerCase(),
-				method: method,
-				returns: returns
+				'shortClazz': shortClazz,
+				'shortClazzLower': shortClazz.toLowerCase(),
+				'method': method,
+				'returns': returns
 			})
 		, 2);
 
-		buffer += TextEditor.LINE_BREAK + TextEditor.LINE_BREAK;
+		buffer += TextEditor.LINE_BREAK;
 				
-		finalMocks.ref = clazz.toLowerCase();
-		finalMocks.value = finalMocks.value + buffer;
+		finalMocks.params += clazz.toLowerCase() + ", ";
+		finalMocks.value += buffer;
 	});
+	
+	finalMocks.params = finalMocks.params.replace(/,\s$/, "");
 
-	return finalMocks; 
+	mockery.stack = (finalMocks);
+	
+	return mockery;
 };
 
+var eq = function(expected) {
+	var assert = "assertEquals";
+	var instance = actualClazz.getSimpleName().toLowerCase();
+	var returnType = actualMethod.getReturnType().getSimpleName();
+	
+	mockery.exec();
+	
+	var stack = mockery.stack;
+	var str = buffer + stack.value;
+	
+	str += TextEditor.newLine(
+			regex.replaces(templates.assert, {
+			shortClazzLower: instance,
+			'returnType': returnType,
+			'assert': assert,
+			'expected': expected,
+			'method': actualMethod.getName(),
+			'params': stack.params
+		})
+	, 2);
+	
+	return str;
+}
+
 var mockery = {
+	stack: [],
 	"mock" : mock,
 	"parameter" : mock,
 	"setup": setup,
 	"returns": returns,
-	"exec": exec
+	"exec": exec,
+	"eq": eq
 };
