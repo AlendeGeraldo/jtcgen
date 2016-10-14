@@ -1,5 +1,5 @@
 //mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
-var buffer;
+var buffer = "";
 var errors = [];
 
 var setup = function (arrParams) {
@@ -124,7 +124,7 @@ var eq = function(expected) {
 	str += TextEditor.newLine(
 			regex.replaces(templates.assert, {
 			shortClazzLower: instance,
-			'returnType': returnType,
+			'returns': returnType,
 			'assert': assert,
 			'expected': expected,
 			'method': actualMethod.getName(),

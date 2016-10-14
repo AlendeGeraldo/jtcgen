@@ -8,6 +8,7 @@ import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
 import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.annotations.SetUp;
+import br.com.jtcgen.annotations.Test;
 
 @JTCGen
 public class ContaAplicacao extends Conta implements Tributavel {
@@ -74,6 +75,12 @@ public class ContaAplicacao extends Conta implements Tributavel {
 	@TestEquals({ "Rafael", "Bem Vindo! Rafael, seu saldo e de R$ 500.0" })
 	public String boasVindas(String mensagem) {
 		return "Bem Vindo! " + mensagem + ", seu saldo e de R$ " + saldo;
+	}
+	
+	//mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
+	@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(600.0)")
+	public double somaValoresDasContas(ContaPoupanca cp) {
+		return this.saldo + cp.getSaldo();
 	}
 
 }

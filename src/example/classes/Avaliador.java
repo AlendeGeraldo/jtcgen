@@ -12,7 +12,7 @@ import br.com.jtcgen.annotations.TestVoidEquals;
 import example.classes.Lance;
 import example.classes.Leilao;
 
-@JTCGen
+//@JTCGen
 public class Avaliador {
 
 	private double maiorDeTodos = Double.NEGATIVE_INFINITY;

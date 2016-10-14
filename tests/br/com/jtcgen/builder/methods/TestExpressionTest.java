@@ -30,11 +30,20 @@ public class TestExpressionTest {
 		
 		String createMethod = testExpression.createMethod();
 		
-		System.out.println(createMethod);
+		System.out.println(createMethod.trim());
 		
-		String templateExpected = "";
+		String templateExpected = "@Test\n" +
+			"\tpublic void somaValoresDasContas() {" + "\n" +
+		    "\t\tContaAplicacao contaaplicacao = new ContaAplicacao(10, 12, 100.0);"+ "\n" +
+		    "\n" +
+		    "\t\tContaPoupanca contapoupanca = mock(ContaPoupanca.class);" + "\n" +
+		    "\t\twhen(contapoupanca.getSaldo()).thenReturn(200.0);" + "\n" +
+		    "\n" +
+	    	"\t\tdouble expected =  contaaplicacao.somaValoresDasContas(contapoupanca);" + "\n" +
+	    	"\t\tassertEquals(600.0, expected, 0.0001);" + "\n" +
+	    	"\t}";
 		
 		//@Test("self('saldo', 400.0).parameter( 0 ,'ContaPoupanca@getSaldo()', 200.0).eq(600.0)")
-		assertEquals(templateExpected, createMethod);
+		assertEquals(templateExpected, createMethod.trim());
 	}
 }
