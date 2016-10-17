@@ -1,10 +1,6 @@
 package br.com.jtcgen.builder.methods;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.script.Bindings;
 import javax.script.ScriptContext;
@@ -41,7 +37,7 @@ public class TestExpression extends TestMethodTemplate{
 				
 				engine.setBindings(bind, ScriptContext.GLOBAL_SCOPE);
 				
-				engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
+				engine.eval("load('src/br/com/jtcgen/scripts/Import.js')");
 				
 				methodTest.append((String) engine.eval(value));
 			} catch (ScriptException e) {
@@ -51,40 +47,7 @@ public class TestExpression extends TestMethodTemplate{
 			}
 		}
 		
-		
 		return methodTest.toString();
-		/*
-		TestEquals test = (TestEquals) method.getAnnotation(TestEquals.class);
-			
-		String parametro = "", expected = "";
-		if(test.value().length == 2){
-			parametro = test.value()[0];
-			expected = test.value()[1];
-		} else 
-			expected = test.value()[0];
-		
-
-		String[] params = getParams(parametro);
-
-		Parameter[] pts = method.getParameters();
-
-		if (!isValidParams(params))
-			throw new InvalidParamDeclarationException("Valor total de parametros incorretos: " 
-					+ method.getName());
-
-		StringBuilder assinaturaMetodo = new StringBuilder();
-		
-		String paramAdicionais = getParamAdicional();
-
-		String resultExpected = parseExpectedValue(expected, method);
-		
-		assinaturaMetodo.append(createMethodCall(pts, params));
-
-		String content = TextEditor.newLine("assertEquals(" + resultExpected + ", resultado" + paramAdicionais + ");",
-				2);
-		assinaturaMetodo.append(content);
-
-		return assinaturaMetodo.toString();*/
 	}
 
 }

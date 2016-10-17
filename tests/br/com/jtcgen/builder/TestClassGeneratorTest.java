@@ -14,7 +14,7 @@ public class TestClassGeneratorTest {
 		
 		TestClassGenerator tcg = new TestClassGenerator(ClazzTestDataBuilder.criaClasseExemplo());
 		
-		String expected = "package test.br.com.jtcgen.testdatabuilder;" +
+		String expected = "package br.com.jtcgen.testdatabuilder;" +
 			"\n\n" +
 			"import static org.junit.Assert.*;" +
 			"\n\n" +
