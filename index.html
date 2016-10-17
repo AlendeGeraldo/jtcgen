@@ -2,14 +2,17 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Try JTCGen</title>
+    <title>JTCGen - Lib</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 
     <!-- Bootstrap Material Design -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-material-design.min.css">
@@ -30,12 +33,12 @@
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="javascript:scrollToElement($('#presents'))">Get Started<div class="ripple-container"></div></a></li>
-          <li><a href="javascript:scrollToElement($('#documentation'))">Documentation</a></li>
+          <li><a href="javascript:scrollToElement($('#presents'))">Começar<div class="ripple-container"></div></a></li>
+          <li><a href="javascript:scrollToElement($('#documentation'))">Documentação</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="javascript:scrollToElement($('#about'))">About this project<div class="ripple-container"></div></a></li>
-          <li><a href="javascript:void(0)">Please, Can you Answer this Survey?<div class="ripple-container"></div></a></li>
+          <li><a href="javascript:scrollToElement($('#about'))">Sobre o projeto<div class="ripple-container"></div></a></li>
+          <li><a href="javascript:void(0)">Por favor, poderia responder esta pesquisa?<div class="ripple-container"></div></a></li>
         </ul>
       </div>
     </div>
@@ -44,14 +47,14 @@
       <div class="container">
         <div class="presentation">
           <div class="col-sm-12">
-            <h1 class="project-name">The intersection of the Development and Test time!</h1>
-            <h2 class="project-tagline">Try the fantastic JTCGen.</h2>
+            <h1 class="project-name">Una seus testes com o desenvolvimento!</h1>
+            <h2 class="project-tagline">Conheça e explore a lib. JTCGen.</h2>
           </div>
 		  <div id="get-started" class="col-sm-12">
-            <a href="javascript:scrollToElement($('#presents'))" class="btn btn-warning btn-lg btn-raised">Get Started</a>
+            <a href="javascript:scrollToElement($('#presents'))" class="btn btn-warning btn-lg btn-raised">Comece agora</a>
           </div>
           <div id="view-git" class="col-sm-12">
-            <a href="https://github.com/rgoncalves94/jtcgen" class="btn btn-info btn-lg btn-raised">View on GitHub</a>
+            <a href="https://github.com/rgoncalves94/jtcgen" class="btn btn-info btn-lg btn-raised">Ver no Github</a>
           </div>
         </div>
       </div>
@@ -59,29 +62,90 @@
 	<section id="presents">
       <div class="container">
 			<div class="col-sm-12">
-				<h2>Get Started</h2>
+				<h2>Primeiros Passos</h2>
+        <p class="alert alert-warning">
+          Atualmente a biblioteca está em fase de desenvolvimento, mas já está sendo disponibilizada para utilização. Necessitamos do auxílio da comunidade para validar a ideia e também evoluí-la, se houver interesse.
+        </p>
 			</div>
 			<div class="col-sm-12">
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac consequat purus. In aliquet diam elit, volutpat porta augue accumsan eget. Integer posuere maximus mi. Aenean sit amet faucibus odio, non viverra tellus. Suspendisse tincidunt arcu sit amet est ultricies, scelerisque finibus dui pretium. Nullam dignissim massa id tellus molestie, non consectetur velit blandit. Quisque vitae nibh eros. Vivamus facilisis convallis semper. Suspendisse in neque nisi. Nullam turpis ex, placerat id maximus vel, ullamcorper sed nulla. Aliquam dolor leo, venenatis sit amet mi lacinia, vestibulum pellentesque nisl. Nullam semper urna sed nisl ultricies scelerisque. Mauris tincidunt imperdiet enim, ut aliquam elit semper vel. Nulla varius arcu vitae ipsum pulvinar vestibulum.
+					Faça o download da ultima release da biblioteca, integre-a em seu build path.
 				</p>
-				<p>
-					Duis condimentum facilisis elit. Suspendisse eget mi sed elit fringilla sodales. Ut malesuada nunc eu fermentum tincidunt. Maecenas dapibus accumsan odio quis congue. Mauris iaculis ultrices turpis quis vehicula. Suspendisse potenti. Ut porta tellus id sagittis pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed maximus non enim ut suscipit. Duis id eros non est gravida mollis. In sapien erat, bibendum vel lacus vel, scelerisque posuere tortor.
-				</p>
-			</div>
-      </div>
+        <p>
+          Após está configuração inicial, será necessária a implementação de uma classe de manifesto. Segue o código de exemplo abaixo:
+        </p>
+        <pre>
+          <code class="java">
+            public class Manifest {
+              public static void main(String[] args) {
+                JTCGenenerator jtcGenenerator = new JTCGenenerator();
+
+                jtcGenenerator.generateTests();
+              }
+            }
+          </code>
+        </pre>
+        </div>
+        <div class="col-sm-12">
+          <p>
+            Na sua classe de produção, marque a classe com a <i>Annotation</i> <code>@JTCGen</code> e acima do método que deseja criar o teste automatizado, informe através de uma expressão baseada na documentação desta lib. o caso de teste informando os dados necessários:
+          </p>
+          <pre>
+            <code class="java">
+              ...
+
+              @JTCGen
+              class ContaCorrente extends Conta {
+                
+                  ...
+
+                  @Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(300.0)")
+                  public double somaValoresDasContas(ContaPoupanca cp) {
+                    return this.saldo + cp.getSaldo();
+                  }
+              }
+            </code>
+          </pre>
+          <p>
+            Execute a classe de <code>Manifesto</code> e obtenha como saída a classe de Teste automatizado implementada:
+          </p>
+          <pre>
+            <code class="java">
+              public class ContaAplicacaoTest {
+                ...
+                @Test
+                public void somaValoresDasContas() {
+                  ContaCorrente contacorrente = new ContaCorrente(10, 12, 100.0);
+
+                  ContaPoupanca contapoupanca = mock(ContaPoupanca.class);
+                  when(contapoupanca.getSaldo()).thenReturn(200.0);
+
+                  double expected = contacorrente.somaValoresDasContas(contapoupanca);
+                  assertEquals(300.0, expected, 0.0001);
+                }
+              }
+            </code>
+          </pre>
+          <p class="alert alert-warning">
+            Está biblioteca tem como dependência os frameworks <strong>JUnit</strong> e <strong>Mockito</strong>.
+          </p>
+        </div>
     </section>
 	<section id="documentation">
       <div class="container">
 			<div class="col-sm-12">
-				<h2>Documentation</h2>
+				<h2>Documentação</h2>
 			</div>
+      <div class="col-sm-12">
+          <h3>Annotations e como usá-la</h3>
+          <p>
+            Para que se una o momento de criar o teste automatizado com o momento de desenvolvimento da classe de produção, a biblioteca trás uma experiência onde implementa-se <i>Annotations</i> na classe de produção. Assim tornando possivel informar para a biblioteca alguns parâmetros para que sejam gerados os casos de testes automatizados.
+          </p>
+          <p>Abaixo, temos uma listagem de annotations que a biblioteca fornece para utilização:</p>
+      </div>
 			<div class="col-sm-12">
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac consequat purus. In aliquet diam elit, volutpat porta augue accumsan eget. Integer posuere maximus mi. Aenean sit amet faucibus odio, non viverra tellus. Suspendisse tincidunt arcu sit amet est ultricies, scelerisque finibus dui pretium. Nullam dignissim massa id tellus molestie, non consectetur velit blandit. Quisque vitae nibh eros. Vivamus facilisis convallis semper. Suspendisse in neque nisi. Nullam turpis ex, placerat id maximus vel, ullamcorper sed nulla. Aliquam dolor leo, venenatis sit amet mi lacinia, vestibulum pellentesque nisl. Nullam semper urna sed nisl ultricies scelerisque. Mauris tincidunt imperdiet enim, ut aliquam elit semper vel. Nulla varius arcu vitae ipsum pulvinar vestibulum.
-				</p>
-				<p>
-					Duis condimentum facilisis elit. Suspendisse eget mi sed elit fringilla sodales. Ut malesuada nunc eu fermentum tincidunt. Maecenas dapibus accumsan odio quis congue. Mauris iaculis ultrices turpis quis vehicula. Suspendisse potenti. Ut porta tellus id sagittis pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed maximus non enim ut suscipit. Duis id eros non est gravida mollis. In sapien erat, bibendum vel lacus vel, scelerisque posuere tortor.
+				<p class="alert alert-info">
+					Em Construção...
 				</p>
 			</div>
     </div>
@@ -89,14 +153,11 @@
   <section id="about">
       <div class="container">
       <div class="col-sm-12">
-        <h2>About</h2>
+        <h2>Sobre o projeto</h2>
       </div>
       <div class="col-sm-12">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac consequat purus. In aliquet diam elit, volutpat porta augue accumsan eget. Integer posuere maximus mi. Aenean sit amet faucibus odio, non viverra tellus. Suspendisse tincidunt arcu sit amet est ultricies, scelerisque finibus dui pretium. Nullam dignissim massa id tellus molestie, non consectetur velit blandit. Quisque vitae nibh eros. Vivamus facilisis convallis semper. Suspendisse in neque nisi. Nullam turpis ex, placerat id maximus vel, ullamcorper sed nulla. Aliquam dolor leo, venenatis sit amet mi lacinia, vestibulum pellentesque nisl. Nullam semper urna sed nisl ultricies scelerisque. Mauris tincidunt imperdiet enim, ut aliquam elit semper vel. Nulla varius arcu vitae ipsum pulvinar vestibulum.
-        </p>
-        <p>
-          Duis condimentum facilisis elit. Suspendisse eget mi sed elit fringilla sodales. Ut malesuada nunc eu fermentum tincidunt. Maecenas dapibus accumsan odio quis congue. Mauris iaculis ultrices turpis quis vehicula. Suspendisse potenti. Ut porta tellus id sagittis pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed maximus non enim ut suscipit. Duis id eros non est gravida mollis. In sapien erat, bibendum vel lacus vel, scelerisque posuere tortor.
+        <p class="alert alert-info">
+          Em Construção...
         </p>
       </div>
       </div>
@@ -104,7 +165,7 @@
 	<section id="footer">
 		<div class="container">
 			<div class="col-sm-12 text-center">
-				<h4>Lib. JTCGen, 2016</h4>
+				<h4>Biblioteca JTCGen, 2016</h4>
 			</div>
 		</div>
 	</section>

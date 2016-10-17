@@ -28,3 +28,5 @@ $("ul.nav li").on("click", function (event) {
 
 	$(this).addClass("active")
 })
+
+hljs.initHighlightingOnLoad();
