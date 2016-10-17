@@ -13,7 +13,7 @@ class TestClassGenerator extends TestGenerator {
 		String importar = clazz.getName();
 		String pacote = clazz.getPackage().getName();
 
-		buffer.append("package test." + pacote + ";");
+		buffer.append("package " + pacote + ";");
 		buffer.append("\n\n");
 		buffer.append("import static org.junit.Assert.*;");
 		buffer.append("\n\n");

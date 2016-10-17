@@ -19,7 +19,7 @@ var setup = function (arrParams) {
 			arrTypes = arrConstr[i].getParameterTypes();
 			for(var j in arrTypes) {
 				if(arrTypes[j].getName().equals("double")){
-					if(/^[0-9]+$/.test(arrParams[j]))
+					if(regex.isInteger(arrParams[j]))
 						arrParams[j] = arrParams[j].toFixed(1);
 				}
 			}
@@ -59,6 +59,19 @@ var mock = param = function (listaMocks) {
 		var clazzMethods = item.c.split('@');
 		var clazzName = clazzMethods[0];
 		for(var i=1; i < clazzMethods.length; i++) {
+			var metodos = ImportManager.reflections().get(clazzName).getDeclaredMethods();
+			
+			
+			for(var j=0; j < metodos.length; j++) {
+				var metodo = metodos[j];
+				
+				if(metodo.getName().equals(clazzMethods[i].replace(/\(|\)/g, ""))) {
+					if(metodo.getReturnType().getSimpleName().equals("double")) {
+						item.v = (regex.isInteger(item.v)) ? item.v.toFixed(1) : item.v;
+					}
+				}
+			}
+			
 			methodMap.push({
 				clazz: clazzName, 
 				method: clazzMethods[i], 
@@ -121,6 +134,14 @@ var eq = function(expected) {
 	var stack = mockery.stack;
 	var str = buffer + stack.value;
 	
+	var paramAdd = "";
+	
+	if(returnType == "double") {
+		paramAdd = ", 0.0001";
+		
+		if(regex.isInteger(expected)) expected = expected.toFixed(1);
+	}
+	
 	str += TextEditor.newLine(
 			regex.replaces(templates.assert, {
 			shortClazzLower: instance,
@@ -128,7 +149,8 @@ var eq = function(expected) {
 			'assert': assert,
 			'expected': expected,
 			'method': actualMethod.getName(),
-			'params': stack.params
+			'params': stack.params,
+			'paramAdd': paramAdd
 		})
 	, 2);
 	

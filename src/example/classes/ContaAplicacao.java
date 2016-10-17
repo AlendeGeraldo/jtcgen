@@ -78,7 +78,7 @@ public class ContaAplicacao extends Conta implements Tributavel {
 	}
 	
 	//mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
-	@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(600.0)")
+	@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(300.0)")
 	public double somaValoresDasContas(ContaPoupanca cp) {
 		return this.saldo + cp.getSaldo();
 	}

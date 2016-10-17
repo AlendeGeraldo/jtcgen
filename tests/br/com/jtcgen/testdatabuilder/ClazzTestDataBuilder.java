@@ -164,10 +164,21 @@ public class ClazzTestDataBuilder {
 			}
 			
 			//mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
-			@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(600.0)")
+			@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(300.0)")
 			public double somaValoresDasContas(ContaPoupanca cp) {
 				return this.saldo + cp.getSaldo();
 			}
+			
+			@Test("setup([10, 12, 100.0])"
+			+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, { c: 'ContaCorrente@getSaldo()', v: 300.0}])"
+			+ ".eq(600.0)")
+			public double somaValoresDasContasPoupancaECorrente(ContaPoupanca cp, ContaCorrente cc) {
+				return this.saldo + cp.getSaldo() + cc.getSaldo();
+			}
+			
+			public double getSaldo() {
+				return saldo;
+			};
 
 			@TestEquals("123.456.789-10")
 			public String retornaCpfComMascara() {
@@ -178,6 +189,30 @@ public class ClazzTestDataBuilder {
 			@TestEquals({ "Rafael", "Bem Vindo! Rafael, seu saldo e de R$ 500.0" })
 			public String boasVindas(String mensagem) {
 				return "Bem Vindo! " + mensagem + ", seu saldo e de R$ " + saldo;
+			}
+			
+			
+			@JTCGen
+			class ContaCorrente extends Conta implements Tributavel {
+
+				public ContaCorrente(int numero, int agencia, double saldo) {
+					super(numero, agencia, saldo);
+				}
+
+				public void deposita(double quantia) {
+					this.saldo += this.taxaMovimentacao(quantia);
+				}
+
+				private double taxaMovimentacao(double quantia) {
+					return quantia - 0.50;
+				}
+
+				@Override
+				public double calculaImpostos(double taxa) {
+
+					return 0;
+				}
+
 			}
 
 		}

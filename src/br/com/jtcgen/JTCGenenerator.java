@@ -74,7 +74,9 @@ public class JTCGenenerator implements TestCaseGenerable {
 
 		for (Class<?> classe : classes)
 			arrClasses[i++] = classe;
-
+		
+		ImportManager.addMapedReflections(arrClasses);
+		
 		generate(arrClasses);
 	}
 

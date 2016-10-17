@@ -26,4 +26,9 @@ public class ContaPoupanca extends Conta implements Tributavel {
 		return this.saldo -= this.saldo * taxa;
 	}
 	
+	@Override
+	public double getSaldo() {
+		return super.getSaldo();
+	}
+	
 }

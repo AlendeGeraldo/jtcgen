@@ -14,10 +14,14 @@ var regex = {
 		str = str.replace(/\{\{returnType\}\}/g, obj.returnType);
 		str = str.replace(/\{\{assert\}\}/g, obj.assert);
 		str = str.replace(/\{\{expected\}\}/g, obj.expected);
+		str = str.replace(/\{\{paramAdd\}\}/g, obj.paramAdd);
 
 		return str;
 	},
 	isMockString: function (str)  {
 		return /^[a-zA-Z0-9]@[a-zA-Z0-9]\(\)$/g.test(str);
+	},
+	isInteger: function (value){
+		return /^[0-9]+$/.test(value);
 	}
 };

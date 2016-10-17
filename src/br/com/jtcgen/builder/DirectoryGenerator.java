@@ -6,13 +6,43 @@ import java.io.PrintStream;
 
 public class DirectoryGenerator {
 
-	private final String basePath = "tests";
-	private final String fileSufix = "Test.java";
+	private String basePath = "tests";
+	private String fileSufix = "Test.java";
+	private boolean useAnotherSourcePath = true;
 	private Class<?> classe;
 
 	public DirectoryGenerator(Class<?> classe) {
+		this.classe = classe;
+	}
+	
+	public DirectoryGenerator(Class<?> classe, boolean useSourcePath) {
 
 		this.classe = classe;
+		this.useAnotherSourcePath = useSourcePath;
+	}
+	
+	public DirectoryGenerator(Class<?> classe, String basePath) {
+		this.classe = classe;
+		this.basePath = basePath;
+	}
+	
+	public DirectoryGenerator(Class<?> classe, String basePath, boolean useSourcePath) {
+		this.classe = classe;
+		this.basePath = basePath;
+		this.useAnotherSourcePath = useSourcePath;
+	}
+	
+	public DirectoryGenerator(Class<?> classe, String basePath, String fileSufix) {
+		this.classe = classe;
+		this.basePath = basePath;
+		this.fileSufix = fileSufix;
+	}
+	
+	public DirectoryGenerator(Class<?> classe, String basePath, String fileSufix, boolean useSourcePath) {
+		this.classe = classe;
+		this.basePath = basePath;
+		this.fileSufix = fileSufix;
+		this.useAnotherSourcePath = useSourcePath;
 	}
 
 	public void createTest(String content) {
