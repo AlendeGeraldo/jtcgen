@@ -7,7 +7,7 @@ var setup = function (arrParams) {
 
 		return mockery;
 	}
-	
+	 
 	arrConstr = actualClazz.getConstructors();
 	
 	for(var i in arrConstr) {

@@ -3,7 +3,7 @@ var regex = {
 		if(replacement == undefined) 
 			replacement = "";
 		
-		return str.replace(/^([a-zA-Z0-9]+\.)+/g, replacement);
+		return str.replace(/^([a-zA-Z0-9]+\.)+/g, replacement); 
 	},
 	replaces: function (str, obj) {
 		str = str.replace(/\{\{shortClazz\}\}/g, obj.shortClazz);

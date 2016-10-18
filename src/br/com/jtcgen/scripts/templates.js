@@ -10,4 +10,4 @@ var templates = {
 			+ '{{returns}} expected = {{shortClazzLower}}.{{methodTarget}};' +
 			'\n\t\t' + '{{assert}}({{expected}}, expected{{paramAdd}});'
 			
-}
+} 

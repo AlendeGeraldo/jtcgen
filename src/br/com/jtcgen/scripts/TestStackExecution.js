@@ -1,25 +1,29 @@
 var exec =  function () {
 	var finalMocks = {params: "", value: ""};
 	mockery.itens.forEach(function(item) {
-		var buffer = "";
-		var clazz = item.clazz;
-		var shortClazz = regex.removeFullClassName(item.clazz, "");
-		var method = item.method;
-		var returns = item.returns;
-
-		buffer += TextEditor.newLine(
-			regex.replaces(templates.mockDef, {
-				'shortClazz': shortClazz,
-				'shortClazzLower': shortClazz.toLowerCase(),
-				'method': method,
-				'returns': returns
-			})
-		, 2);
-
-		buffer += TextEditor.LINE_BREAK;
-				
-		finalMocks.params += clazz.toLowerCase() + ", ";
-		finalMocks.value += buffer;
+		if(item.clazz != "__SCALAR_TYPE__" && item.clazz != "__SCALAR_TYPE__") {
+			var buffer = "";
+			var clazz = item.clazz;
+			var shortClazz = regex.removeFullClassName(item.clazz, "");
+			var method = item.method;
+			var returns = item.returns;
+	
+			buffer += TextEditor.newLine(
+				regex.replaces(templates.mockDef, {
+					'shortClazz': shortClazz,
+					'shortClazzLower': shortClazz.toLowerCase(),
+					'method': method,
+					'returns': returns
+				}) 
+			, 2);
+	
+			buffer += TextEditor.LINE_BREAK;
+					
+			finalMocks.params += clazz.toLowerCase() + ", ";
+			finalMocks.value += buffer;
+		} else {
+			finalMocks.params += item.returns + ", ";
+		}
 	});
 	
 	finalMocks.params = finalMocks.params.replace(/,\s$/, "");

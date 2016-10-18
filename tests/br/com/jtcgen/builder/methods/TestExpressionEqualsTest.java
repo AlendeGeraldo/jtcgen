@@ -11,7 +11,7 @@ import br.com.jtcgen.testdatabuilder.ClazzLoadDataBuilder;
 import br.com.jtcgen.testdatabuilder.ClazzTestDataBuilder;
 
 
-public class TestExpressionTest {
+public class TestExpressionEqualsTest {
 	
 	private Class<?> test;
 	private Method[] declaredMethods;
@@ -80,12 +80,38 @@ public class TestExpressionTest {
 	    	"\t\tassertEquals(600.0, expected, 0.0001);" + "\n" +
 	    	"\t}";
 		
-		System.out.println(createMethod);
-		
 		//Annotation template
 		//@Test("setup([10, 12, 100.0])"
 		//+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, { c: 'ContaCorrente@getSaldo()', v: 300.0}])"
 		//+ ".eq(600.0)")
+		assertEquals(templateExpected, createMethod);
+	}
+	
+	@Test
+	public void deveCriarCenarioDeTesteComSelfEMockEUsandoParametrosMistos() {
+		Method choose = null;
+		for(Method m : declaredMethods) {
+			 if("calculaJurosAcimaSobContas".equals(m.getName()))
+				 choose = m;
+		}
+		
+		assertNotNull(choose);
+		
+		TestExpression testExpression = new TestExpression(choose, test);
+		String createMethod = testExpression.createMethod().trim();
+		String templateExpected = "@Test\n" +
+			"\tpublic void calculaJurosAcimaSobContas() {" + "\n" +
+		    "\t\tContaAplicacao contaaplicacao = new ContaAplicacao(10, 12, 100.0);"+ "\n" +
+		    "\n" +
+		    "\t\tContaPoupanca contapoupanca = mock(ContaPoupanca.class);" + "\n" +
+		    "\t\twhen(contapoupanca.getSaldo()).thenReturn(200.0);" + "\n" +
+		    "\n" +
+	    	"\t\tdouble expected = contaaplicacao.calculaJurosAcimaSobContas(contapoupanca, 1.1);" + "\n" +
+	    	"\t\tassertEquals(330.0, expected, 0.0001);" + "\n" +
+	    	"\t}";
+		
+		//Annotation template
+		//@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, 1.1]).eq(330.0)")
 		assertEquals(templateExpected, createMethod);
 	}
 }

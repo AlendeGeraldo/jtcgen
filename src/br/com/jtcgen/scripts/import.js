@@ -13,4 +13,4 @@ load('src/br/com/jtcgen/scripts/AssertTrue.js');
 load('src/br/com/jtcgen/scripts/TestStackExecution.js');
 load('src/br/com/jtcgen/scripts/Collections.js');
 
-load('src/br/com/jtcgen/scripts/Mockery.js');
+load('src/br/com/jtcgen/scripts/Mockery.js'); 

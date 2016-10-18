@@ -5,7 +5,7 @@ var collections = {
 		var bufferList = "";
 		var fullClazz = str.split('@')[0];
 		var clazz = str.split('@')[0].replace(/^([a-zA-Z0-9]+\.)+/g, "");
-		var method = str.split('@')[1];
+		var method = str.split('@')[1]; 
 		var i = 0;
 		
 		helper.import(fullClazz);

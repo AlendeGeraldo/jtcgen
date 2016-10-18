@@ -7,5 +7,9 @@ var helper = {
 	},
 	import: function (className) {
 		ImportManager.addImport(eval("return Java.type('" + className + "').class"));
+	},
+	parseDouble: function(value) {
+		return (regex.isInteger(value)) ? value.toFixed(1) : value;
 	}
-}
+	
+} 

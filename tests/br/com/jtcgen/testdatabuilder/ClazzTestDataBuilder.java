@@ -176,6 +176,13 @@ public class ClazzTestDataBuilder {
 				return this.saldo + cp.getSaldo() + cc.getSaldo();
 			}
 			
+			@Test("setup([10, 12, 100.0])"
+					+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, 1.1])"
+					+ ".eq(330.0)")
+			public double calculaJurosAcimaSobContas(ContaPoupanca cp, double juros) {
+				return (this.saldo + cp.getSaldo()) * juros;
+			}
+			
 			public double getSaldo() {
 				return saldo;
 			};
