@@ -89,5 +89,19 @@ public class ContaAplicacao extends Conta implements Tributavel {
 	public double calculaJurosAcimaSobContas(ContaPoupanca cp, double juros) {
 		return (this.saldo + cp.getSaldo()) * juros;
 	}
+	
+	@Test({"setup([10, 12, 0.0])"
+			+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}])"
+			+ ".isTrue()", 
+		   "setup([10, 12, -2.2])"
+			+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 0.0}])"
+			+ ".isFalse()"})
+	public boolean saldoEhPositivo(ContaPoupanca cp) {
+		return (this.saldo + cp.getSaldo()) >= 0;
+	}
+	
+	public double getSaldo() {
+		return saldo;
+	};
 
 }

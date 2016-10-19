@@ -28,5 +28,9 @@ var mockery = {
 	"setup": setup,
 	"returns": returns,
 	"exec": exec,
-	"eq": eq
+	"eq": eq,
+	"isTrue": isTrue,
+	"isFalse": isFalse,
+	"isNull": isNull,
+	"isNotNull": isNotNull
 };

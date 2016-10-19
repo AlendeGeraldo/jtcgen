@@ -183,6 +183,16 @@ public class ClazzTestDataBuilder {
 				return (this.saldo + cp.getSaldo()) * juros;
 			}
 			
+			@Test("setup([10, 12, 0.0])"
+					+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}])"
+					+ ".isTrue()")
+			@Test("setup([10, 12, -2.2])"
+					+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 0.0}])"
+					+ ".isFalse()")
+			public boolean saldoEhPositivo(ContaPoupanca cp) {
+				return (this.saldo + cp.getSaldo()) >= 0;
+			}
+			
 			public double getSaldo() {
 				return saldo;
 			};
