@@ -15,6 +15,7 @@ var regex = {
 		str = str.replace(/\{\{assert\}\}/g, obj.assert);
 		str = str.replace(/\{\{expected\}\}/g, obj.expected);
 		str = str.replace(/\{\{paramAdd\}\}/g, obj.paramAdd);
+		str = str.replace(/\{\{expectedCount\}\}/g, obj.expectedCount);
 
 		return str;
 	},

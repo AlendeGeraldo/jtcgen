@@ -48,13 +48,13 @@ public class TestExpressionOtherAssertsTest {
 	    	"\t\tboolean expected = contaaplicacao.saldoEhPositivo(contapoupanca);" + "\n" +
 	    	"\t\tassertTrue(expected);" + "\n" +
 	    	"\n" +
-	    	"\t\tContaAplicacao contaaplicacao = new ContaAplicacao(10, 12, -2.2);"+ "\n" +
+	    	"\t\tContaAplicacao contaaplicacao1 = new ContaAplicacao(10, 12, -2.2);"+ "\n" +
 		    "\n" +
 		    "\t\tContaPoupanca contapoupanca1 = mock(ContaPoupanca.class);" + "\n" +
 		    "\t\twhen(contapoupanca1.getSaldo()).thenReturn(0.0);" + "\n" +
 		    "\n" +
-	    	"\t\tboolean expected = contaaplicacao.saldoEhPositivo(contapoupanca1);" + "\n" +
-	    	"\t\tassertFalse(expected);" + "\n" +
+	    	"\t\tboolean expected1 = contaaplicacao.saldoEhPositivo(contapoupanca1);" + "\n" +
+	    	"\t\tassertFalse(expected1);" + "\n" +
 	    	"\t}";
 		
 		System.out.println(createMethod);

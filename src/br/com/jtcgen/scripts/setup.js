@@ -34,10 +34,11 @@ var setup = function (arrParams) {
 		}
 	});
 	
+	var noRepeatVarCount = (NashornBag.getCountExpected() == 0) ? "" : NashornBag.getCountExpected();
 	var str = TextEditor.newLine(regex.replaces(templates.setup, 
 		{
 			shortClazz: actualClazz.getSimpleName(),
-			shortClazzLower: actualClazz.getSimpleName().toLowerCase(),
+			shortClazzLower: actualClazz.getSimpleName().toLowerCase() + noRepeatVarCount,
 			method: actualMethod.getName(),
 			params: parameters.replace(/,\s$/g, '')
 		}

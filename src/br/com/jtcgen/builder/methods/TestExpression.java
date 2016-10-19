@@ -76,7 +76,7 @@ public class TestExpression extends TestMethodTemplate{
 			count++;
 		}
 		
-		NashornBag.clear();
+		NashornBag.clearBag();
 		
 		return methodTest.toString();
 	}

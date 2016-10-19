@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import example.classes.ContaAplicacao;
-import java.lang.String;
 import example.classes.ContaPoupanca;
+import java.lang.String;
 import example.classes.ContaCorrente;
 import static org.mockito.Mockito.*;
 
@@ -85,13 +85,13 @@ public class ContaAplicacaoTest {
 		boolean expected = contaaplicacao.saldoEhPositivo(contapoupanca);
 		assertTrue(expected);
 
-		ContaAplicacao contaaplicacao = new ContaAplicacao(10, 12, -2.2);
+		ContaAplicacao contaaplicacao1 = new ContaAplicacao(10, 12, -2.2);
 
 		ContaPoupanca contapoupanca1 = mock(ContaPoupanca.class);
 		when(contapoupanca1.getSaldo()).thenReturn(0.0);
 
-		boolean expected = contaaplicacao.saldoEhPositivo(contapoupanca1);
-		assertFalse(expected);
+		boolean expected1 = contaaplicacao1.saldoEhPositivo(contapoupanca1);
+		assertFalse(expected1);
 	}
 	
 	@Test

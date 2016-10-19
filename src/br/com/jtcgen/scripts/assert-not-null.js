@@ -2,6 +2,7 @@ var isNotNull = function() {
 	var assert = "assertNotNull";
 	var instance = actualClazz.getSimpleName().toLowerCase();
 	var returnType = actualMethod.getReturnType().getSimpleName();
+	var noRepeatVarCount = (NashornBag.getCountExpected() == 0) ? "" : NashornBag.getCountExpected();
 	
 	mockery.exec();
 	
@@ -18,14 +19,17 @@ var isNotNull = function() {
 	
 	str += TextEditor.newLine(
 			regex.replaces(templates.assertOneParam, {
-			shortClazzLower: instance,
+			shortClazzLower: instance + noRepeatVarCount,
 			'returns': returnType,
 			'assert': assert,
 			'method': actualMethod.getName(),
 			'params': stack.params,
-			'paramAdd': paramAdd
+			'paramAdd': paramAdd,
+			'expectedCount': noRepeatVarCount
 		})
 	, 2);
+	
+	NashornBag.incrementExpectedCount();
 	
 	return str;
 }
