@@ -101,6 +101,10 @@ public class ClazzTestDataBuilder {
 			public String mostraSaldoComMensagemPersonalizada(String mensagem){
 				return "Bom dia! "+mensagem+" Saldo: "+ saldo;
 			}
+			
+			public double getSaldo() {
+				return this.saldo;
+			}
 
 			@Override
 			public double calculaImpostos(double taxa) {

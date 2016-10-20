@@ -7,12 +7,7 @@ var mock = param = function (listaMocks) {
 			var clazzMethods = item.c.split('@');
 			var clazzName = clazzMethods[0];
 			for(var i=1; i < clazzMethods.length; i++) {
-				try{
 				var metodos = ImportManager.reflections().get(clazzName).getDeclaredMethods();
-				} catch(e) {
-					print("erro na classe " + clazzName);
-				}
-				
 				
 				for(var j=0; j < metodos.length; j++) {
 					var metodo = metodos[j];
