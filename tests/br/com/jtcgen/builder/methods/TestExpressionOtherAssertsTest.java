@@ -4,10 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.testdatabuilder.ClazzLoadDataBuilder;
 import br.com.jtcgen.testdatabuilder.ClazzTestDataBuilder;
 
