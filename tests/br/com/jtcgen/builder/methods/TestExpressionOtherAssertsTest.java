@@ -53,12 +53,12 @@ public class TestExpressionOtherAssertsTest {
 		    "\t\tContaPoupanca contapoupanca1 = mock(ContaPoupanca.class);" + "\n" +
 		    "\t\twhen(contapoupanca1.getSaldo()).thenReturn(0.0);" + "\n" +
 		    "\n" +
-	    	"\t\tboolean expected1 = contaaplicacao.saldoEhPositivo(contapoupanca1);" + "\n" +
+	    	"\t\tboolean expected1 = contaaplicacao1.saldoEhPositivo(contapoupanca1);" + "\n" +
 	    	"\t\tassertFalse(expected1);" + "\n" +
 	    	"\t}";
 		
-		System.out.println(createMethod);
-		System.out.println(templateExpected);
+		/*System.out.println(createMethod);
+		System.out.println(templateExpected);*/
 		
 		//Annotation template
 		/*@Test("setup([10, 12, 0.0])"
@@ -67,6 +67,35 @@ public class TestExpressionOtherAssertsTest {
 		@Test("setup([10, 12, -2.2])"
 				+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 0.0}])"
 				+ ".isFalse()")*/
+		assertEquals(templateExpected, createMethod);
+	}
+	
+	@Test
+	public void deveCriarCenarioRetonandoNotNull() {
+		Method choose = null;
+		for(Method m : declaredMethods) {
+			 if("obtemContaCorrente".equals(m.getName()))
+				 choose = m;
+			 
+		}
+
+		assertNotNull(choose);
+		
+		TestExpression testExpression = new TestExpression(choose, test);
+		String createMethod = testExpression.createMethod().trim();
+		String templateExpected = "@Test\n" +
+			"\tpublic void obtemContaCorrente() {" + "\n" +
+		    "\t\tContaAplicacao contaaplicacao = new ContaAplicacao(10, 12, 0.0);"+ "\n" +
+		    "\n" +
+		    "\t\tContaCorrente expected = contaaplicacao.obtemContaCorrente();" + "\n" +
+	    	"\t\tassertNotNull(expected);" + "\n" +
+	    	"\t}";
+		
+		/*System.out.println(createMethod);
+		System.out.println(templateExpected);*/
+		
+		//Annotation template
+		//@Test("setup([10, 12, 0.0]).isNotNull()")
 		assertEquals(templateExpected, createMethod);
 	}
 }

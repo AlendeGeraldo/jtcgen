@@ -148,10 +148,10 @@ public class ClazzTestDataBuilder {
 
 				return true;
 			}
-
-			@TestNotNull
-			public ContaAplicacao obtemContaCorrente() {
-				return new ContaAplicacao(this.numero, this.getAgencia(), this.saldo);
+			
+			@Test("setup([10, 12, 0.0]).isNotNull()")
+			public ContaCorrente obtemContaCorrente() {
+				return new ContaCorrente(this.numero, this.getAgencia(), this.saldo);
 			}
 
 			@TestNull

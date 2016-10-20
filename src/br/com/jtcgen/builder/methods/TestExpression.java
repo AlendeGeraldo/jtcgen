@@ -69,8 +69,9 @@ public class TestExpression extends TestMethodTemplate{
 					methodTest.append("\n");
 				}
 			} catch (ScriptException e) {
-				methodTest.append("public void anErrosWasOccurred(){String string = \"error\";}");
-				System.out.println("Falha evaluacao do javascript.");
+				//methodTest.append("public void anErrosWasOccurred(){String string = \"error\";}");
+				//System.out.println("Falha evaluacao do javascript.");
+				System.out.println(e.getMessage() + " " + e.getLineNumber() + " " +  e.getColumnNumber() + " " + e.getFileName());
 				e.printStackTrace();
 			}
 			count++;
