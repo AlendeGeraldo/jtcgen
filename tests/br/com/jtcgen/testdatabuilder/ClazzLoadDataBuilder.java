@@ -31,7 +31,7 @@ public class ClazzLoadDataBuilder {
 						} catch (Exception e) {
 							System.out.println(e.toString());
 							//e.printStackTrace();
-							System.out.println("não foi possivel encontrar a classe");
+							System.out.println("nao foi possivel encontrar a classe");
 						}
 					}
 				}
