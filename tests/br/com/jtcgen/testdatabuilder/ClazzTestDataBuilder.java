@@ -130,11 +130,10 @@ public class ClazzTestDataBuilder {
 				return new ContaCorrente(this.numero, this.getAgencia(), this.saldo);
 			}
 
-			@TestNull
-			@TestEquals("null")
-			public ContaAplicacao obtemContaPoupanca() {
+			@Test("setup([5, 5, 0.0]).isNull()")
+			public ContaPoupanca obtemContaPoupanca() {
 				if (String.valueOf(this.numero).length() > 10)
-					return new ContaAplicacao(Integer.parseInt(new String(this.numero + "500")), this.getAgencia(), this.saldo);
+					return new ContaPoupanca(Integer.parseInt(new String(this.numero + "500")), this.getAgencia(), this.saldo);
 
 				return null;
 			}

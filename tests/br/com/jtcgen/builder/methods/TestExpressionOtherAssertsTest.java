@@ -101,4 +101,33 @@ public class TestExpressionOtherAssertsTest {
 		//@Test("setup([10, 12, 0.0]).isNotNull()")
 		assertEquals(templateExpected, createMethod);
 	}
+	
+	@Test
+	public void deveCriarCenarioRetonandoNull() {
+		Method choose = null;
+		for(Method m : declaredMethods) {
+			 if("obtemContaPoupanca".equals(m.getName()))
+				 choose = m;
+			 
+		}
+
+		assertNotNull(choose);
+		
+		TestExpression testExpression = new TestExpression(choose, test);
+		String createMethod = testExpression.createMethod().trim();
+		String templateExpected = "@Test\n" +
+			"\tpublic void obtemContaPoupanca() {" + "\n" +
+		    "\t\tContaAplicacao contaaplicacao = new ContaAplicacao(5, 5, 0.0);"+ "\n" +
+		    "\n" +
+		    "\t\tContaPoupanca expected = contaaplicacao.obtemContaPoupanca();" + "\n" +
+	    	"\t\tassertNull(expected);" + "\n" +
+	    	"\t}";
+		
+		System.out.println(createMethod);
+		System.out.println(templateExpected);
+		
+		//Annotation template
+		//@Test("setup([10, 12, 0.0]).isNotNull()")
+		assertEquals(templateExpected, createMethod);
+	}
 }
