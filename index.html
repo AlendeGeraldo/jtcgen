@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-material-design.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/ripples.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/snackbar.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/base.css">
   </head>
   <body>  
@@ -33,12 +34,12 @@
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
+          <li><a href="javascript:scrollToElement($('#about'))">Sobre o projeto<div class="ripple-container"></div></a></li>
           <li><a href="javascript:scrollToElement($('#presents'))">Começar<div class="ripple-container"></div></a></li>
           <li><a href="javascript:scrollToElement($('#documentation'))">Documentação</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="javascript:scrollToElement($('#about'))">Sobre o projeto<div class="ripple-container"></div></a></li>
-          <li><a href="javascript:void(0)">Por favor, poderia responder esta pesquisa?<div class="ripple-container"></div></a></li>
+          <li><a data-toggle=snackbar data-content="Por favor, clique no Link: <strong>Pesquisa para validação de estudo empregado na Lib. JTCGen</strong>" href="javascript:scrollToElement($('#link-pesquisa'))"">Por favor, poderia responder esta pesquisa?<div class="ripple-container"></div></a></li>
         </ul>
       </div>
     </div>
@@ -47,30 +48,59 @@
       <div class="container">
         <div class="presentation">
           <div class="col-sm-12">
-            <h1 class="project-name">Una seus testes com o desenvolvimento!</h1>
-            <h2 class="project-tagline">Conheça e explore a lib. JTCGen.</h2>
+            <h1 class="project-name">Aproxime o momento de teste com o desenvolvimento!</h1>
+            <h2 class="project-tagline">Conheça, explore e contribua com a lib. JTCGen.</h2>
           </div>
 		  <div id="get-started" class="col-sm-12">
-            <a href="javascript:scrollToElement($('#presents'))" class="btn btn-warning btn-lg btn-raised">Comece agora</a>
+            <a href="javascript:scrollToElement($('#about'))" class="btn btn-warning btn-lg btn-raised">Começar Agora</a>
           </div>
           <div id="view-git" class="col-sm-12">
-            <a href="https://github.com/rgoncalves94/jtcgen" class="btn btn-info btn-lg btn-raised">Ver no Github</a>
+            <a href="https://github.com/rgoncalves94/jtcgen" class="btn btn-info btn-lg btn-raised">Contribua no Github</a>
           </div>
         </div>
       </div>
     </section>
+  <section id="about">
+      <div class="container">
+        <div class="col-sm-12">
+          <h2>Sobre o projeto</h2>
+        </div>
+        <div class="col-sm-12">
+          <p class="alert alert-danger">
+            Antes de responder a pesquisa, por gentileza leia sobre a Biblioteca para entender o caminho que ela visa validar e sua motivação.
+          </p>
+          <p>
+            A motivação de desenvolvimento desta biblioteca surgiu à partir de um TCC, que ainda está em andamento. A validação desta biblioteca com a comunidade será um ponto chave para a conclusão deste trabalho, <span class="text-info"> e pedimos o seu auxílio para responder um formulário de pesquisa, que você poderá encontrar neste tópico ou no menu do site.</span>
+          </p>
+          <p class="alert alert-info">
+            Para detalhes mais técnicos e de implementação, veja: <a href="javascript:scrollToElement($('#documentation'))"><strong>Documentação</strong></a>.
+          </p>
+          <p>
+            Teste de software é muito importante mas é uma tarefa de grande custo, portanto deve-se escolher bem as funcionalidades que deverão ter uma maior carga de testes e/ou mais elaborados. Esta biblioteca nasceu para validar um caminho, que esta entre outros dois que já conhecemos: Testar seu código após a codificação ou utilizando uma técnica cada vez mais popular: <i>Test-Driven Development</i>, onde o desenvolvimento acaba sendo guiado pelo desenvolvimento de testes automatizados.
+          </p>
+          <p id="link-pesquisa">
+            As duas abordagens citadas acabam sendo o oposto uma da outra mas visam alcançar o mesmo objetivo, e dependendo do desenvolvedor, de sua experiência e habilidade, acabam utilizando as duas abordagem ou explorando uma mais que a outra, ou nem testam seu código ou não estão familiarizados com a escrita de testes automatizados, depende muito (por isso o formulário de pesquisa, para se trabalharmos com dados do mundo real). A ideia da biblioteca é tentar aproximar essas duas visões de teste, onde traga o <span class="text-success">momento de desenvolver os testes automatizados para bem próximo ao desenvolvimento de software propriamente dito</span>. Unindo estas duas etapas, tenta-se criar um mecanismo onde visa facilitar a forma de se testar código, e tentar aumentar a produtividade na criação de casos de teste automatizados.
+          </p>
+          <p>Por isso, pedimos a sua ajuda, a ajuda da comunidade para que avaliem a ideia do projeto, contribua com seu desenvolvimento, e nos ajude em nossa monografia respondendo o formulário de Pesquisa:</p>
+          <p>
+            Link: <a class="text-info" href="#">Pesquisa para validação de estudo empregado na Lib. JTCGen</a>
+          </p>
+        </div>
+      </div>
+  </section>
 	<section id="presents">
       <div class="container">
 			<div class="col-sm-12">
-				<h2>Primeiros Passos</h2>
+				<h2>Primeiros Passos (Overview)</h2>
         <p class="alert alert-warning">
-          Atualmente a biblioteca está em fase de desenvolvimento, mas já está sendo disponibilizada para utilização. Necessitamos do auxílio da comunidade para validar a ideia e também evoluí-la, se houver interesse.
+          Atualmente a biblioteca está em fase de desenvolvimento, mas já está sendo disponibilizada para utilização. Necessitamos do auxílio da comunidade para validar a ideia e também evoluí-la, se houver interesse. Leia: <a href="javascript:scrollToElement($('#about'))"><strong>Sobre o Projeto</strong></a>
         </p>
 			</div>
 			<div class="col-sm-12">
 				<p>
-					Faça o download da ultima release da biblioteca, integre-a em seu build path.
+					Esta biblioteca foi desenvolvida na linguagem <strong class="text-danger">Java</strong>, que por sua vez deve ser utilizada em projetos <strong class="text-danger">Java</strong>.
 				</p>
+        <p>Faça o download da ultima release da biblioteca, integre-a em seu build path.</p>
         <p>
           Após esta configuração inicial, será necessária a implementação de uma classe de manifesto. Conforme o exemplo:
         </p>
@@ -139,7 +169,7 @@
 				<h2>Documentação</h2>
 			</div>
       <div class="col-sm-12">
-          <h3>Annotations e como usá-la</h3>
+          <h3>Annotations e como usá-las</h3>
           <p>
             Para que se una o momento de criar o teste automatizado com o momento de desenvolvimento da classe de produção, a biblioteca trás uma experiência onde implementa-se <i>Annotations</i> na classe de produção. Assim tornando possivel informar para a biblioteca alguns parâmetros para que sejam gerados os casos de testes automatizados.
           </p>
@@ -152,18 +182,6 @@
 			</div>
     </div>
   </section>
-  <section id="about">
-      <div class="container">
-      <div class="col-sm-12">
-        <h2>Sobre o projeto</h2>
-      </div>
-      <div class="col-sm-12">
-        <p class="alert alert-info">
-          Em Construção...
-        </p>
-      </div>
-      </div>
-  </section>
 	<section id="footer">
 		<div class="container">
 			<div class="col-sm-12 text-center">
@@ -175,6 +193,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="assets/js/ripples.min.js" type="text/javascript"></script>
   <script src="assets/js/material.min.js" type="text/javascript"></script>
+  <script src="assets/js/snackbar.min.js" type="text/javascript"></script>
   <script src="assets/js/page.js" type="text/javascript"></script>
   </body>
 </html>

@@ -3,6 +3,14 @@ html, body {
 	margin: 0;
 }
 
+.navbar-brand {
+	font-size: 24px;
+}
+
+.nav.navbar-nav li a{
+	font-size: 15px;
+}
+
 #menu {
 	position: fixed;
 	width: 100%;
@@ -46,7 +54,6 @@ html, body {
 #presents {
 	padding-top: 50px;
 	padding-bottom: 50px;
-	background-color: #fff;
 	width: 100%;
 	height: auto;
 }
@@ -54,6 +61,7 @@ html, body {
 #documentation {
 	padding-top: 50px;
 	padding-bottom: 50px;
+	background-color: #fff;
 	width: 100%;
 	height: auto;
 }
@@ -93,4 +101,12 @@ html, body {
 		font-size: 26px;
 		padding: 10px 30px;
 	}
+}
+
+section p {
+	font-size:18px;
+}
+
+.hljs {
+    font-size: 16px;
 }
