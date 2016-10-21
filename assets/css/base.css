@@ -87,14 +87,19 @@ html, body {
 
 
 @media screen and (max-width: 416px) {
+
 	#home .container .presentation {
 		position: absolute;
-		top: 5%;
-		width: 100%;
+		top: 10%;
+		width: inherit;
 	}
 
 	#home .container .presentation .project-name{
-		font-size: 46px;
+		font-size: 36px;
+	}
+
+	#home .container .presentation .project-tagline{
+		font-size: 24px;
 	}
 
 	#get-started  .btn {
@@ -110,3 +115,5 @@ section p {
 .hljs {
     font-size: 16px;
 }
+
+@media s
