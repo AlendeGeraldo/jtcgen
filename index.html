@@ -30,7 +30,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="javascript:scrollToElement($('#home'))">JTCGen<div class="ripple-container"></div></a>
+        <a class="navbar-brand" href="javascript:scrollToElement($('#home'))"><i>JTCGen</i><div class="ripple-container"></div></a>
       </div>
       <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
@@ -185,6 +185,34 @@
             Ao criar um teste automatizado precisamos pensar em um <span class="label label-warning">cenário</span>, inicializar os objetos e variaveis necessários para que a <span class="label label-warning">ação</span> à ser testada seja executada de maneira devida, para, que por fim, possamos <span class="label label-warning">comparar</span> o resultado desta com o o valor de saída correspondente àquele cenário.
           </p>
       </div>
+      <div class="col-sm-12">
+        <h3>3.2. Utilização</h3>
+      </div>
+      <div class="col-sm-12">
+          <p>
+            A biblioteca fornece algumas <i>annotations</i>, alguns exemplos à seguir:
+          </p>
+          <pre>
+            <code class="java">
+               // Annotation para declaração da classe
+               @JTCGen 
+
+               // Annotation para declaração de métodos contrutores
+               @SetUp
+
+               // Annotations para declaração de métodos
+               @TestEquals({"500.0;true", "150.0"}) //Relacionado ao assertEquals
+               @TestTrue({"500.0;true"}) //Relacionado ao assertTrue
+               @TestFalse({"500.0;true"}) //Relacionado ao assertFalse
+               @TestNull({"example"}) //Relacionado ao assertNull
+               @TestNotNull({"example"}) //Relacionado ao assertNotNull
+               @TestVoidEquals({"500.0;true", "150.0", "getValue()"}) //Relacionado ao assertEquals, para metodos void.
+
+               //Annotation para o modo de scripts (utiliza-se sintax javascript)
+               @Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, 1.1]).eq(330.0)")
+            </code>
+          </pre>
+      </div>
 			<div class="col-sm-12">
 				<p class="alert alert-info">
 					Em Construção...
@@ -199,7 +227,7 @@
 			</div>
 		</div>
 	</section>
-  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="assets/js/ripples.min.js" type="text/javascript"></script>
   <script src="assets/js/material.min.js" type="text/javascript"></script>
