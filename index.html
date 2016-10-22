@@ -63,27 +63,27 @@
   <section id="about">
       <div class="container">
         <div class="col-sm-12">
-          <h2>Sobre o projeto</h2>
+          <h2>1. Sobre o projeto</h2>
         </div>
         <div class="col-sm-12">
           <p class="alert alert-danger">
             Antes de responder a pesquisa, por gentileza leia sobre a Biblioteca para entender o caminho que ela visa validar e sua motivação.
           </p>
           <p>
-            A motivação de desenvolvimento desta biblioteca surgiu à partir de um TCC, que ainda está em andamento. A validação desta biblioteca com a comunidade será um ponto chave para a conclusão deste trabalho, <span class="text-info"> e pedimos o seu auxílio para responder um formulário de pesquisa, que você poderá encontrar neste tópico ou no menu do site.</span>
+            A motivação para desenvolver este projeto se deu à partir de um TCC, que ainda está em andamento. A validação desta biblioteca com a comunidade será um ponto chave para a conclusão deste trabalho, <span class="text-info"> e contamos com seu auxílio para responder um formulário de pesquisa, que você poderá encontrar ao final do tópico ou clicando no botão à direita do menu do site.</span>
           </p>
           <p class="alert alert-info">
-            Para detalhes mais técnicos e de implementação, veja: <a href="javascript:scrollToElement($('#documentation'))"><strong>Documentação</strong></a>.
+            Para detalhes técnicos de implementação, veja: <a href="javascript:scrollToElement($('#documentation'))"><strong>Documentação</strong></a>.
           </p>
           <p>
-            Teste de software é muito importante mas é uma tarefa de grande custo, portanto deve-se escolher bem as funcionalidades que deverão ter uma maior carga de testes e/ou mais elaborados. Esta biblioteca nasceu para validar um caminho, que esta entre outros dois que já conhecemos: Testar seu código após a codificação ou utilizando uma técnica cada vez mais popular: <i>Test-Driven Development</i>, onde o desenvolvimento acaba sendo guiado pelo desenvolvimento de testes automatizados.
+            Testar software é muito importante, mas é uma tarefa de grande custo que se deve estudar bem as funcionalidades que deverão ter uma maior carga de testes e/ou testes mais elaborados. Esta biblioteca nasceu para validar o que acreditamos ser o "meio do caminho", que esta entre outros dois caminhos que já conhecemos: Testar seu código após a codificação ou utilizando, uma técnica cada vez mais popular chamada, <i>Test-Driven Development</i>, onde o desenvolvimento acaba sendo guiado pelo desenvolvimento de testes automatizados.
           </p>
           <p id="link-pesquisa">
-            As duas abordagens citadas acabam sendo o oposto uma da outra mas visam alcançar o mesmo objetivo, e dependendo do desenvolvedor, de sua experiência e habilidade, acabam utilizando as duas abordagem ou explorando uma mais que a outra, ou nem testam seu código ou não estão familiarizados com a escrita de testes automatizados, depende muito (por isso o formulário de pesquisa, para se trabalharmos com dados do mundo real). A ideia da biblioteca é tentar aproximar essas duas visões de teste, onde traga o <span class="text-success">momento de desenvolver os testes automatizados para bem próximo ao desenvolvimento de software propriamente dito</span>. Unindo estas duas etapas, tenta-se criar um mecanismo onde visa facilitar a forma de se testar código, e tentar aumentar a produtividade na criação de casos de teste automatizados.
+            As duas abordagens citadas acabam sendo o oposto uma da outra mas visam alcançar o mesmo objetivo. Dependendo do desenvolvedor, de sua experiência e habilidade, escolhem usar as duas abordagem,  ou explorar uma mais que a outra, ou nem testam seu código por não estão familiarizados com a escrita de testes automatizados ou outros motivos, depende muito (por isso o formulário de pesquisa, para se trabalharmos com dados do mundo real). A ideia da biblioteca é tentar aproximar essas duas visões de teste, onde traga o <span class="text-success">momento de desenvolver os testes automatizados para bem próximo do desenvolvimento de software propriamente dito</span>. Unindo estas duas etapas, tenta-se criar um mecanismo onde os objetivos são facilitar a forma de se testar código e tentar aumentar a produtividade na criação de casos de teste automatizados.
           </p>
-          <p>Por isso, pedimos a sua ajuda, a ajuda da comunidade para que avaliem a ideia do projeto, contribua com seu desenvolvimento, e nos ajude em nossa monografia respondendo o formulário de Pesquisa:</p>
-          <p>
-            Link: <a class="text-info" href="#">Pesquisa para validação de estudo empregado na Lib. JTCGen</a>
+          <p>Por isso, pedimos a sua ajuda e a da comunidade para que avaliem a ideia do projeto, respondendo o questionário e, se houver interesse, contribuir no desenvolvimento deste artefato:</p>
+          <p class="alert alert-info">
+            Link: <a href="#">Questionário para validação de estudo empregado na Lib. JTCGen</a>
           </p>
         </div>
       </div>
@@ -91,16 +91,19 @@
 	<section id="presents">
       <div class="container">
 			<div class="col-sm-12">
-				<h2>Primeiros Passos (Overview)</h2>
+				<h2>2. Primeiros Passos (Overview)</h2>
         <p class="alert alert-warning">
           Atualmente a biblioteca está em fase de desenvolvimento, mas já está sendo disponibilizada para utilização. Necessitamos do auxílio da comunidade para validar a ideia e também evoluí-la, se houver interesse. Leia: <a href="javascript:scrollToElement($('#about'))"><strong>Sobre o Projeto</strong></a>
         </p>
 			</div>
+      <div class="col-sm-12">
+          <h3>2.1. Instalação</h3>
+        </div>
 			<div class="col-sm-12">
 				<p>
-					Esta biblioteca foi desenvolvida na linguagem <strong class="text-danger">Java</strong>, que por sua vez deve ser utilizada em projetos <strong class="text-danger">Java</strong>.
+					Esta biblioteca foi desenvolvida na linguagem <strong class="text-danger">Java</strong> para ser utilizada nos casos de testes desenvolvidos também em projetos <strong class="text-danger">Java</strong>.
 				</p>
-        <p>Faça o download da ultima release da biblioteca, integre-a em seu build path.</p>
+        <p>Faça o download do <code>.jar</code>, integre-o em seu build path.</p>
         <p>
           Após esta configuração inicial, será necessária a implementação de uma classe de manifesto. Conforme o exemplo:
         </p>
@@ -115,6 +118,9 @@
             }
           </code>
         </pre>
+        </div>
+        <div class="col-sm-12">
+          <h3>2.2. Utilização Básica</h3>
         </div>
         <div class="col-sm-12">
           <p>
@@ -166,14 +172,18 @@
 	<section id="documentation">
       <div class="container">
 			<div class="col-sm-12">
-				<h2>Documentação</h2>
+				<h2>3. Documentação</h2>
 			</div>
       <div class="col-sm-12">
-          <h3>Annotations e como usá-las</h3>
+        <h3>3.1. Entendendo os Cenários</h3>
+      </div>
+      <div class="col-sm-12">
           <p>
-            Para que se una o momento de criar o teste automatizado com o momento de desenvolvimento da classe de produção, a biblioteca trás uma experiência onde implementa-se <i>Annotations</i> na classe de produção. Assim tornando possivel informar para a biblioteca alguns parâmetros para que sejam gerados os casos de testes automatizados.
+            A utilização dos recursos oferecidos pela biblioteca foram desenvolvidos pensando nos cenários dos casos de teste.
           </p>
-          <p>Abaixo, temos uma listagem de annotations que a biblioteca fornece para utilização:</p>
+          <p>
+            Ao criar um teste automatizado precisamos pensar em um <span class="label label-warning">cenário</span>, inicializar os objetos e variaveis necessários para que a <span class="label label-warning">ação</span> à ser testada seja executada de maneira devida, para, que por fim, possamos <span class="label label-warning">comparar</span> o resultado desta com o o valor de saída correspondente àquele cenário.
+          </p>
       </div>
 			<div class="col-sm-12">
 				<p class="alert alert-info">
@@ -185,7 +195,7 @@
 	<section id="footer">
 		<div class="container">
 			<div class="col-sm-12 text-center">
-				<h4>Biblioteca JTCGen, 2016</h4>
+				<h5>Biblioteca JTCGen, 2016</h5>
 			</div>
 		</div>
 	</section>
