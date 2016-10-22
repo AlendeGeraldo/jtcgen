@@ -27,23 +27,23 @@ import static br.com.jtcgen.builder.methods.TestInternalBehaviors.*;
 
 class TestMethodsGenerator extends TestGenerator {
 
-	private List<Method> metodos;
+	private List<Method> methods;
 
-	private StringBuffer metodosDeTeste;
+	private StringBuffer testMethod;
 	
-	private Annotation antecessora;
+	private Annotation predecessor;
 
 	public TestMethodsGenerator(Class<?> clazz) {
 		super(clazz);
-		metodos = new ArrayList<Method>();
+		methods = new ArrayList<Method>();
 		for (Method method : clazz.getMethods())
-			this.metodos.add(method);
+			this.methods.add(method);
 	}
 
 	@Override
 	public String generate() {
-		metodosDeTeste = new StringBuffer();
-		for (Method method : metodos) {
+		testMethod = new StringBuffer();
+		for (Method method : methods) {
 			Annotation[] annotations = method.getAnnotations();
 			if (annotations.length > 0) {
 				Set<String> methodMemory = new HashSet<String>();
@@ -56,7 +56,7 @@ class TestMethodsGenerator extends TestGenerator {
 						//verifyTestScene(tmp);
 						
 						String sufix = (methodMemory.contains(method.getName())) ? tmp.extractSufix() : "";
-						metodosDeTeste.append(tmp.createMethod(sufix));
+						testMethod.append(tmp.createMethod(sufix));
 						methodMemory.add(method.getName() + sufix);
 					}
 					//antecessora = ann;
@@ -64,7 +64,7 @@ class TestMethodsGenerator extends TestGenerator {
 			}
 		}
 
-		return metodosDeTeste.toString();
+		return testMethod.toString();
 	}
 	
 	/*private void verifyTestScene(TestMethodTemplate tmp) {

@@ -11,13 +11,13 @@ import br.com.jtcgen.helpers.TextEditor;
 
 class SetUpGenerator extends TestGenerator {
 
-	protected List<Constructor<?>> cons;
+	protected List<Constructor<?>> constructors;
 
 	public SetUpGenerator(Class<?> clazz) {
 		super(clazz);
-		cons = new ArrayList<Constructor<?>>();
+		constructors = new ArrayList<Constructor<?>>();
 		for (Constructor<?> c : this.clazz.getConstructors())
-			this.cons.add(c);
+			this.constructors.add(c);
 	}
 
 	public String generate() {
@@ -26,15 +26,15 @@ class SetUpGenerator extends TestGenerator {
 		sb.append("\t" + "public void setUp() throws Exception {");
 		sb.append("\n");
 		StringBuffer assinaturaDoConstrutor = new StringBuffer();
-		if (cons.size() == 1) {
-			if (!cons.get(0).isAnnotationPresent(SetUp.class))
-				if(cons.get(0).getParameterCount() == 0)
+		if (constructors.size() == 1) {
+			if (!constructors.get(0).isAnnotationPresent(SetUp.class))
+				if(constructors.get(0).getParameterCount() == 0)
 			assinaturaDoConstrutor.append(
 				TextEditor.newLine("this.instance = new " + clazz.getSimpleName() + "();", 3)
 			);
 			
 		}
-		for (Constructor<?> co : cons) {
+		for (Constructor<?> co : constructors) {
 			if (co.isAnnotationPresent(SetUp.class)) {
 				SetUp st = (SetUp) co.getAnnotation(SetUp.class);
 
