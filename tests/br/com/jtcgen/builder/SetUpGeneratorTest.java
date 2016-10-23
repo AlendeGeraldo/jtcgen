@@ -11,12 +11,16 @@ public class SetUpGeneratorTest {
 	@Test
 	public void deveGerarMetodoSetup() {
 		
-		SetUpGenerator setup = new SetUpGenerator(ClazzTestDataBuilder.criaClasseExemplo());
+		Class<?> criaClasseExemplo = ClazzTestDataBuilder.criaClasseExemplo();
+		
+		SetUpGenerator setup = new SetUpGenerator(criaClasseExemplo);
 		
 		String expected = "\t@Before\n" +
 			"\tpublic void setUp() throws Exception {\n" +
 			"\t\tthis.instance = new ContaAplicacao(1000,2200,500.0);\n" +
 			"\t}\n" ;
+		
+		
 
 		assertEquals(expected, setup.generate());
 		

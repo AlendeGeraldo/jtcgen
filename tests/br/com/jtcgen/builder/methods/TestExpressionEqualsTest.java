@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.jtcgen.testdatabuilder.ClazzLoadDataBuilder;
 import br.com.jtcgen.testdatabuilder.ClazzTestDataBuilder;
 
 
@@ -22,7 +21,7 @@ public class TestExpressionEqualsTest {
 		
 		declaredMethods = test.getDeclaredMethods();
 		
-		ClazzLoadDataBuilder.getLocalClasses();
+		ClazzTestDataBuilder.getLocalClasses();
 	}
 	
 	@Test

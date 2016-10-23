@@ -41,7 +41,7 @@ class SetUpGenerator extends TestGenerator {
 				String[] params = st.value();
 
 				Parameter[] pts = co.getParameters();
-
+				
 				if (params.length != co.getParameterCount())
 					throw new InvalidParamDeclarationException("Valor total de parametros incorretos");
 

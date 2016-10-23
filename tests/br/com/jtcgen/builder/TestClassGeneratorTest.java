@@ -24,7 +24,7 @@ public class TestClassGeneratorTest {
 			"\n" +
 			"import org.junit.Test;" +
 			"\n\n" +
-			"import br.com.jtcgen.testdatabuilder.ClazzTestDataBuilder$1ContaAplicacao;" +
+			"import br.com.jtcgen.testdatabuilder.ContaAplicacao;" +
 			"\n" +
 			"{{OTHER_IMPORTS}}" +
 			"\n\n" +

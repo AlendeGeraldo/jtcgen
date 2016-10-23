@@ -17,6 +17,6 @@ import org.junit.runner.RunWith;
 	TestExpressionOtherAssertsTest.class
 })
 
-public class TestSuiteBuilder {
+public class TestSuite {
 	
 }
