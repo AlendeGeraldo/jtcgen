@@ -18,7 +18,7 @@ public class DirectoryGeneratorTest {
 		
 		DirectoryGenerator directoryGenerator = new DirectoryGenerator(ClazzTestDataBuilder.criaClasseExemplo());
 		
-		directoryGenerator.createTest("Created!");
+		directoryGenerator.createTest("Created!", true);
 			
 		File teste = new File("tests/br/com/jtcgen/testdatabuilder/ContaAplicacaoTest.java");
 		Scanner scan = new Scanner(teste);

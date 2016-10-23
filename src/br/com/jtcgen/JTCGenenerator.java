@@ -13,26 +13,34 @@ import br.com.jtcgen.builder.TestGeneratorFactory;
 import br.com.jtcgen.helpers.ImportManager;
 
 /**
- * Façade para crição dos casos de testes
+ * FaÃ§ade para criÃ§Ã£o dos casos de testes
  * 
- * @author Rafael Henrique Ap. Gonçalves <rafael.goncalves19@fatec.sp.gov.br>
+ * @author Rafael Henrique Ap. GonÃ§alves <rafael.goncalves19@fatec.sp.gov.br>
  * @author Estevam Herculano
  */
 public class JTCGenenerator implements TestCaseGenerable {
+	
+	public static final boolean ENABLE_BACKUP = true;
+	public static final boolean DISABLE_BACKUP = false;
 
 	/**
-	 * função sobrecarregada para aceitar var-args de objetos
+	 * funÃ§Ã£o sobrecarregada para aceitar var-args de objetos
 	 * 
 	 * @param Objects...
 	 *            objects
 	 */
+	
 	public void generateTests(Object... objects) {
+		generateTests(ENABLE_BACKUP, objects);
+		
+	}
+	public void generateTests(boolean makeABackup, Object... objects) {
 		int i = 0;
 		Class<?>[] classes = new Class<?>[objects.length];
 		for (Object obj : objects)
 			classes[i++] = obj.getClass();
 
-		generate(classes);
+		generate(makeABackup, classes);
 
 		System.out.println("Casos de testes criados.");
 	}
@@ -43,11 +51,26 @@ public class JTCGenenerator implements TestCaseGenerable {
 	 * 
 	 * @param classe
 	 */
+	
 	public void generateTests(Class<?>... classes) {
-		generate(classes);
+		generateTests(ENABLE_BACKUP, classes);
+	}
+	
+	/**
+	 * direciona a reflexao de todas as classes que serao gerados os casos de
+	 * testes
+	 * 
+	 * @param classe
+	 */
+	public void generateTests(boolean makeABackup, Class<?>... classes) {
+		generate(makeABackup, classes);
+	}
+	
+	public void generateTests() {
+		generateTests(ENABLE_BACKUP);
 	}
 
-	public void generateTests() {
+	public void generateTests(boolean makeABackup) {
 		String pathName = System.getProperty("user.dir") + "\\src";
 		List<Class<?>> classes = new ArrayList<Class<?>>();
 		try {
@@ -60,7 +83,7 @@ public class JTCGenenerator implements TestCaseGenerable {
 							classes.add(Class.forName(className));
 						} catch (Exception e) {
 							//e.printStackTrace();
-							System.out.println("não foi possivel encontrar a classe");
+							System.out.println("nÃ£o foi possivel encontrar a classe");
 						}
 					}
 				}
@@ -77,10 +100,10 @@ public class JTCGenenerator implements TestCaseGenerable {
 		
 		ImportManager.addMapedReflections(arrClasses);
 		
-		generate(arrClasses);
+		generate(makeABackup, arrClasses);
 	}
 
-	private void generate(Class<?>... classes) {
+	private void generate(boolean makeABak, Class<?>... classes) {
 		for (Class<?> classe : classes) {
 			if (classe.isAnnotationPresent(JTCGen.class)) {
 				StringBuffer buffer = new StringBuffer();
@@ -91,7 +114,10 @@ public class JTCGenenerator implements TestCaseGenerable {
 				}
 
 				DirectoryGenerator dir = TestGeneratorFactory.createDirectoryGenerator(classe);
-				dir.createTest(buffer.toString().replaceFirst("\\{\\{OTHER_IMPORTS\\}\\}", ImportManager.getImports()));
+				dir.createTest(
+						buffer.toString().replaceFirst("\\{\\{OTHER_IMPORTS\\}\\}", ImportManager.getImports()),
+						makeABak
+				);
 			}
 		}
 	}
