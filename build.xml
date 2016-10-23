@@ -41,7 +41,7 @@
 	      	<classpath>
 		   		<path refid="classPath" />
 		  	</classpath>
-		  	<test name="br.com.jtcgen.builder.TestSuiteBuilder">
+		  	<test name="br.com.jtcgen.builder.TestSuite">
 		  		<formatter type="plain" usefile="false" />
 		  	</test>	
 		</junit>
