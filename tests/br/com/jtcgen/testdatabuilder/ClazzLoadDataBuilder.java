@@ -27,9 +27,10 @@ public class ClazzLoadDataBuilder {
 						try {
 							String className = filePath.toFile().getAbsolutePath().replaceAll(".+src" + separator2, "")
 									.replaceAll(separator2, ".").replaceAll("\\.java$", "").toString().trim();
+							System.out.println(className);
 							classes.add(Class.forName(className));
-						} catch (Exception e) {
-							System.out.println(e.toString());
+						} catch (ClassNotFoundException e) {
+							System.out.println(e.getMessage() + " ");
 							//e.printStackTrace();
 							System.out.println("nao foi possivel encontrar a classe");
 						}
