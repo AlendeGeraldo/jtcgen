@@ -1,5 +1,6 @@
 package br.com.jtcgen;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -71,19 +72,26 @@ public class JTCGenenerator implements TestCaseGenerable {
 	}
 
 	public void generateTests(boolean makeABackup) {
-		String pathName = System.getProperty("user.dir") + "\\src";
+		String separator = String.valueOf(File.separatorChar);
+		if(separator.equals("\\"))
+			separator = new String("\\\\");
+		String pathName = System.getProperty("user.dir") + separator + "src";
 		List<Class<?>> classes = new ArrayList<Class<?>>();
 		try {
 			Files.walk(Paths.get(pathName)).forEach(filePath -> {
+				String separator2 = String.valueOf(File.separatorChar);
+				if(separator2.equals("\\"))
+					separator2 = new String("\\\\");
 				if (Files.isRegularFile(filePath)) {
 					if (filePath.getFileName().toString().trim().matches("[A-Za-z0-9]+.java$")) {
 						try {
-							String className = filePath.toFile().getAbsolutePath().replaceAll(".+src\\\\", "")
-									.replaceAll("\\\\", ".").replaceAll("\\.java$", "").toString().trim();
+							String className = filePath.toFile().getAbsolutePath().replaceAll(".+src" + separator2, "")
+									.replaceAll(separator2, ".").replaceAll("\\.java$", "").toString().trim();
 							classes.add(Class.forName(className));
-						} catch (Exception e) {
+						} catch (ClassNotFoundException e) {
+							System.out.println(e.getMessage() + " ");
 							//e.printStackTrace();
-							System.out.println("nÃ£o foi possivel encontrar a classe");
+							System.out.println("nao foi possivel encontrar a classe");
 						}
 					}
 				}

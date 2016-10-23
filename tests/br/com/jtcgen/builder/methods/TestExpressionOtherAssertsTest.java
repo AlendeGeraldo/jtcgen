@@ -123,8 +123,8 @@ public class TestExpressionOtherAssertsTest {
 	    	"\t\tassertNull(expected);" + "\n" +
 	    	"\t}";
 		
-		System.out.println(createMethod);
-		System.out.println(templateExpected);
+		//System.out.println(createMethod);
+		//System.out.println(templateExpected);
 		
 		//Annotation template
 		//@Test("setup([10, 12, 0.0]).isNotNull()")

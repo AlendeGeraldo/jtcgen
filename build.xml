@@ -5,6 +5,7 @@
 	  	<pathelement location="lib/mockito-all-1.10.19.jar" />
 	  	<pathelement location="lib/jacocoant.jar" />
 	  	<pathelement location="bin/"/>
+		<pathelement location="src/"/>
   	</path>
 
 	<target name="compilar">
