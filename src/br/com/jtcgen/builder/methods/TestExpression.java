@@ -1,6 +1,11 @@
 package br.com.jtcgen.builder.methods;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +66,40 @@ public class TestExpression extends TestMethodTemplate{
 				
 				engine.setBindings(bind, ScriptContext.GLOBAL_SCOPE);
 				
-				engine.eval("load('src/br/com/jtcgen/scripts/import.js')");
+				List<URL> resources = new ArrayList<URL>(); 
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/templates.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/regex.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/helpers.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/setup.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/parameter-definition.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/returns.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/assert-equals.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/assert-equals-void.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/assert-null.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/assert-not-null.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/assert-false.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/assert-true.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/test-stack-execution.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/collections.js"));
+				resources.add(this.getClass().getResource("/br/com/jtcgen/scripts/mockery.js"));
+				
+				StringBuffer script = new StringBuffer();
+				try {
+					for(URL resource : resources){
+						System.out.println(resource);
+						List<String> readAllLines = Files.readAllLines(Paths.get(resource.toURI()));
+						for(String s : readAllLines)
+							script.append(s);
+						engine.eval(script.toString());
+						script = new StringBuffer();
+					}
+					
+				} catch (URISyntaxException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				engine.eval(script.toString());
+				//engine.eval("load('src/br/com/jtcgen/scripts/all.js')");
 				
 				methodTest.append((String) engine.eval(value));
 				

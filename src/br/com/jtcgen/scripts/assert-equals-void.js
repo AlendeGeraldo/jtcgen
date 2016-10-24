@@ -11,7 +11,7 @@ var eqVoid = function(expected, methodToCall) {
 	
 	var paramAdd = "";
 	
-	//pegando tipo de retorno da função informada
+	/*pegando tipo de retorno da função informada*/
 	var metodos = ImportManager.reflections().get(actualClazz.getSimpleName()).getDeclaredMethods();
 	var methodToCallReturnType;
 	for(var j=0; j < metodos.length; j++) {
@@ -46,4 +46,4 @@ var eqVoid = function(expected, methodToCall) {
 	, 2);
 	
 	return str;
-}
+};

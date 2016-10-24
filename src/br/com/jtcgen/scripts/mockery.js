@@ -1,25 +1,25 @@
 var buffer = "";
 var errors = [];
 
-//SetUp
+/*SetUp
 
-//param ParameterDefinition
+param ParameterDefinition
 
-//returns Returns
+returns Returns
 
-//exec TestStackExecution
+exec TestStackExecution
 
-//eq AssertEquals
+eq AssertEquals
 
-//eqVoid AssertEqualsVoid
+eqVoid AssertEqualsVoid
 
-//isNull AssertNull
+isNull AssertNull
 
-//isNotNull AssertNotNull
+isNotNull AssertNotNull
 
-//isFalse AssertFalse
+isFalse AssertFalse
 
-//isTrue AssertTrue
+isTrue AssertTrue */
 
 var mockery = {
 	stack: [],

@@ -83,11 +83,11 @@ public class DirectoryGenerator {
 		
 		int showConfirmDialog = 1;
 		if(fileInstance.exists() && overwriteAllTests == false){
-			String[] options = {"Sim, e sobrescreva os proximos.", "Sim", "N�o"};
+			String[] options = {"Sim, e sobrescreva os proximos.", "Sim", "Não"};
 			showConfirmDialog = JOptionPane.showOptionDialog(null, 
 					"Deseja sobrescrever o arquivo: " + fileInstance.getPath() + "?", 
 					"Sobrescrever Teste", JOptionPane.YES_NO_OPTION,
-					JOptionPane.QUESTION_MESSAGE, null, options, "N�o");
+					JOptionPane.QUESTION_MESSAGE, null, options, "Não");
 			
 			if(showConfirmDialog == 0) {
 				overwriteAllTests = true;
