@@ -2,8 +2,6 @@ language: java
 default_text_charset: 'utf-8'  # Default is ''
 jdk:
   - oraclejdk8
-script: 
-  "mvn test"
 after_success:
   - bash <(cat /home/travis/build/rgoncalves94/jtcgen/report.xml)
   - bash <(curl -s https://codecov.io/bash)
