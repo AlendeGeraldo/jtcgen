@@ -9,7 +9,8 @@
 
 	<target name="compilar">
 	    <delete dir="bin" />		
-	    <mkdir dir="bin" />		
+	    <mkdir dir="bin/src" />
+		<mkdir dir="bin/tests" />
 	    <javac srcdir="src" includeantruntime="false" destdir="bin/src" >		
 	        <classpath>		       
 	         	<fileset dir="lib">	
