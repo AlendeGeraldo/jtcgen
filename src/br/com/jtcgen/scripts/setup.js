@@ -1,3 +1,5 @@
+var setupBuffer = "";
+
 var setup = function (arrParams) {
 	if( typeof arrParams != "object" ){
 		errors.put({
@@ -14,9 +16,19 @@ var setup = function (arrParams) {
 		if(arrConstr[i].getParameterCount() == arrParams.length){
 			arrTypes = arrConstr[i].getParameterTypes();
 			for(var j in arrTypes) {
-				if(arrTypes[j].getName().equals("double")){
+				if(arrTypes[j].getSimpleName().equals("double")){
+					
 					if(regex.isInteger(arrParams[j]))
 						arrParams[j] = arrParams[j].toFixed(1);
+					
+				} else if(arrTypes[j].getSimpleName().equals("String")) {
+					
+					arrParams[j] = '"' + arrParams[j] + '"';
+					
+				} else if(arrTypes[j].getSimpleName().equals("char")) {
+					
+					arrParams[j] = '\'' + arrParams[j] + '\'';
+					
 				}
 			}
 		}
@@ -25,9 +37,28 @@ var setup = function (arrParams) {
 	
 	var parameters = "";
 	arrParams.forEach(function(item) {
-		if(typeof item == "object" && item.size == 2){
-			if(regex.isMockString(item[0])) {
-				mockery.mock();
+		if(typeof item == "object"){
+			if(regex.isMockString(item.c)) {
+				var mockObjs = makeObjMockCall(item);
+				
+				var results = [];
+				if(mockObjs.length > 0){
+					var sameCall = false;
+					mockObjs.forEach(function(mockObj) {
+						results.push(makeStrCall(mockObj, sameCall));
+						sameCall = true;
+					});
+				}
+				
+				if(results.length > 0){
+					results.forEach(function(result, i){
+						if(i==0){
+							parameters += result.variable + ", ";
+						}
+						setupBuffer += result.strCall;
+					});
+				}
+				
 			}
 		} else {
 			parameters += item + ", ";

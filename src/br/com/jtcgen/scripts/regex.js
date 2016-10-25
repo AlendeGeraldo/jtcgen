@@ -20,7 +20,7 @@ var regex = {
 		return str;
 	},
 	isMockString: function (str)  {
-		return /^[a-zA-Z0-9]@[a-zA-Z0-9]\(\)$/g.test(str);
+		return /^[a-zA-Z0-9]+(@[a-zA-Z0-9]+\(\))+$/g.test(str);
 	},
 	isInteger: function (value){
 		return /^[0-9]+$/.test(value);

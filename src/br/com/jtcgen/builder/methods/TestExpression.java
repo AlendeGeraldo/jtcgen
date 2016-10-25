@@ -2,12 +2,18 @@ package br.com.jtcgen.builder.methods;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.script.Bindings;
 import javax.script.ScriptContext;
@@ -86,12 +92,25 @@ public class TestExpression extends TestMethodTemplate{
 				StringBuffer script = new StringBuffer();
 				try {
 					for(URL resource : resources){
-						System.out.println(resource);
-						List<String> readAllLines = Files.readAllLines(Paths.get(resource.toURI()));
+						
+						Path path;
+						FileSystem fs = null;
+						if(resource.toString().split("!").length > 1){
+							final Map<String, String> env = new HashMap<>();
+							final String[] array = resource.toString().split("!");
+							fs = FileSystems.newFileSystem(URI.create(array[0]), env);
+							path = fs.getPath(array[1]);
+						}else {
+							path = Paths.get(resource.toURI());
+						}
+						
+						List<String> readAllLines = Files.readAllLines(path);
 						for(String s : readAllLines)
 							script.append(s);
 						engine.eval(script.toString());
 						script = new StringBuffer();
+						if(fs != null)
+							fs.close();
 					}
 					
 				} catch (URISyntaxException | IOException e) {

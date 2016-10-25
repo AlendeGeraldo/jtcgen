@@ -7,7 +7,7 @@ var isFalse = function() {
 	mockery.exec();
 	
 	var stack = mockery.stack;
-	var str = buffer + stack.value;
+	var str = setupBuffer + buffer + stack.value;
 	
 	var paramAdd = "";
 	
