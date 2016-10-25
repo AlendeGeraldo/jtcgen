@@ -93,7 +93,7 @@ public class TestExpression extends TestMethodTemplate{
 				try {
 					for(URL resource : resources){
 						
-						Path path;
+						Path path = null;
 						FileSystem fs = null;
 						if(resource.toString().split("!").length > 1){
 							final Map<String, String> env = new HashMap<>();
@@ -104,22 +104,22 @@ public class TestExpression extends TestMethodTemplate{
 							path = Paths.get(resource.toURI());
 						}
 						
-						List<String> readAllLines = Files.readAllLines(path);
-						for(String s : readAllLines)
-							script.append(s);
-						engine.eval(script.toString());
-						script = new StringBuffer();
+						if(path != null){
+							List<String> readAllLines = Files.readAllLines(path);
+							for(String s : readAllLines)
+								script.append(s);
+							engine.eval(script.toString());
+						}
 						if(fs != null)
 							fs.close();
+						
+						script = new StringBuffer();
 					}
 					
 				} catch (URISyntaxException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(script.toString());
-				engine.eval(script.toString());
-				//engine.eval("load('src/br/com/jtcgen/scripts/all.js')");
 				
 				methodTest.append((String) engine.eval(value));
 				
