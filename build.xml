@@ -10,14 +10,14 @@
 	<target name="compilar">
 	    <delete dir="bin" />		
 	    <mkdir dir="bin" />		
-	    <javac srcdir="src/br" includeantruntime="false" destdir="bin" >		
+	    <javac srcdir="src" includeantruntime="false" destdir="bin/src" >		
 	        <classpath>		       
 	         	<fileset dir="lib">	
 	           		<include name="*.jar" />		 
 	         	</fileset>	
 	   	 	</classpath>	
 	    </javac>
-		<javac srcdir="tests/br" includeantruntime="false" destdir="bin" >		
+		<javac srcdir="tests" includeantruntime="false" destdir="bin/tests" >		
 	        <classpath>		       
 	        	<fileset dir="lib">	
 	           		<include name="*.jar" />		 
