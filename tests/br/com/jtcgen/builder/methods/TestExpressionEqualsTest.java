@@ -93,7 +93,7 @@ public class TestExpressionEqualsTest {
 			 if("calculaJurosAcimaSobContas".equals(m.getName()))
 				 choose = m;
 		}
-		System.out.println(choose);
+
 		assertNotNull(choose);
 		
 		TestExpression testExpression = new TestExpression(choose, test);

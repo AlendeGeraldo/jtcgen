@@ -117,6 +117,7 @@ public class TestExpression extends TestMethodTemplate{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				System.out.println(script.toString());
 				engine.eval(script.toString());
 				//engine.eval("load('src/br/com/jtcgen/scripts/all.js')");
 				
