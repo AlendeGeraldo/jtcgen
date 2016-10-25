@@ -86,7 +86,7 @@
           </p>
           <p>Por isso, pedimos a sua ajuda e a da comunidade para que avaliem a ideia do projeto, respondendo o questionário e, se houver interesse, contribuir no desenvolvimento deste artefato:</p>
           <p class="alert alert-info">
-            Link: <a href="https://goo.gl/forms/kl8PZK2biwExq4A83">Questionário para validação de estudo empregado na Lib. JTCGen</a>
+            Link: <a target="_blank" href="https://goo.gl/forms/kl8PZK2biwExq4A83">Questionário para validação de estudo empregado na Lib. JTCGen</a>
           </p>
         </div>
       </div>
@@ -98,10 +98,38 @@
         <p class="alert alert-warning">
           Atualmente a biblioteca está em fase de desenvolvimento, mas já está sendo disponibilizada para utilização. Necessitamos do auxílio da comunidade para validar a ideia e também evoluí-la, se houver interesse. Leia: <a href="javascript:scrollToElement($('#about'))"><strong>Sobre o Projeto</strong></a>
         </p>
+        <p class="alert alert-info">
+          Para facilitar o teste da biblioteca, <strong><a href="https://github.com/rgoncalves94/jtcgen-example">clicando aqui</a></strong> você pode
+          encontrar um pequeno projeto com algumas classes para explorar a biblioteca.
+        </p>
+        <p>
+          <span class="label label-info">INFO</span> Ao executar a biblioteca, caso exista um teste com o mesmo nome de arquivo que será gerado,
+          será perguntado se deseja sobrescreve-lo. Por segurança, todo caso de testes sobrescrito é criada uma cópia de backup.
+        </p>
 			</div>
       <div class="col-sm-12">
-          <h3>2.1. Instalação</h3>
-        </div>
+          <h3>2.1 Pré-requisitos e Dependências</h3>
+      </div>
+      <div class="col-sm-12">
+        <p>
+          Este projeto foi desenvolvido utilizando recursos da <span class="label label-warning">JDK Versão 8</span>.
+        </p>
+        <p>
+          A biblioteca não funciona nas versões anteriores do Java.
+        </p>
+        <p>
+          Este projeto cria casos de teste no padrão do JUnit, e escrita de <i>Mock Objects</i> no padrão do Mockito.
+        </p>
+        <p class="col-sm-12 text-danger">
+          JUnit: <a href="http://junit.org/junit4/">http://junit.org/junit4/</a>
+        </p>
+        <p class="col-sm-12 text-danger">
+          Mockito: <a href="http://site.mockito.org/">http://site.mockito.org/</a>
+        </p>
+      </div>
+      <div class="col-sm-12">
+          <h3>2.2 Instalação</h3>
+      </div>
 			<div class="col-sm-12">
 				<p>
 					Esta biblioteca foi desenvolvida na linguagem <strong class="text-danger">Java</strong> para ser utilizada nos casos de testes desenvolvidos também em projetos <strong class="text-danger">Java</strong>.
@@ -123,7 +151,7 @@
         </pre>
         </div>
         <div class="col-sm-12">
-          <h3>2.2. Utilização Básica</h3>
+          <h3>2.3 Utilização Básica</h3>
         </div>
         <div class="col-sm-12">
           <p>
@@ -178,49 +206,360 @@
 				<h2>3. Documentação</h2>
 			</div>
       <div class="col-sm-12">
-        <h3>3.1. Entendendo os Cenários</h3>
-      </div>
-      <div class="col-sm-12">
+          <p>
+            Você pode encontrar um projeto de exemplo neste link: <a href="https://github.com/rgoncalves94/jtcgen-example">https://github.com/rgoncalves94/jtcgen-example</a>
+          </p>
           <p>
             A utilização dos recursos oferecidos pela biblioteca foram desenvolvidos pensando nos cenários dos casos de teste.
           </p>
           <p>
             Ao criar um teste automatizado precisamos pensar em um <span class="label label-warning">cenário</span>, inicializar os objetos e variaveis necessários para que a <span class="label label-warning">ação</span> à ser testada seja executada de maneira devida, para, que por fim, possamos <span class="label label-warning">comparar</span> o resultado desta com o o valor de saída correspondente àquele cenário.
           </p>
+          <p>
+            Esta biblioteca implementa algumas <i>annotations</i> para serem declaradas dentro da sua "classe de produção", onde sera informada como texto dentro delas os parametros para gerar o caso de teste invocando o método que deseja testar.
+          </p>
+          <p>Podemos ver isso com mais clareza nos próximos exemplos:</p>
       </div>
       <div class="col-sm-12">
-        <h3>3.2. Utilização</h3>
+        <h3>3.1. Utilização</h3>
       </div>
       <div class="col-sm-12">
           <p>
-            A biblioteca fornece algumas <i>annotations</i>, alguns exemplos à seguir:
+            Para casos de testes simples, a biblioteca fornece algumas <i>annotations</i> com uma sintaxe mais textual, pois trabalha apenas com variaveis escalares (tipo primitivos). Vejamos alguns exemplos à seguir:
           </p>
+      </div>
+      <div class="col-sm-12">
           <pre>
             <code class="java">
-               // Annotation para declaração da classe
-               @JTCGen 
+              @JTCGen
+              public class Descontos {
+                
+                ... // Atributos
+                
+                @SetUp({"100.0", "100.0", "100.0","100.0"})
+                public Descontos(double vt, double am, double ad, double adiant) {
+                  this.valeTransporte = vt;
+                  this.assistMedica = am;
+                  this.assistDental = ad;
+                  this.adiantamento = adiant;
+                }
 
-               // Annotation para declaração de métodos contrutores
-               @SetUp
-
-               // Annotations para declaração de métodos
-               @TestEquals({"500.0;true", "150.0"}) //Relacionado ao assertEquals
-               @TestTrue({"500.0;true"}) //Relacionado ao assertTrue
-               @TestFalse({"500.0;true"}) //Relacionado ao assertFalse
-               @TestNull({"example"}) //Relacionado ao assertNull
-               @TestNotNull({"example"}) //Relacionado ao assertNotNull
-               @TestVoidEquals({"500.0;true", "150.0", "getValue()"}) //Relacionado ao assertEquals, para metodos void.
-
-               //Annotation para o modo de scripts (utiliza-se sintax javascript)
-               @Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, 1.1]).eq(330.0)")
+                ... //Getters and Setters
+                
+                @TestEquals({"", "400.0"})
+                public double obtemDescontosSomados() {
+                  return this.adiantamento + this.assistDental + this.assistMedica + this.valeTransporte;
+                }
+                
+              }
             </code>
           </pre>
+          <p>Ao executar a biblioteca, temos como resultado o caso de teste:</p>
+          <pre>
+            <code class="java">
+              public class DescontosTest {
+
+                private Descontos instance;
+
+                @Before
+                public void setUp() throws Exception {
+                  this.instance = new Descontos(100.0,100.0,100.0,100.0);
+                }
+
+                @After
+                public void tearDown() throws Exception {
+                  this.instance = null;
+                }
+
+                @Test
+                public void obtemDescontosSomados() {
+                  double resultado = this.instance.obtemDescontosSomados();
+                  assertEquals(400.0, resultado, 0.00001);
+                }
+                
+              }
+            </code>
+          </pre>
+          <p>
+            Abaixo, temos algumas caracteristicas dos recursos e do funcionamento da biblioteca:
+          </p>
       </div>
-			<div class="col-sm-12">
-				<p class="alert alert-info">
-					Em Construção...
-				</p>
-			</div>
+      <div class="col-sm-12">
+        <h3>3.1.1 <i>Annotation</i> de permissão</h3>
+      </div>
+      <div class="col-sm-12">
+        <p>
+          <span class="label label-warning">Importante</span> 
+          Para que a biblioteca identifique que você deseja gerar um caso de teste para a mesma, você
+          precisa anota-la com <code>@JTCGen</code>.
+        </p>
+        <p>
+          <pre>
+            <code class="java">
+                  @JTCGen
+                  public class Descontos { 
+                    ...
+                  }
+            </code>
+          </pre>
+        </p>
+        <p>
+          A função dela é simplesmente deixar a classe visível à biblioteca. Caso não queira que mais que a
+          biblioteca gere casos de testes para ela, apenas remova ou comente a <i>annotation</i>.
+        </p>
+      </div>    
+  
+      <div class="col-sm-12">
+        <h3>3.1.2 Declarando dados de inicialização do Método Construtor</h3>
+      </div>
+      <div class="col-sm-12">
+        <p>
+          A bibliteca gera casos de teste no padrão que o JUnit implementa. 
+          Com a <i>annotation</i> SetUp é criado o método SetUp do JUnit, onde realiza os passos
+          iniciais do teste automatizado.
+        </p>
+        <p>
+          Ao anotar esta marcação no seu método construtor é necessário informar respectivamente os valores
+          que serão utilizados como parâmetros quando for instanciada a classe no caso de teste. 
+        </p>
+        <p>
+          O exemplo abaixo inicializa a classe adicionando double 100.0 para cada argumento presente
+          na assinatura do método, respectivamente.
+        </p>
+        <p>
+          <pre>
+            <code class="java">
+                  ...
+                  @SetUp({"100.0", "100.0", "100.0","100.0"})
+                  public Descontos(double vt, double am, double ad, double adiant) {
+                    this.valeTransporte = vt;
+                    this.assistMedica = am;
+                    this.assistDental = ad;
+                    this.adiantamento = adiant;
+                  }
+                  ...
+            </code>
+          </pre>
+        </p>
+        <p>
+          Se torna uso obrigatório caso a sua classe possua um método construtor com valores iniciais.
+        </p>
+      </div>
+      
+      <div class="col-sm-12">
+        <h3>3.1.3 Declarando Casos de Testes</h3>
+      </div>
+      <div class="col-sm-12">
+        <p>
+          Para gerar casos de testes, existem algumas <i>annotations</i> capazes de executar 
+          apenas um dos métodos assert do JUnit. Abaixo o exemplo:
+        </p>
+        <p>
+          <pre>
+            <code class="java">
+                  ...
+                  @TestEquals({"", "400.0"})
+                  public double obtemDescontosSomados() {
+                    return this.adiantamento + this.assistDental + this.assistMedica + this.valeTransporte;
+                  }
+            </code>
+          </pre>
+        </p>
+        <p>
+          A <i>annotation</i> @TestEquals implementa o método "assertEquals" do Junit
+          ela requer dois parâmeros:
+          <ul>
+            <li>1º - Valores que serão assumidos nos argumentos, separados por ponto e virgula;</li>
+            <li>2º - Valor esperado como retorno quando invocado o método com os valores passados via parâmetro</li>
+          </ul>
+          <p class="alert alert-info">
+            Observação: Caso tenha utilizado a <i>annotation</i> @SetUp no método construtor, tenha em mente que os dados inicializados podem alterar o resultado final da execução. Pois então, os considere nos resultados esperados.
+          </p>
+          <p>Outros exemplos:</p>
+          <pre>
+            <code class="java">
+                  ...
+                  @TestEquals({"150.05", "400.0"})
+                  public double obtemDescontosSomados(double outrosDescontos) {
+                    return this.adiantamento + this.assistDental + this.assistMedica + this.valeTransporte;
+                  }
+
+                  ...
+                  /**
+                   * Passe os vários parametros separados por ponto e virgula
+                   */
+                  @TestEquals({"150.05;0.5", "400.0"})
+                  public double obtemDescontos(double outrosDescontos, double percAuxEmpresa) {
+                    return (
+                      this.adiantamento + this.assistDental + this.assistMedica + this.valeTransporte
+                    ) * percAuxEmpresa;
+                  }
+
+                  ...
+                  /**
+                   * Esta annotation apenas necessita da declaração dos parâmetros, pois o retorno esperado é true.
+                   */
+                  @TestTrue({"500.5"})
+                  public boolean descontosPositivos(double outrosDescontos) {
+                    return (
+                      this.adiantamento + this.assistDental + this.assistMedica + this.valeTransporte
+                    ) >= 0;
+                  }
+            </code>
+          </pre>
+        </p>
+      </div>
+
+
+      <div class="col-sm-12">
+        <h2>3.1.4 Criando Casos de Testes mais complexos (utilizando tipos abstratos e <i>mock object</i>)</h2>
+      </div>
+      <div class="col-sm-12">
+        <p>
+          Para que fosse possível gerar casos de testes automatizados que implementasse tipos abstratos de dados
+          e também a possibilidade de criar objetos dubles (<i>mock objects</i>) foi criada uma unica <i>annotation</i>
+          onde seria responsável por interpretar scripts de execução.
+        </p>
+        <p>
+          Neste caso foi utilizado uma API chamada <a href="http://www.oracle.com/technetwork/articles/java/jf14-nashorn-2126515.html">Nashorn</a>.
+          Ela é um motor da linguagem JavaScript integrado a versão Java 8. Ela é utilizada dentro deste projeto
+          para facilitar a escrita dos casos de teste, deixando menos complexa a declaração de tipos abstratos.
+        </p>
+        <p>
+          Abaixo, temos um exemplo completo para que possamos entender melhor:
+        </p>
+        <pre>
+          <code class="java">
+            @JTCGen
+            public class Funcionario {
+              
+              ... // Atributos
+              
+              public Funcionario(String nome, double salarioBase, TipoContratacao tipoContrato) {
+                this.nome = nome;
+                this.salarioBase = salarioBase;
+                this.tipoContrato = tipoContrato;
+              }
+              
+              /**
+               * Calcula descontos do vale transporte
+               * */
+              @Test("setup(['User', 5000.0, {c:'TipoContratacao@getSigla()@getNome()', v:['CLT', 'Contrato']}]).parameter().eq(250.0)")
+              public double calculaDescontoVT() {
+                
+                double percentualDesconto = 0.0;
+                
+                if(this.salarioBase > 2000.0 && this.tipoContrato.getSigla().equals("CLT") 
+                    && this.tipoContrato.getNome().equals("Contrato")){
+                  percentualDesconto = 0.05;
+                }
+                
+                return this.salarioBase * percentualDesconto;
+              }
+              
+              ...
+            }
+
+          </code>
+        </pre>
+        <p>
+          Nesta abordagem, é necessário declarar a execução de alguns scripts que a biblioteca fornece desenvolvidos
+          em JavaScript, para que seja gerado posteriormente o caso de teste desta maneira:
+        </p>
+        <pre>
+          <code class="java">
+            @Test
+            public void calculaDescontoVT() {
+              TipoContratacao tipocontratacao = mock(TipoContratacao.class);
+              when(tipocontratacao.getSigla()).thenReturn("CLT");
+
+              when(tipocontratacao.getNome()).thenReturn("Contrato");
+
+              Funcionario funcionario = new Funcionario("User", 5000.0, tipocontratacao);
+
+              double expected = funcionario.calculaDescontoVT();
+              assertEquals(250.0, expected, 0.0001);
+            }
+          </code>
+        </pre>
+        <p>
+          
+        </p>
+      </div>
+      <div class="col-sm-12">
+        <h3>3.1.4.1. Funções disponibilizadas</h3>
+      </div>
+      <div class="col-sm-12">
+        <h3><strong>Método: setup()</strong></h3>
+        <p>
+          Este método é responsável por gerar a inicialização da classe do método que será testado.
+        </p>
+        <p>
+          Ele possui o mesmo fim da <i>annotation</i> @SetUp, mas ele possui a capacidade de processar 
+          a criação de tipos abstratos de dados, criando o <i>mock</i> de seu objeto e métodos.
+        </p>
+        <p>
+          Sua declaração deve ser correspondente ao método construtor que deseja utilizar: 
+        </p>
+        <p class="alert alert-danger">
+          setup([200.2, "Teste", {c:"TipoAbstrato@metodoASerExecutado()", v:["valor retornado"]}])
+        </p>
+        <p>
+          para que possa processar tipos abstratos é necessário passar um objeto JSON no padrão:
+        </p>
+        <pre>
+          <code class="javascript">
+            {
+              c: "Classe@executa()", // call
+              v: "valorASerRetornado" // value            
+            }
+          </code>
+        </pre>
+        <p>
+          A biblioteca compreenderá que você necessita de uma nova instancia de "Classe", 
+          e o método "executa" deve ser <i>'mockado'</i> retornando o valor string "valorASerRetornado".
+        </p>
+      </div>
+      <div class="col-sm-12">
+        <h3><strong>Método: parameter()</strong></h3>
+        <p>
+          Este método é responsável por gerar a inicialização das classes que o método à ser testado possui dependencia para sua execução. E após isso testar o método.
+        </p>
+        <p>
+          A declaração dos parametros dele é identica ao método <strong>setup()</strong> explicado logo acima.
+        </p>
+        <p class="alert alert-danger">
+          parameter([{c:"UmaClasse@method()@otherMethod()", v:[5000, 920.02]}, "testeParametro"])
+        </p>
+        <p>
+          Para realizar o <i>mock</i> de mais de um comportamento da classe declare os métodos em sequencia separados por @:
+        </p>
+        <p>
+          <code>UmaClasse@method()@otherMethod()</code>. 
+        </p>
+        <p>
+          E passe um vetor contendo os valores que serão executados, respectivamente.
+        </p>
+        <p>
+          [5000, 920.02]
+        </p>
+      </div>
+      <div class="col-sm-12">
+        <h3><strong>Métodos de comparação: asserts</strong></h3>
+        <p>
+          Para realizar a comparação com o retorno esperado do método são disponibilizadas os seguintes métodos:
+        </p>
+        <p>
+          <ul>
+            <li>eq('ValorDeComparação') - representa o assertEquals do JUnit</li>
+            <li>eqVoid('ValorDeComparação') - representa o assertEquals do JUnit com a capacidade de testar metodos void</li>
+            <li>isFalse() - representa o assertFalse(), não precisa de parametros de comparação.</li>
+            <li>isTrue() - representa o assertTrue(), não precisa de parametros de comparação.</li>
+            <li>isNull() - representa o assertNull(), não precisa de parametros de comparação.</li>
+            <li>isNotNull() - representa o assertNotNull(), não precisa de parametros de comparação.</li>
+          </ul>
+        </p>
+      </div>
     </div>
   </section>
 	<section id="footer">
