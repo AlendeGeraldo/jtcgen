@@ -14,9 +14,9 @@ import br.com.jtcgen.builder.TestGeneratorFactory;
 import br.com.jtcgen.helpers.ImportManager;
 
 /**
- * FaÃ§ade para criÃ§Ã£o dos casos de testes
+ * Facade para cricao dos casos de testes
  * 
- * @author Rafael Henrique Ap. GonÃ§alves <rafael.goncalves19@fatec.sp.gov.br>
+ * @author Rafael Henrique Ap. Goncalves <rafael.goncalves19@fatec.sp.gov.br>
  * @author Estevam Herculano
  */
 public class JTCGenenerator implements TestCaseGenerable {
@@ -25,7 +25,7 @@ public class JTCGenenerator implements TestCaseGenerable {
 	public static final boolean DISABLE_BACKUP = false;
 
 	/**
-	 * funÃ§Ã£o sobrecarregada para aceitar var-args de objetos
+	 * funcao sobrecarregada para aceitar var-args de objetos
 	 * 
 	 * @param Objects...
 	 *            objects
@@ -53,8 +53,8 @@ public class JTCGenenerator implements TestCaseGenerable {
 	 * @param classe
 	 */
 	
-	public void generateTests(Class<?>... classes) {
-		generateTests(ENABLE_BACKUP, classes);
+	public void generateTests(String sourceDir, Class<?>... classes) {
+		generateTests("src/", ENABLE_BACKUP, classes);
 	}
 	
 	/**
@@ -63,28 +63,37 @@ public class JTCGenenerator implements TestCaseGenerable {
 	 * 
 	 * @param classe
 	 */
-	public void generateTests(boolean makeABackup, Class<?>... classes) {
+	public void generateTests(String sourceDir,  boolean makeABackup, Class<?>... classes) {
 		generate(makeABackup, classes);
 	}
 	
 	public void generateTests() {
-		generateTests(ENABLE_BACKUP);
+		generateTests("src/", ENABLE_BACKUP);
+	}
+	
+	public void generateTests(String sourceDir) {
+		generateTests(sourceDir, ENABLE_BACKUP);
 	}
 
-	public void generateTests(boolean makeABackup) {
+	public void generateTests(String sourceDir, boolean makeABackup) {
 		String separator = String.valueOf(File.separatorChar);
 		if(separator.equals("\\"))
 			separator = new String("\\\\");
-		String pathName = System.getProperty("user.dir") + separator + "src";
+		String pathName = System.getProperty("user.dir") + separator + sourceDir.replaceAll("/", separator);
 		List<Class<?>> classes = new ArrayList<Class<?>>();
 		try {
 			Files.walk(Paths.get(pathName)).forEach(filePath -> {
 				String separator2 = String.valueOf(File.separatorChar);
 				if(separator2.equals("\\"))
 					separator2 = new String("\\\\");
+				System.out.println(sourceDir);
+				System.out.println(sourceDir.replaceAll("/", separator2));
+				System.out.println(separator2);
 				if (Files.isRegularFile(filePath)) {
 					if (filePath.getFileName().toString().trim().matches("[A-Za-z0-9]+.java$")) {
 						try {
+							
+							String remove = sourceDir.replaceAll("/", separator2);
 							String className = filePath.toFile().getAbsolutePath().replaceAll(".+src" + separator2, "")
 									.replaceAll(separator2, ".").replaceAll("\\.java$", "").toString().trim();
 							classes.add(Class.forName(className));
