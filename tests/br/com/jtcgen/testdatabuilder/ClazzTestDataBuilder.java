@@ -7,11 +7,7 @@ import br.com.jtcgen.annotations.TestVoidEquals;
 import br.com.jtcgen.helpers.ImportManager;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Vector;
-
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.annotations.SetUp;
