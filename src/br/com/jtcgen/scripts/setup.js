@@ -1,6 +1,8 @@
 var setupBuffer = "";
 
 var setup = function (arrParams) {
+	if(arrParams == undefined)
+		arrParams = [];
 	if( typeof arrParams != "object" ){
 		errors.put({
 			location: "setup",

@@ -8,7 +8,7 @@ var mock = param = function (listaMocks) {
 	
 	if(listaMocks.length > 0){
 		listaMocks.forEach(function(item) {
-			if(typeof item  == "object") {
+			if(typeof item  == "object" && item != null) {
 				var clazzMethods = item.c.split('@');
 				var clazzName = clazzMethods[0];
 				var sameCall = false;
@@ -49,11 +49,14 @@ var mock = param = function (listaMocks) {
 				var paramReturn = clazzParam.getSimpleName();
 				
 				switch(paramReturn) {
-				case "string":
-					item = '"' + item + '"';
-					break;
-				case "double": 
-					item = helper.parseDouble(item);
+					case "String":
+						if(item != null)
+							item = '"' + item + '"';
+						break;
+					case "double": 
+						item = helper.parseDouble(item);
+					default: 
+						item = item;
 				}
 				
 				methodMap.push({
@@ -62,7 +65,7 @@ var mock = param = function (listaMocks) {
 					returns: item
 				});
 			}
-			i++;
+			countParams++;
 		});
 	}
 

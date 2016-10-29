@@ -2,6 +2,7 @@ package br.com.jtcgen.helpers;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class ImportManager {
 		importStatics.add(clazz);
 	}
 	
-	public static void addMapedReflections(Class<?> ...clazzes) {
+	public static void addMapedReflections(List<Class<?>> clazzes) {
 		for(Class<?> clazz : clazzes) 
 			reflections.put(clazz.getSimpleName(), clazz);
 	}

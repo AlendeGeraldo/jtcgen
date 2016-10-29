@@ -5,6 +5,14 @@ import br.com.jtcgen.annotations.TestFalse;
 import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
 import br.com.jtcgen.helpers.ImportManager;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Vector;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.annotations.SetUp;
 import br.com.jtcgen.annotations.Test;
@@ -144,12 +152,12 @@ class ContaCorrente extends Conta implements Tributavel {
 		return true;
 	}
 	
-	@Test("setup([10, 12, 0.0]).isNotNull()")
+	@Test("setup([10, 12, 0.0]).parameter().isNotNull()")
 	public ContaCorrente obtemContaCorrente() {
 		return new ContaCorrente(this.numero, this.getAgencia(), this.saldo);
 	}
 
-	@Test("setup([5, 5, 0.0]).isNull()")
+	@Test("setup([5, 5, 0.0]).parameter().isNull()")
 	public ContaPoupanca obtemContaPoupanca() {
 		if (String.valueOf(this.numero).length() > 10)
 			return new ContaPoupanca(Integer.parseInt(new String(this.numero + "500")), this.getAgencia(), this.saldo);
@@ -157,7 +165,6 @@ class ContaCorrente extends Conta implements Tributavel {
 		return null;
 	}
 	
-	//mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
 	@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(300.0)")
 	public double somaValoresDasContas(ContaPoupanca cp) {
 		return this.saldo + cp.getSaldo();
@@ -240,7 +247,10 @@ public class ClazzTestDataBuilder {
 	}
 	
 	public static void getLocalClasses() {
-		Class<?>[] arrClasses = {ContaCorrente.class, ContaPoupanca.class, ContaAplicacao.class};
+		List<Class<?>> arrClasses = new ArrayList<Class<?>>();
+		arrClasses.add(ContaCorrente.class);
+		arrClasses.add(ContaPoupanca.class);
+		arrClasses.add(ContaAplicacao.class);
 		
 		ImportManager.addMapedReflections(arrClasses);
 	}

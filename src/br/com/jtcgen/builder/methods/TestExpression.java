@@ -92,7 +92,6 @@ public class TestExpression extends TestMethodTemplate{
 				StringBuffer script = new StringBuffer();
 				try {
 					for(URL resource : resources){
-
 						Path path = null;
 						FileSystem fs = null;
 						if(resource.toString().split("!").length > 1){

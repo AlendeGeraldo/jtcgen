@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.jtcgen.annotations.JTCGen;
@@ -12,6 +13,7 @@ import br.com.jtcgen.builder.DirectoryGenerator;
 import br.com.jtcgen.builder.TestGenerator;
 import br.com.jtcgen.builder.TestGeneratorFactory;
 import br.com.jtcgen.helpers.ImportManager;
+import br.com.jtcgen.helpers.ListClasses;
 
 /**
  * Facade para cricao dos casos de testes
@@ -37,13 +39,11 @@ public class JTCGenenerator implements TestCaseGenerable {
 	}
 	public void generateTests(boolean makeABackup, Object... objects) {
 		int i = 0;
-		Class<?>[] classes = new Class<?>[objects.length];
+		List<Class<?>> classes = new ArrayList<Class<?>>();
 		for (Object obj : objects)
-			classes[i++] = obj.getClass();
+			classes.add(obj.getClass());
 
 		generate(makeABackup, classes);
-
-		System.out.println("Casos de testes criados.");
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class JTCGenenerator implements TestCaseGenerable {
 	 */
 	
 	public void generateTests(String sourceDir, Class<?>... classes) {
-		generateTests("src/", ENABLE_BACKUP, classes);
+		generateTests(ENABLE_BACKUP, classes);
 	}
 	
 	/**
@@ -63,64 +63,39 @@ public class JTCGenenerator implements TestCaseGenerable {
 	 * 
 	 * @param classe
 	 */
-	public void generateTests(String sourceDir,  boolean makeABackup, Class<?>... classes) {
-		generate(makeABackup, classes);
+	public void generateTests(boolean makeABackup, Class<?>... classes) {
+		List<Class<?>> list = new ArrayList<Class<?>>();
+		for(Class<?> clazz : classes)
+			list.add(clazz);
+		generate(makeABackup, list);
 	}
 	
 	public void generateTests() {
-		generateTests("src/", ENABLE_BACKUP);
-	}
-	
-	public void generateTests(String sourceDir) {
-		generateTests(sourceDir, ENABLE_BACKUP);
+		generateTests(ENABLE_BACKUP);
 	}
 
-	public void generateTests(String sourceDir, boolean makeABackup) {
-		String separator = String.valueOf(File.separatorChar);
-		if(separator.equals("\\"))
-			separator = new String("\\\\");
-		String pathName = System.getProperty("user.dir") + separator + sourceDir.replaceAll("/", separator);
-		List<Class<?>> classes = new ArrayList<Class<?>>();
-		try {
-			Files.walk(Paths.get(pathName)).forEach(filePath -> {
-				String separator2 = String.valueOf(File.separatorChar);
-				if(separator2.equals("\\"))
-					separator2 = new String("\\\\");
-				System.out.println(sourceDir);
-				System.out.println(sourceDir.replaceAll("/", separator2));
-				System.out.println(separator2);
-				if (Files.isRegularFile(filePath)) {
-					if (filePath.getFileName().toString().trim().matches("[A-Za-z0-9]+.java$")) {
-						try {
-							
-							String remove = sourceDir.replaceAll("/", separator2);
-							String className = filePath.toFile().getAbsolutePath().replaceAll(".+src" + separator2, "")
-									.replaceAll(separator2, ".").replaceAll("\\.java$", "").toString().trim();
-							classes.add(Class.forName(className));
-						} catch (ClassNotFoundException e) {
-							System.out.println(e.getMessage() + " ");
-							//e.printStackTrace();
-							System.out.println("nao foi possivel encontrar a classe");
-						}
-					}
-				}
-			});
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void generateTests(boolean makeABackup) {
+		
+		ListClasses ls = new ListClasses();
+		
+		List<String> classes = ls.getClasses();
+		
+		List<Class<?>> arrClasses = new ArrayList<Class<?>>();
+		for(String className : classes) {
+			try {
+				arrClasses.add(Class.forName(className));
+			} catch (ClassNotFoundException e) {
+				System.out.println("Falha ao carregar classe: " + className);
+				e.printStackTrace();
+			}
 		}
 
-		Class<?>[] arrClasses = new Class<?>[classes.size()];
-		int i = 0;
-
-		for (Class<?> classe : classes)
-			arrClasses[i++] = classe;
-		
 		ImportManager.addMapedReflections(arrClasses);
 		
 		generate(makeABackup, arrClasses);
 	}
 
-	private void generate(boolean makeABak, Class<?>... classes) {
+	private void generate(boolean makeABak, List<Class<?>> classes) {
 		for (Class<?> classe : classes) {
 			if (classe.isAnnotationPresent(JTCGen.class)) {
 				StringBuffer buffer = new StringBuffer();

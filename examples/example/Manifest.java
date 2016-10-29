@@ -6,6 +6,6 @@ public class Manifest {
 	public static void main(String[] args) {
 		JTCGenenerator jtcGenenerator = new JTCGenenerator();
 
-		jtcGenenerator.generateTests();
+		jtcGenenerator.generateTests();	
 	}
 }
