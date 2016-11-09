@@ -17,7 +17,11 @@ var eq = function(expected, methodToCall) {
 	if(returnType == "double") {
 		paramAdd = ", 0.0001";
 		
-		if(regex.isInteger(expected)) expected = expected.toFixed(1);
+		if(regex.isInteger(expected)) 
+			expected = expected.toFixed(1);
+	} else if(returnType == "String") {
+		if(!/^\'.+\'$/.test(expected))
+			expected = "'"+expected+"'";
 	}
 	
 	str += TextEditor.newLine(

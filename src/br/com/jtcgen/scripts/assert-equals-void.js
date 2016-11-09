@@ -26,6 +26,9 @@ var eqVoid = function(expected, methodToCall) {
 		paramAdd = ", 0.0001";
 		
 		if(regex.isInteger(expected)) expected = expected.toFixed(1);
+	} else if(returnType == "String") {
+		if(!/^\'.+\'$/.test(expected))
+			expected = "'"+expected+"'";
 	}
 	
 	if(!/[a-zA-Z0-9]+\([a-zA-Z0-9,\s\.\<\>]+\)/g.test(methodToCall)) {
