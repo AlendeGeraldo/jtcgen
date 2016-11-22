@@ -28,9 +28,7 @@ import static br.com.jtcgen.builder.methods.TestInternalBehaviors.*;
 class TestMethodsGenerator extends TestGenerator {
 
 	private List<Method> methods;
-
 	private StringBuffer testMethod;
-	
 	private Annotation predecessor;
 
 	public TestMethodsGenerator(Class<?> clazz) {

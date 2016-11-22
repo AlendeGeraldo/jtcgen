@@ -41,20 +41,6 @@ public class TestAssertEquals extends TestMethodTemplate {
 
 		String resultExpected = parseExpectedValue(expected, method);
 
-		/*Map<String, String> scene = buildScene();// its a substitute of params;
-		if(scene != null) {
-			String paramExpected = scene.get("var");
-			
-			assinaturaMetodo.append(scene.get("str"));
-			
-			String[] newParams = new String[params.length+1];
-			for(int i = 0; i < params.length; i++) {
-				newParams[i] = params[i]; 
-			}
-			newParams[params.length] = paramExpected;
-			params = newParams;
-		}*/
-		
 		assinaturaMetodo.append(createMethodCall(pts, params));
 
 		String content = TextEditor.newLine("assertEquals(" + resultExpected + ", resultado" + paramAdicionais + ");",

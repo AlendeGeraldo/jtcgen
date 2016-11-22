@@ -19,7 +19,8 @@ class SetUpGenerator extends TestGenerator {
 		for (Constructor<?> c : this.clazz.getConstructors())
 			this.constructors.add(c);
 	}
-
+	
+	@Override
 	public String generate() {
 		StringBuffer sb = new StringBuffer("\t" + "@Before");
 		sb.append("\n");

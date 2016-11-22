@@ -141,17 +141,4 @@ public abstract class TestMethodTemplate {
 		return str;
 	}
 
-	/*public void setScene(Annotation antecessora) {
-		this.testScene = antecessora; 
-		
-	}*/
-	
-	/*protected Map<String,String> buildScene() {
-		return testScene == null ? null : buildStrScene(testScene);
-	}*/
-	
-	/*protected Map<String,String> buildStrScene(Annotation testScene) {
-		
-	}*/
-	
 }
