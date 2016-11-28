@@ -1,6 +1,6 @@
 package br.com.jtcgen.exceptions;
 
-public class InvalidDeclaredAnnotationException extends RuntimeException {
+public class InvalidDeclaredAnnotationException extends JTCGenException {
 
 	/**
 	 * 

@@ -65,14 +65,6 @@ class TestMethodsGenerator extends TestGenerator {
 		return testMethod.toString();
 	}
 	
-	/*private void verifyTestScene(TestMethodTemplate tmp) {
-		if(antecessora == null)
-			return ;
-		
-		if(antecessora.annotationType() == Test.class)
-			tmp.setScene(antecessora);
-	}*/
-
 	private TestMethodTemplate getAnnotatedGeneratorMethod(Class<? extends Annotation> ann, Method method) {
 		TestMethodTemplate tmp = null;
 		if (ann == TestVoidEquals.class)

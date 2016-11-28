@@ -11,6 +11,16 @@ var helper = {
 	},
 	parseDouble: function(value) {
 		return (regex.isInteger(value)) ? value.toFixed(1) : value;
-	}
-	
-} 
+	},
+	isDiffType: function(value, typeExpected) {
+		return Object.prototype.toString.call(value) != typeExpected;
+	} 
+};
+
+var exception = {
+	invalidParam: function (message) {
+		var exception = Java.type("br.com.jtcgen.exceptions.InvalidParamDeclarationException");
+		
+		return new exception(message);
+	}	
+};

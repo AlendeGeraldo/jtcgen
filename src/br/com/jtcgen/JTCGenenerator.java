@@ -12,6 +12,7 @@ import br.com.jtcgen.annotations.JTCGen;
 import br.com.jtcgen.builder.DirectoryGenerator;
 import br.com.jtcgen.builder.TestGenerator;
 import br.com.jtcgen.builder.TestGeneratorFactory;
+import br.com.jtcgen.exceptions.JTCGenException;
 import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.helpers.ListClasses;
 
@@ -96,21 +97,31 @@ public class JTCGenenerator implements TestCaseGenerable {
 	}
 
 	private void generate(boolean makeABak, List<Class<?>> classes) {
-		for (Class<?> classe : classes) {
-			if (classe.isAnnotationPresent(JTCGen.class)) {
-				StringBuffer buffer = new StringBuffer();
-
-				List<TestGenerator> gens = TestGeneratorFactory.createGenerators(classe);
-				for (TestGenerator gen : gens) {
-					buffer.append(gen.generate());
+		try {
+			for (Class<?> classe : classes) {
+				if (classe.isAnnotationPresent(JTCGen.class)) {
+					StringBuffer buffer = new StringBuffer();
+	
+					List<TestGenerator> gens = TestGeneratorFactory.createGenerators(classe);
+					for (TestGenerator gen : gens) {
+						buffer.append(gen.generate());
+					}
+	
+					DirectoryGenerator dir = TestGeneratorFactory.createDirectoryGenerator(classe);
+					dir.createTest(
+							buffer.toString().replaceFirst("\\{\\{OTHER_IMPORTS\\}\\}", ImportManager.getImports()),
+							makeABak
+					);
 				}
-
-				DirectoryGenerator dir = TestGeneratorFactory.createDirectoryGenerator(classe);
-				dir.createTest(
-						buffer.toString().replaceFirst("\\{\\{OTHER_IMPORTS\\}\\}", ImportManager.getImports()),
-						makeABak
-				);
 			}
+		} catch(JTCGenException e) {
+			String simpleName = e.getClass().getSimpleName();
+			StringBuffer error = new StringBuffer();
+			error.append("Foram encontratos erros na geração dos testes, ");
+			error.append("verifique o(s) seguinte(s) problema(s): \n\n");
+			error.append("[" + simpleName + "] \"" + e.getMessage() + "\"");
+			System.out.println(error);
+			System.exit(0);
 		}
 	}
 }

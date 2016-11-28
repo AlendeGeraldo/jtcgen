@@ -6,6 +6,10 @@ var mock = param = function (listaMocks) {
 	if(listaMocks == undefined) 
 		listaMocks = [];
 	
+	if(helper.isDiffType(listaMocks, '[object Array]')) {
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.parameter()' . É necessário ser um array. Ex: [200.0, 'abc'];");
+	}
+	
 	if(listaMocks.length > 0){
 		listaMocks.forEach(function(item) {
 			if(typeof item  == "object" && item != null) {

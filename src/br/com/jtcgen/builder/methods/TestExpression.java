@@ -25,6 +25,8 @@ import org.mockito.Mockito;
 
 import br.com.jtcgen.annotations.Test;
 import br.com.jtcgen.annotations.Tests;
+import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
+import br.com.jtcgen.exceptions.JTCGenException;
 import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.helpers.NashornBag;
 
@@ -126,7 +128,14 @@ public class TestExpression extends TestMethodTemplate{
 					methodTest.append("\n");
 				}
 			} catch (ScriptException e) {
-				//methodTest.append("public void anErrosWasOccurred(){String string = \"error\";}");
+				
+				String message = e.getLocalizedMessage();
+				if(message.matches("^.+\\[InvalidParamException\\].+")) {
+					String newMens = message.replaceFirst("^.+\\[InvalidParamException\\]", "").split(";")[0];
+					
+					throw new InvalidParamDeclarationException(newMens);
+				}
+				
 				System.out.println(e.getMessage() + " " + e.getLineNumber() + " " +  e.getColumnNumber() + " " + e.getFileName());
 				e.printStackTrace();
 			}

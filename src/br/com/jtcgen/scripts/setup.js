@@ -3,13 +3,8 @@ var setupBuffer = "";
 var setup = function (arrParams) {
 	if(arrParams == undefined)
 		arrParams = [];
-	if( typeof arrParams != "object" ){
-		errors.put({
-			location: "setup",
-			message: "Tipo de parametros inválido, é necessário ser um array. Ex. [200.0, 'test'] "
-		});
-
-		return mockery;
+	if( helper.isDiffType(arrParams, "[object Array]")) {
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.setup()' . É necessário ser um array. Ex: [200.0, 'abc'];");
 	}
 	 
 	arrConstr = actualClazz.getConstructors();

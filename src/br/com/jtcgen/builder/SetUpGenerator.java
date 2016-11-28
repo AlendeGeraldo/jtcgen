@@ -44,7 +44,9 @@ class SetUpGenerator extends TestGenerator {
 				Parameter[] pts = co.getParameters();
 				
 				if (params.length != co.getParameterCount())
-					throw new InvalidParamDeclarationException("Valor total de parametros incorretos");
+					throw new InvalidParamDeclarationException(
+						"Total de parametros incorretos na annotation SetUp, na classe: " + clazz.getSimpleName()
+					);
 
 				int count = 0;
 				assinaturaDoConstrutor.append("this.instance = new " + clazz.getSimpleName() + "(");
