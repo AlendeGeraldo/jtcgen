@@ -82,7 +82,7 @@ public class DirectoryGenerator {
 		File fileInstance = new File(file);
 		
 		int showConfirmDialog = 1;
-		if(fileInstance.exists() && overwriteAllTests == false){
+		if(fileInstance.exists() && overwriteAllTests == false && makeABackupFile){
 			String[] options = {"Sim, e sobrescreva os proximos.", "Sim", "Não"};
 			showConfirmDialog = JOptionPane.showOptionDialog(null, 
 					"Deseja sobrescrever o arquivo: " + fileInstance.getPath() + "?", 

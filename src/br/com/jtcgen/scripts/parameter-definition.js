@@ -12,12 +12,23 @@ var mock = param = function (listaMocks) {
 	
 	if(listaMocks.length > 0){
 		listaMocks.forEach(function(item) {
-			if(typeof item  == "object" && item != null) {
+			if(!helper.isDiffType(item, '[object Object]') && item != null) {
+				
+				if(	helper.isDiffType(item.c, '[object String]') || 
+					item.v == undefined
+				) {
+					throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.parameter()' . Para criar mocks é necessário respeitar o JSON padrão. Ex.: {c:'Clazz@someMethod()', v:['value-example']};");
+				}
+				
+				if(!helper.isDiffType(item.v, '[object Object]')) {
+					throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.parameter()' . Não é possivel definir objetos no atributo 'v'. Utilize apenas tipos primitivos;");
+				}
+				
 				var clazzMethods = item.c.split('@');
 				var clazzName = clazzMethods[0];
 				var sameCall = false;
 				for(var i=1; i < clazzMethods.length; i++) {
-					if(typeof item.v != "object" && clazzMethods.length > 0) {
+					if(helper.isDiffType(item.v, '[object Array]')) {
 						item.v = [item.v];
 					}
 					var metodos = [];

@@ -65,7 +65,7 @@ var makeObjMockCall = function(item) {
 		var clazzMethods = item.c.split('@');
 		var clazzName = clazzMethods[0];
 		for(var i=1; i < clazzMethods.length; i++) {
-			if(typeof item.v != "object" && clazzMethods.length > 0) {
+			if(helper.isDiffType(item.v, '[object Array]')) {
 				item.v = [item.v];
 			}
 			var metodos = [];

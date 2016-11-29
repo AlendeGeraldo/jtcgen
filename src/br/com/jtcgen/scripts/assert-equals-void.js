@@ -1,5 +1,17 @@
 var eqVoid = function(expected, methodToCall) {
 	
+	if(helper.isDiffType(expected, '[object String]')) {
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.eqVoid()' . O segundo parâmetro deve ser o nome do método. Ex: 'obtemAlgo';");
+	}
+	
+	if(!helper.isDiffType(expected, '[object Array]')) {
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.eqVoid()' . Este método apenas suporta tipos primitivos. Ex: 'example' ou 200.50;");
+	}
+	
+	if(!helper.isDiffType(expected, '[object Object]')) {
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.eqVoid()' . Este método apenas suporta tipos primitivos. Ex: 'example' ou 200.50;");
+	}
+	
 	var assert = "assertEquals";
 	var instance = actualClazz.getSimpleName().toLowerCase();
 	var returnType = actualMethod.getReturnType().getSimpleName();

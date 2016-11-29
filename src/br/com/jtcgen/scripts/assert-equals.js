@@ -2,6 +2,14 @@ var eq = function(expected, methodToCall) {
 	
 	if(methodToCall != undefined) return eqVoid(expected, methodToCall);
 	
+	if(!helper.isDiffType(expected, '[object Array]')) {
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.eq()' . Este método apenas suporta tipos primitivos. Ex: 'example' ou 200.50;");
+	}
+	
+	if(!helper.isDiffType(expected, '[object Object]')) {
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.eq()' . Este método apenas suporta tipos primitivos. Ex: 'example' ou 200.50;");
+	}
+	
 	var assert = "assertEquals";
 	var instance = actualClazz.getSimpleName().toLowerCase();
 	var returnType = actualMethod.getReturnType().getSimpleName();

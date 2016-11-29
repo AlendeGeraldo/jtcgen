@@ -97,6 +97,7 @@ public class JTCGenenerator implements TestCaseGenerable {
 	}
 
 	private void generate(boolean makeABak, List<Class<?>> classes) {
+		System.out.println("Executando ...");
 		try {
 			for (Class<?> classe : classes) {
 				if (classe.isAnnotationPresent(JTCGen.class)) {
@@ -114,6 +115,7 @@ public class JTCGenenerator implements TestCaseGenerable {
 					);
 				}
 			}
+			System.out.println("Classes de testes geradas, verifique o source folder de testes.");
 		} catch(JTCGenException e) {
 			String simpleName = e.getClass().getSimpleName();
 			StringBuffer error = new StringBuffer();

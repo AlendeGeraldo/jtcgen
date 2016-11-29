@@ -34,8 +34,20 @@ var setup = function (arrParams) {
 	
 	var parameters = "";
 	arrParams.forEach(function(item) {
-		if(typeof item == "object"){
+		if(!helper.isDiffType(item, '[object Object]')) {
+			
+			if(	helper.isDiffType(item.c, '[object String]') || 
+				item.v == undefined
+			) {
+				throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.setup()' . Para criar mocks é necessário respeitar o JSON padrão. Ex.: {c:'Clazz@someMethod()', v:['value-example']};");
+			}
+			
+			if(!helper.isDiffType(item.v, '[object Object]')) {
+				throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.setup()' . Não é possivel definir objetos no atributo 'v'. Utilize apenas tipos primitivos;");
+			}
+			
 			if(regex.isMockString(item.c)) {
+				
 				var mockObjs = makeObjMockCall(item);
 				
 				var results = [];
