@@ -121,7 +121,6 @@ public class TestExpression extends TestMethodTemplate{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 				methodTest.append((String) engine.eval(value));
 				
 				if(count < annotationValues.size()){

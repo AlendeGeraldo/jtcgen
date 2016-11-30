@@ -27,7 +27,6 @@ public class TestExpressionOtherAssertsTest {
 	@Test
 	public void deveCriarCenarioRetonandoTrueOuFalse() {
 		Method choose = null;
-		System.out.println(declaredMethods);
 		for(Method m : declaredMethods) {
 			 if("saldoEhPositivo".equals(m.getName()))
 				 choose = m;

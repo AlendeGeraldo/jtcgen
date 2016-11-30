@@ -8,13 +8,22 @@ var setup = function (arrParams) {
 	}
 	 
 	arrConstr = actualClazz.getConstructors();
-	
 	for(var i in arrConstr) {
 		if(arrConstr[i].getParameterCount() == arrParams.length){
 			arrTypes = arrConstr[i].getParameterTypes();
 			for(var j in arrTypes) {
+				
+				if(!helper.isDiffType(arrParams[j], '[object Object]')) {
+					throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.setup()' . Não são suportados parametros do tipo Objeto;");
+				} else if (!helper.isDiffType(arrParams[j], '[object Array]')) {
+					throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.setup()' . Não são suportados parametros do tipo Array;");
+				}
+				
 				if(arrTypes[j].getSimpleName().equals("double")){
+					if(regex.isInteger(arrParams[j]))
+						arrParams[j] = arrParams[j].toFixed(1);
 					
+				} else if(arrTypes[j].getSimpleName().equals("float")){
 					if(regex.isInteger(arrParams[j]))
 						arrParams[j] = arrParams[j].toFixed(1);
 					
@@ -30,7 +39,6 @@ var setup = function (arrParams) {
 			}
 		}
 	}
-	
 	
 	var parameters = "";
 	arrParams.forEach(function(item) {

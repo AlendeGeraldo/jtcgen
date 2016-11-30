@@ -51,11 +51,25 @@ class SetUpGenerator extends TestGenerator {
 				int count = 0;
 				assinaturaDoConstrutor.append("this.instance = new " + clazz.getSimpleName() + "(");
 				for (Parameter p : pts) {
-					Class<?> type = p.getType().getClass();
+					Class<?> type = p.getType();
 
 					String param;
-					if (type == String.class) {
+					if (type== String.class) {
 						param = '"' + params[count] + '"';
+					} else if (type== char.class) {
+						param = '\'' + params[count] + '\'';
+					} else if (type == double.class || type == float.class) {
+						param = params[count];
+						
+						if(!params[count].matches("^[0-9]+\\.[0-9]+$")) {
+							if(params[count].matches("^[0-9]+$")) {
+								param = params[count] + ".0";
+							} else {
+								throw new InvalidParamDeclarationException(
+									"Tipo de parâmetro inválido na annotation SetUp da classe " + clazz.getSimpleName() + ". Valor inválido: " + params[count]
+								);
+							}
+						}
 					} else {
 						param = params[count];
 					}

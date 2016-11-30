@@ -13,6 +13,7 @@ import javax.script.ScriptException;
 import org.mockito.Mockito;
 
 import br.com.jtcgen.annotations.Test;
+import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.ImportManager;
 import br.com.jtcgen.helpers.TextEditor;
 
@@ -89,8 +90,22 @@ public abstract class TestMethodTemplate {
 			Class<?> type = p.getType();
 
 			String param;
-			if (type.equals(String.class)) {
+			if (type == String.class) {
 				param = '"' + params[count] + '"';
+			} else if (type== char.class) {
+				param = '\'' + params[count] + '\'';
+			} else if (type == double.class || type == float.class) {
+				param = params[count];
+				
+				if(!params[count].matches("^[0-9]+\\.[0-9]+$")) {
+					if(params[count].matches("^[0-9]+$")) {
+						param = params[count] + ".0";
+					} else {
+						throw new InvalidParamDeclarationException(
+							"Tipo de parâmetro inválido na annotation SetUp da classe " + clazz.getSimpleName() + ". Valor inválido: " + params[count]
+						);
+					}
+				}
 			} else {
 				param = params[count];
 			}
@@ -121,7 +136,7 @@ public abstract class TestMethodTemplate {
 	}
 
 	protected boolean isValidParams(String[] params) {
-		if (params.length != method.getParameterCount() && testScene == null)
+		if (params.length != method.getParameterCount())
 			return false;
 
 		return true;
@@ -133,11 +148,26 @@ public abstract class TestMethodTemplate {
 
 	protected String parseExpectedValue(String value, Method method) {
 		String str;
-		if (method.getReturnType() == String.class) {
+		Class<?> type = method.getReturnType();
+		if (type == String.class) {
 			str = "\"" + value + "\"";
+		} else if (type == char.class) {
+			str = '\'' + value + '\'';
+		} else if (type == double.class || type == float.class) {
+			str = value;
+			if(!value.matches("^[0-9]+\\.[0-9]+$")) {
+				if(value.matches("^[0-9]+$")) {
+					str = value + ".0";
+				} else {
+					throw new InvalidParamDeclarationException(
+						"Tipo de parâmetro de retorno inválido na annotation sobre o metodo '" + method.getName() + "' da classe " + clazz.getSimpleName() + ". Valor de retorno inválido: " + value
+					);
+				}
+			}
 		} else {
 			str = value;
 		}
+		
 		return str;
 	}
 

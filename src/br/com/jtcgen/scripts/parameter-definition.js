@@ -59,6 +59,13 @@ var mock = param = function (listaMocks) {
 					sameCall = true;
 				}
 			} else {
+				if(!helper.isDiffType(item, '[object Object]')) {
+					throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.parameter()'. Não são suportados parametros do tipo Objeto;");
+				} else if (!helper.isDiffType(item, '[object Array]')) {
+					throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" no método '.parameter()'. Não são suportados parametros do tipo Array;");
+				}
+
+				
 				var clazzParam = actualMethod.getParameterTypes()[countParams];
 				
 				var paramReturn = clazzParam.getSimpleName();
@@ -70,6 +77,13 @@ var mock = param = function (listaMocks) {
 						break;
 					case "double": 
 						item = helper.parseDouble(item);
+						break;
+					case "float": 
+						item = helper.parseDouble(item);
+						break;
+					case "char": 
+						item = '\'' + item + '\'';
+						break;
 					default: 
 						item = item;
 				}

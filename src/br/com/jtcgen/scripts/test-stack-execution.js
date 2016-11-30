@@ -61,7 +61,7 @@ var exec =  function () {
 
 var makeObjMockCall = function(item) {
 	var methodMap = [];
-	if(typeof item == "object"){
+	if(!helper.isDiffType(item.v, '[object Object]')) {
 		var clazzMethods = item.c.split('@');
 		var clazzName = clazzMethods[0];
 		for(var i=1; i < clazzMethods.length; i++) {
@@ -78,6 +78,8 @@ var makeObjMockCall = function(item) {
 				
 				if(metodo.getName().equals(clazzMethods[i].replace(/\(|\)/g, ""))) {
 					if(metodo.getReturnType().getSimpleName().equals("double")) {
+						item.v[i-1] = (regex.isInteger(item.v[i-1])) ? item.v[i-1].toFixed(1) : item.v[i-1];
+					} else if(metodo.getReturnType().getSimpleName().equals("float")) {
 						item.v[i-1] = (regex.isInteger(item.v[i-1])) ? item.v[i-1].toFixed(1) : item.v[i-1];
 					} else if(metodo.getReturnType().getSimpleName().equals("String")) {
 						item.v[i-1] = '"' + item.v[i-1] + '"';
@@ -99,8 +101,7 @@ var makeObjMockCall = function(item) {
 
 var makeStrCall = function(item, sameCall) {
 	if(item == undefined){
-		print("Ocorreu um erro em makeStrCall");
-		return;
+		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" . Erro na criação da chamada de classe. 'makeStrCall';");
 	}
 	var namesInUse = NashornBag.get();
 	
