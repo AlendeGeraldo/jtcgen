@@ -102,9 +102,26 @@ public abstract class TestMethodTemplate {
 						param = params[count] + ".0";
 					} else {
 						throw new InvalidParamDeclarationException(
-							"Tipo de parâmetro inválido na annotation SetUp da classe " + clazz.getSimpleName() + ". Valor inválido: " + params[count]
+								"Tipo de parâmetro inválido na annotation sobre o metodo '" + method.getName() + "' da classe " + clazz.getSimpleName() + ". Valor inválido: " + params[count]
 						);
 					}
+				}
+				
+				if(type == float.class) {
+					param = new String(param + "f");
+				}
+				
+			} else if (type == int.class || type == long.class) {
+				param = params[count];
+				if(!params[count].matches("^[0-9]+$")) {
+					if(params[count].matches("^[0-9]+\\.[0-9]+$")) {
+						param = params[count].split("\\.")[0];
+					} else {
+						throw new InvalidParamDeclarationException(
+								"Tipo de parâmetro de retorno inválido na annotation sobre o metodo '" + method.getName() + "' da classe " + clazz.getSimpleName() + ". Valor de retorno inválido: " + params[count]
+						);
+					}
+					
 				}
 			} else {
 				param = params[count];
@@ -121,7 +138,7 @@ public abstract class TestMethodTemplate {
 
 	protected String getParamAdicional() {
 		StringBuffer retorno = new StringBuffer();
-		if (method.getReturnType() == double.class)
+		if (method.getReturnType() == double.class || method.getReturnType() == float.class)
 			retorno.append(", 0.00001");
 
 		return retorno.toString();
@@ -163,6 +180,22 @@ public abstract class TestMethodTemplate {
 						"Tipo de parâmetro de retorno inválido na annotation sobre o metodo '" + method.getName() + "' da classe " + clazz.getSimpleName() + ". Valor de retorno inválido: " + value
 					);
 				}
+			}
+			
+			if(type == float.class) {
+				str = new String(str + "f");
+			}
+		} else if (type == int.class || type == long.class) {
+			str = value;
+			if(!value.matches("^[0-9]+$")) {
+				if(value.matches("^[0-9]+\\.[0-9]+$")) {
+					str = value.split("\\.")[0];
+				} else {
+					throw new InvalidParamDeclarationException(
+							"Tipo de parâmetro de retorno inválido na annotation sobre o metodo '" + method.getName() + "' da classe " + clazz.getSimpleName() + ". Valor de retorno inválido: " + value
+					);
+				}
+				
 			}
 		} else {
 			str = value;

@@ -103,5 +103,40 @@ public class ContaAplicacao extends Conta implements Tributavel {
 	public double getSaldo() {
 		return saldo;
 	};
+	
+	/**
+	 * Métodos de testes
+	 * */
+	
+	@TestEquals({"a;5.5", "a"})
+	public char testeChar(char param1, double param2) {
+		return param1;
+	}
+	
+	@TestEquals({"10.5;1.0", "10.5"})
+	public float testeFloat(float param1, float param2) {
+		return param1;
+	}
+	
+	@TestEquals({"5.1;2.0", "10.2"})
+	public double testeDouble(double param1, float param2) {
+		return param1 * param2;
+	}
+	
+	@TestEquals({"5.1;2.0", "10.2"})
+	public long testeLong(int param1, int param2) {
+		return param1 * param2;
+	}
+	
+	@TestEquals({"5.1;2.0", "10.2"})
+	public int testeInt(float param1, double param2) {
+		return (int) (param1 * param2);
+	}
+	
+	@TestEquals({"v5.1;a", "v5.1a"})
+	public String testeString(String param1, char param2) {
+		char c[] = {param2};
+		return param1 + new String(c);
+	}
 
 }
