@@ -70,6 +70,18 @@ class SetUpGenerator extends TestGenerator {
 								);
 							}
 						}
+					} else if (type == int.class || type == long.class) {
+						param = params[count];
+						if(!params[count].matches("^[0-9]+$")) {
+							if(!params[count].matches("^[0-9]+\\.[0-9]+$")) {
+								param = params[count].split(".")[0];
+							} else {
+								throw new InvalidParamDeclarationException(
+									"Tipo de parâmetro inválido na annotation SetUp da classe " + clazz.getSimpleName() + ". Valor inválido: " + params[count]
+								);
+							}
+							
+						}
 					} else {
 						param = params[count];
 					}
