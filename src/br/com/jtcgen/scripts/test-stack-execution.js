@@ -61,7 +61,7 @@ var exec =  function () {
 
 var makeObjMockCall = function(item) {
 	var methodMap = [];
-	if(!helper.isDiffType(item.v, '[object Object]')) {
+	if(!helper.isDiffType(item, '[object Object]')) {
 		var clazzMethods = item.c.split('@');
 		var clazzName = clazzMethods[0];
 		for(var i=1; i < clazzMethods.length; i++) {
@@ -103,6 +103,7 @@ var makeStrCall = function(item, sameCall) {
 	if(item == undefined){
 		throw exception.invalidParam("[InvalidParamException] Tipo de parametro inválido na classe: "+actualClazz.getSimpleName()+" . Erro na criação da chamada de classe. 'makeStrCall';");
 	}
+	
 	var namesInUse = NashornBag.get();
 	
 	var buffer = "";
