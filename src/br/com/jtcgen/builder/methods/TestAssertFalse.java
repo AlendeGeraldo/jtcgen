@@ -3,6 +3,7 @@ package br.com.jtcgen.builder.methods;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
+import br.com.jtcgen.annotations.TestEquals;
 import br.com.jtcgen.annotations.TestFalse;
 import br.com.jtcgen.exceptions.InvalidParamDeclarationException;
 import br.com.jtcgen.helpers.TextEditor;
@@ -15,7 +16,13 @@ public class TestAssertFalse extends TestMethodTemplate {
 
 	@Override
 	public String getContent() {
-		TestFalse test = (TestFalse) method.getAnnotation(TestFalse.class);
+		TestFalse[] tests = method.getAnnotationsByType(TestFalse.class);
+		
+		StringBuffer todosMetodos = new StringBuffer();
+		int countAnn = 1;
+		for(TestFalse test: tests) {
+			String strCountAnn = String.valueOf(countAnn);
+		
 		String parametro = test.value();
 
 		String[] params = getParams(parametro);
@@ -27,11 +34,16 @@ public class TestAssertFalse extends TestMethodTemplate {
 
 		StringBuilder assinaturaMetodo = new StringBuilder();
 
-		assinaturaMetodo.append(createMethodCall(pts, params));
+		assinaturaMetodo.append(createMethodCall(pts, params, strCountAnn));
 
-		String content = TextEditor.newLine("assertFalse(resultado);", 2);
+		String content = TextEditor.newLine("assertFalse(resultado"+strCountAnn+");", 2);
 		assinaturaMetodo.append(content);
 
-		return assinaturaMetodo.toString();
+		todosMetodos.append(assinaturaMetodo.toString());
+		
+		countAnn++;
+	}
+	
+	return todosMetodos.toString();
 	}
 }

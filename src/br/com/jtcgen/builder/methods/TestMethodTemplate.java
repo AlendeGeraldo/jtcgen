@@ -66,8 +66,12 @@ public abstract class TestMethodTemplate {
 	protected final String getEndMethod() {
 		return TextEditor.newLine("}" + TextEditor.newLine("", 1), 1);
 	}
-
+	
 	protected String createMethodCall(Parameter[] pts, String[] params) {
+		return createMethodCall(pts, params, "");
+	}
+	
+	protected String createMethodCall(Parameter[] pts, String[] params, String countAnn) {
 		int count = 0;
 		StringBuilder buffer = new StringBuilder();
 		
@@ -78,9 +82,9 @@ public abstract class TestMethodTemplate {
 
 		if (!(method.getReturnType() == void.class)) {
 			if (method.getReturnType().isPrimitive())
-				buffer.append(method.getReturnType() + " resultado = ");
+				buffer.append(method.getReturnType() + " resultado"+countAnn+" = ");
 			else {
-				buffer.append(method.getReturnType().getSimpleName() + " resultado = ");
+				buffer.append(method.getReturnType().getSimpleName() + " resultado"+countAnn+" = ");
 				ImportManager.addImport(method.getReturnType());
 			}
 		}

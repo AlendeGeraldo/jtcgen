@@ -14,6 +14,13 @@ import br.com.jtcgen.annotations.TestNull;
 import br.com.jtcgen.annotations.Test;
 import br.com.jtcgen.annotations.TestTrue;
 import br.com.jtcgen.annotations.TestVoidEquals;
+import br.com.jtcgen.annotations.Tests;
+import br.com.jtcgen.annotations.TestsEquals;
+import br.com.jtcgen.annotations.TestsFalse;
+import br.com.jtcgen.annotations.TestsNotNull;
+import br.com.jtcgen.annotations.TestsNull;
+import br.com.jtcgen.annotations.TestsTrue;
+import br.com.jtcgen.annotations.TestsVoidEquals;
 import br.com.jtcgen.builder.methods.TestAssertEquals;
 import br.com.jtcgen.builder.methods.TestAssertFalse;
 import br.com.jtcgen.builder.methods.TestAssertNotNull;
@@ -67,19 +74,19 @@ class TestMethodsGenerator extends TestGenerator {
 	
 	private TestMethodTemplate getAnnotatedGeneratorMethod(Class<? extends Annotation> ann, Method method) {
 		TestMethodTemplate tmp = null;
-		if (ann == TestVoidEquals.class)
+		if (ann == TestVoidEquals.class || ann == TestsVoidEquals.class)
 			tmp = new TestAssertEqualsVoid(method, clazz);
-		else if (ann == TestEquals.class)
+		else if (ann == TestEquals.class || ann == TestsEquals.class)
 			tmp = new TestAssertEquals(method, clazz);
-		else if (ann == TestFalse.class)
+		else if (ann == TestFalse.class || ann == TestsFalse.class)
 			tmp = new TestAssertFalse(method, clazz);
-		else if (ann == TestTrue.class)
+		else if (ann == TestTrue.class || ann == TestsTrue.class)
 			tmp = new TestAssertTrue(method, clazz);
-		else if (ann == TestNotNull.class)
+		else if (ann == TestNotNull.class || ann == TestsNotNull.class)
 			tmp = new TestAssertNotNull(method, clazz);
-		else if (ann == TestNull.class)
+		else if (ann == TestNull.class || ann == TestsNull.class)
 			tmp = new TestAssertNull(method, clazz);
-		else if (ann == Test.class)
+		else if (ann == Test.class || ann == Tests.class)
 			tmp = new TestExpression(method, clazz);
 			
 

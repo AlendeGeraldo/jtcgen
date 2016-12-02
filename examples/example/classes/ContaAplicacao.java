@@ -77,25 +77,18 @@ public class ContaAplicacao extends Conta implements Tributavel {
 		return "Bem Vindo! " + mensagem + ", seu saldo e de R$ " + saldo;
 	}
 	
-	//mock('Leilao@getLances()').returns(mockList('Lance@getValor()', [200.0, 300.0, 400.0]))
 	@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).eq(300.0)")
 	public double somaValoresDasContas(ContaPoupanca cp) {
 		return this.saldo + cp.getSaldo();
 	}
 	
-	@Test("setup([10, 12, 100.0])"
-			+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, 1.1])"
-			+ ".eq(330.0)")
+	@Test("setup([10, 12, 100.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}, 1.1]).eq(330.0)")
 	public double calculaJurosAcimaSobContas(ContaPoupanca cp, double juros) {
 		return (this.saldo + cp.getSaldo()) * juros;
 	}
 	
-	@Test({"setup([10, 12, 0.0])"
-			+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}])"
-			+ ".isTrue()", 
-		   "setup([10, 12, -2.2])"
-			+ ".parameter([{c: 'ContaPoupanca@getSaldo()', v: 0.0}])"
-			+ ".isFalse()"})
+	@Test("setup([10, 12, 0.0]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 200.0}]).isTrue()")
+	@Test("setup([10, 12, -2.2]).parameter([{c: 'ContaPoupanca@getSaldo()', v: 0.0}]).isFalse()")
 	public boolean saldoEhPositivo(ContaPoupanca cp) {
 		return (this.saldo + cp.getSaldo()) >= 0;
 	}
@@ -109,6 +102,7 @@ public class ContaAplicacao extends Conta implements Tributavel {
 	 * */
 	
 	@TestEquals({"a;5.5", "a"})
+	@TestEquals({"p;1093.0", "p"})
 	public char testeChar(char param1, double param2) {
 		return param1;
 	}

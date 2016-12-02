@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Repeatable(Tests.class)
 public @interface Test {
-	String[] value() default "";
+	String value() default "";
 }
